@@ -4,6 +4,7 @@ import {
     Route,
 } from 'react-router-dom';
 
+import Header from './Header';
 import Navigation from './Navigation';
 import LandingPage from './Landing';
 import SignUpPage from './SignUp';
@@ -18,6 +19,7 @@ import withAuthentication from './withAuthentication';
 const App = () =>
     <Router>
         <div>
+            <Header/>
             <Navigation />
 
             <hr/>
