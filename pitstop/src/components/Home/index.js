@@ -2,20 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
 
-import withAuthorization from './withAuthorization';
-import {db} from '../firebase';
+import withAuthorization from '../Session/withAuthorization';
+import { db } from '../../firebase';
 
 class HomePage extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            users: null,
-        };
-    }
-
-    componentDidMount() {
-        const {onSetUsers} = this.props;
+  componentDidMount() {
+    const { onSetUsers } = this.props;
 
         db.onceGetUsers().then(snapshot =>
             onSetUsers(snapshot.val())
@@ -51,8 +43,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onSetUsers: (users) => dispatch({type: 'USERS_SET'.users}),
-})
+  onSetUsers: (users) => dispatch({ type: 'USERS_SET', users }),
+});
 
 const authCondition = (authUser) => !!authUser;
 
