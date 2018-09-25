@@ -1,0 +1,11 @@
+header {
+  color: #FFFFFF;
+  background: #233142;
+  text-align: center;
+  padding: 0.75rem 0; }
+  header h1 {
+    display: inline-block;
+    margin: 0;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1; }

@@ -15,23 +15,21 @@ import AccountPage from '../Account';
 import withAuthentication from '../Session/withAuthentication';
 import * as routes from '../../constants/routes';
 
-import './index.css';
+import './app.css';
 
 const App = () =>
   <Router>
     <div className="app">
-        <Header/>
-      <Navigation />
-
-      <hr/>
-
-      <Route exact path={routes.LANDING} component={() => <LandingPage />} />
-      <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
-      <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
-      <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
-      <Route exact path={routes.HOME} component={() => <HomePage />} />
-      <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
-
+      <Header/>
+      <div className="view">
+        <Navigation />
+        <Route exact path={routes.LANDING} component={() => <LandingPage />} />
+        <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+        <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+        <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
+        <Route exact path={routes.HOME} component={() => <HomePage />} />
+        <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+      </div>
     </div>
   </Router>
 export default withAuthentication(App);

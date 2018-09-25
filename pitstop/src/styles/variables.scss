@@ -1,2 +1,23 @@
-$dark-blue: #233142;
-$white: #FFFFFF;
+// COLORS
+
+$dark-blue:         #233142;
+$blue:              #455D7A;
+$yellow:            #FACF5A;
+$red:               #F95959;
+$white:             #FFFFFF;
+
+
+// OTHER STUFF
+
+$content-width:       1400px;
+$viewport-width:      94vw;
+$line-height:         1.555555;
+$transition:          200ms ease-in-out;
+
+
+// BREAKPOINTS
+
+$breakpoint1:         "only screen and (max-width: 1200px)";
+$breakpoint2:         "only screen and (max-width: 1000px)";
+$breakpoint3:         "only screen and (max-width: 800px)";
+$breakpoint4:         "only screen and (max-width: 800px)";
