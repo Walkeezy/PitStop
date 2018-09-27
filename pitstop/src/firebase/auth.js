@@ -19,3 +19,11 @@ export const doPasswordReset = (email) =>
 // Password Change
 export const doPasswordUpdate = (password) =>
     auth.currentUser.updatePassword(password);
+
+export const getIdToken = () =>
+    auth.onIdTokenChanged(function(user) {
+        if (user) {
+            console.log('user', user);
+            
+        }
+    });

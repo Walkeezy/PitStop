@@ -1,4 +1,5 @@
-import { db } from './firebase';
+import {db} from './firebase';
+
 
 // User API
 
@@ -10,3 +11,14 @@ export const doCreateUser = (id, username, email) =>
 
 export const onceGetUsers = () =>
     db.ref('users').once('value');
+
+export const doCreateVehicle = (id, vehicleName, brand, mark, date, mileage, tyres) =>
+    db.ref(`users/${id}/vehicles`).push({
+        vehicleName,
+        brand,
+        mark,
+        date,
+        mileage,
+        tyres,
+        events: ''
+    });
