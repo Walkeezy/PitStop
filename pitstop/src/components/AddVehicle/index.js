@@ -1,13 +1,8 @@
-import React, {Component} from 'react';
-import {
-    Link,
-    withRouter,
-} from 'react-router-dom';
-
-import {auth, db, firebase} from '../../firebase';
-import * as routes from '../../constants/routes';
-import connect from 'react-redux/es/connect/connect';
-
+import React, { Component } from 'react';
+import { db, firebase } from '../../firebase';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import withAuthorization from '../Session/withAuthorization';
 
 const AddVehiclePage = ({history}) =>
     <div>
@@ -140,21 +135,13 @@ class AddVehicleForm extends Component {
     }
 }
 
-
-
-const AddVehicleLink = () =>
-    <p>
-        Add Vehicle
-        {' '}
-        <Link to={routes.SIGN_UP}>Sign Up</Link>
-    </p>
-
 const mapStateToProps = (state) => ({
     authUser: state.sessionState.authUser,
 });
 
-export default withRouter(connect(mapStateToProps)(AddVehiclePage));
-export {
-    AddVehicleForm,
-    AddVehicleLink,
-};
+const authCondition = (authUser) => !!authUser;
+
+export default compose(
+  withAuthorization(authCondition),
+  connect(mapStateToProps)
+)(AddVehiclePage);
