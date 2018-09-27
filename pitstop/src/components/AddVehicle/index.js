@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { db, firebase } from '../../firebase';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
+import React, {Component} from 'react';
+import {db, firebase} from '../../firebase';
+import {connect} from 'react-redux';
+import {compose} from 'recompose';
+import * as routes from '../../constants/routes';
 import withAuthorization from '../Session/withAuthorization';
 
 const AddVehiclePage = ({history}) =>
@@ -15,11 +16,11 @@ const updateByPropertyName = (propertyName, value) => () => ({
 });
 
 const INITIAL_STATE = {
-    vehicleName : '',
-    brand   : '',
-    mark      : '',
-    date: '',
-    mileage: '',
+    vehicleName: '',
+    brand      : '',
+    mark       : '',
+    date       : '',
+    mileage    : '',
     tyres      : '',
 };
 
@@ -46,24 +47,21 @@ class AddVehicleForm extends Component {
               } = this.props;
 
 
-
-            // Create a user in your own accessible Firebase Database too
-            db.doCreateVehicle(
-                firebase.auth.currentUser.uid,
-                vehicleName,
-                brand,
-                mark,
-                date,
-                mileage,
-                tyres
-            );
-            // .then(() => {
-            //     this.setState(() => ({...INITIAL_STATE}));
-            //     history.push(routes.HOME);
-            // })
-            // .catch(error => {
-            //     this.setState(updateByPropertyName('error', error));
-            // });
+        // Create a user in your own accessible Firebase Database too
+        db.doCreateVehicle(
+            firebase.auth.currentUser.uid,
+            vehicleName,
+            brand,
+            mark,
+            date,
+            mileage,
+            tyres
+        ).then(() => {
+            this.setState(() => ({...INITIAL_STATE}));
+            history.push(routes.HOME);
+        }).catch(error => {
+            this.setState(updateByPropertyName('error', error));
+        });
 
         event.preventDefault();
     };
@@ -71,12 +69,12 @@ class AddVehicleForm extends Component {
     render() {
         const {
                   vehicleName,
-                  brand ,
+                  brand,
                   mark,
                   date,
                   mileage,
-                  tyres ,
-                    error,
+                  tyres,
+                  error,
               } = this.state;
 
         // const isInvalid =
@@ -142,6 +140,6 @@ const mapStateToProps = (state) => ({
 const authCondition = (authUser) => !!authUser;
 
 export default compose(
-  withAuthorization(authCondition),
-  connect(mapStateToProps)
+    withAuthorization(authCondition),
+    connect(mapStateToProps)
 )(AddVehiclePage);

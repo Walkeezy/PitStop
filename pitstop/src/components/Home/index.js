@@ -3,47 +3,49 @@ import {connect} from 'react-redux';
 import {compose} from 'recompose';
 
 import withAuthorization from '../Session/withAuthorization';
-import { db } from '../../firebase';
+import {db, firebase} from '../../firebase';
 
 class HomePage extends Component {
-  componentDidMount() {
-    const { onSetUsers } = this.props;
+    componentDidMount() {
+        const {onSetVehicles} = this.props;
 
-        db.onceGetUsers().then(snapshot =>
-            onSetUsers(snapshot.val())
-        );
+        db.onceGetVehicles(firebase.auth.currentUser.uid)
+            .then(snapshot =>
+                onSetVehicles(snapshot.val())
+            );
     }
 
     render() {
-        const {users} = this.props;
+        const {users}    = this.props;
+        const {vehicles} = this.props;
 
         return (
             <div>
                 <h1>Home Page</h1>
                 <p>The Home Page is accessible by every signed in user.</p>
 
-                {!!users && <UserList users={users}/>}
+
+                {!!vehicles && <VehicleList vehicles={vehicles}/>}
             </div>
         )
     }
 }
 
-const UserList = ({users}) =>
+const VehicleList = ({vehicles}) =>
     <div>
-        <h2>List of Usernames of Users</h2>
-        <p>Saved on Sign Up in Firebase Database</p>
+        <h2>Vehicles</h2>
 
-        {Object.keys(users).map(key =>
-            <div key={key}>{users[key].username}</div>
+        {Object.keys(vehicles).map(key =>
+            <div key={key}>{vehicles[key].vehicleName}</div>
         )}
     </div>
 
 const mapStateToProps = (state) => ({
-    users: state.userState.users,
+    vehicles: state.userState.users,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSetUsers: (users) => dispatch({ type: 'USERS_SET', users }),
+    onSetVehicles: (users) => dispatch({type: 'USERS_SET', users}),
 });
 
 const authCondition = (authUser) => !!authUser;

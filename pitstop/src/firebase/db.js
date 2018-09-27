@@ -22,3 +22,7 @@ export const doCreateVehicle = (id, vehicleName, brand, mark, date, mileage, tyr
         tyres,
         events: ''
     });
+
+
+export const onceGetVehicles = (id) =>
+    db.ref(`users/${id}/vehicles`).once('value');
