@@ -4,6 +4,7 @@ import {compose} from 'recompose';
 
 import withAuthorization from '../Session/withAuthorization';
 import {db, firebase} from '../../firebase';
+import VehicleSwitch from './VehicleSwitch';
 
 class HomePage extends Component {
     componentDidMount() {
@@ -16,7 +17,6 @@ class HomePage extends Component {
     }
 
     render() {
-        const {users}    = this.props;
         const {vehicles} = this.props;
 
         return (
@@ -25,20 +25,11 @@ class HomePage extends Component {
                 <p>The Home Page is accessible by every signed in user.</p>
 
 
-                {!!vehicles && <VehicleList vehicles={vehicles}/>}
+                {!!vehicles && <VehicleSwitch vehicles={vehicles}/>}
             </div>
         )
     }
 }
-
-const VehicleList = ({vehicles}) =>
-    <div>
-        <h2>Vehicles</h2>
-
-        {Object.keys(vehicles).map(key =>
-            <div key={key}>{vehicles[key].vehicleName}</div>
-        )}
-    </div>
 
 const mapStateToProps = (state) => ({
     vehicles: state.userState.users,

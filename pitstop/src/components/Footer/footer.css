@@ -1,0 +1,16 @@
+footer {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  color: #FFFFFF;
+  background: #233142;
+  padding: 0.75rem 0; }
+
+.footer__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 94vw;
+  width: 1400px;
+  margin: 0 auto; }

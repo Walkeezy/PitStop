@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Header from '../Header';
+import Footer from '../Footer';
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
@@ -21,7 +22,7 @@ import './app.css';
 const App = () =>
   <Router>
     <div className="app">
-      <Header/>
+      <Header />
       <div className="view">
         <Navigation />
         <Route exact path={routes.LANDING} component={() => <LandingPage />} />
@@ -32,6 +33,7 @@ const App = () =>
         <Route exact path={routes.ADD_VEHICLE} component={() => <AddVehiclePage />} />
         <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
       </div>
+      <Footer />
     </div>
   </Router>
 export default withAuthentication(App);
