@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
+import { Link } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+
+import SignOutButton from '../SignOut';
 
 import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
@@ -11,6 +15,13 @@ const AccountPage = ({authUser}) =>
                 <h1>Account: {authUser.email}</h1>
                 <PasswordForgetForm/>
                 <PasswordChangeForm/>
+
+                <div>
+                  <Link to={routes.ADD_VEHICLE}>Add Vehicle</Link>
+                </div>
+                <div>
+                  <SignOutButton />
+                </div>
             </div>
 
 const mapStateToProps = (state) => ({
