@@ -5,12 +5,10 @@ header {
   background: $dark-blue;
   text-align: center;
   padding: 0.75rem 0;
+  line-height: 0;
+}
 
-  h1 {
-    display: inline-block;
-    margin: 0;
-    font-style: italic;
-    font-size: 2rem;
-    line-height: 1;
-  }
+.header__home-link {
+  display: inline-block;
+  font-size: 0;
 }

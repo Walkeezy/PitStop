@@ -7,7 +7,6 @@ import {
 import Header from '../Header';
 import Footer from '../Footer';
 import Navigation from '../Navigation';
-import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
@@ -25,7 +24,6 @@ const App = () =>
       <Header />
       <div className="view">
         <Navigation />
-        <Route exact path={routes.LANDING} component={() => <LandingPage />} />
         <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
         <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
         <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />

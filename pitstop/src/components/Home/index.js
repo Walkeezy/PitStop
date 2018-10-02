@@ -6,26 +6,7 @@ import withAuthorization from '../Session/withAuthorization';
 import {db, firebase} from '../../firebase';
 import VehicleSwitch from './VehicleSwitch';
 import LogBook from '../LogBook/LogBook';
-
-// Fake data
-const entries = [{
-    id: '0',
-    type: 'fuel',
-    amount: '50',
-    cost: '100',
-    mileage: '23498'
-  }, {
-    id: '1',
-    type: 'service',
-    cost: '320',
-    mileage: '25000'
-  }, {
-    id: '2',
-    type: 'fuel',
-    amount: '34',
-    cost: '78',
-    mileage: '25453'
-  }]
+import entries from '../../store/fakedata';
 
 class HomePage extends Component {
     componentDidMount() {
