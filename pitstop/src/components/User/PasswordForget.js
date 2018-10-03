@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
-import {auth} from '../../firebase';
-import * as routes from '../../constants/routes';
+import {auth} from '../../firebase'
+import * as routes from '../../constants/routes'
 
 const PasswordForgetPage = () =>
     <div>
@@ -62,7 +62,7 @@ class PasswordForgetForm extends Component {
 
                 {error && <p>{error.message}</p>}
             </form>
-        );
+        )
     }
 }
 
@@ -71,9 +71,9 @@ const PasswordForgetLink = () =>
         <Link to={routes.PASSWORD_FORGET}>Forgot Password?</Link>
     </p>
 
-export default PasswordForgetPage;
+export default PasswordForgetPage
 
 export {
     PasswordForgetForm,
     PasswordForgetLink,
-};
+}

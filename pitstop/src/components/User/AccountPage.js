@@ -1,14 +1,14 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {compose} from 'recompose';
-import { Link } from 'react-router-dom';
-import * as routes from '../../constants/routes';
+import React from 'react'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
+import { Link } from 'react-router-dom'
+import * as routes from '../../constants/routes'
 
-import SignOutButton from '../SignOut';
+import SignOutButton from './SignOut'
 
-import { PasswordForgetForm } from '../PasswordForget';
-import PasswordChangeForm from '../PasswordChange';
-import withAuthorization from '../Session/withAuthorization';
+import { PasswordForgetForm } from './PasswordForget'
+import PasswordChangeForm from './PasswordChange'
+import withAuthorization from '../Session/withAuthorization'
 
 const AccountPage = ({authUser}) =>
             <div>
@@ -33,4 +33,4 @@ const authCondition = (authUser) => !!authUser;
 export default compose(
     withAuthorization(authCondition),
     connect(mapStateToProps)
-)(AccountPage);
+)(AccountPage)

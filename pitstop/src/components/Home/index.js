@@ -4,8 +4,8 @@ import {compose} from 'recompose';
 
 import withAuthorization from '../Session/withAuthorization';
 import {db, firebase} from '../../firebase';
-import VehicleSwitch from './VehicleSwitch';
-import LogBook from '../LogBook/LogBook';
+import VehicleSwitch from '../Vehicle/VehicleSwitch';
+import VehicleLog from '../Vehicle/VehicleLog';
 import entries from '../../store/fakedata';
 
 class HomePage extends Component {
@@ -27,7 +27,7 @@ class HomePage extends Component {
 
                 {!!vehicles && <VehicleSwitch vehicles={vehicles}/>}
 
-                <LogBook entries={entries}/>
+                <VehicleLog entries={entries}/>
 
             </div>
         )

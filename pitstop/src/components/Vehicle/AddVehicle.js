@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {db, firebase} from '../../firebase';
-import {connect} from 'react-redux';
-import {compose} from 'recompose';
-import * as routes from '../../constants/routes';
-import withAuthorization from '../Session/withAuthorization';
+import React, {Component} from 'react'
+import {db, firebase} from '../../firebase'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
+import * as routes from '../../constants/routes'
+import withAuthorization from '../Session/withAuthorization'
 
 const AddVehiclePage = ({history}) =>
     <div>
@@ -13,7 +13,7 @@ const AddVehiclePage = ({history}) =>
 
 const updateByPropertyName = (propertyName, value) => () => ({
     [propertyName]: value,
-});
+})
 
 const INITIAL_STATE = {
     vehicleName: '',
@@ -22,7 +22,7 @@ const INITIAL_STATE = {
     date       : '',
     mileage    : '',
     tyres      : '',
-};
+}
 
 class AddVehicleForm extends Component {
     constructor(props) {
@@ -135,11 +135,11 @@ class AddVehicleForm extends Component {
 
 const mapStateToProps = (state) => ({
     authUser: state.sessionState.authUser,
-});
+})
 
-const authCondition = (authUser) => !!authUser;
+const authCondition = (authUser) => !!authUser
 
 export default compose(
     withAuthorization(authCondition),
     connect(mapStateToProps)
-)(AddVehiclePage);
+)(AddVehiclePage)

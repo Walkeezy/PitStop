@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 
-import {SignUpLink} from '../SignUp';
-import {PasswordForgetLink} from '../PasswordForget';
-import {auth} from '../../firebase';
-import * as routes from '../../constants/routes';
+import {SignUpLink} from './SignUp'
+import {PasswordForgetLink} from './PasswordForget'
+import {auth} from '../../firebase'
+import * as routes from '../../constants/routes'
 
 const SignInPage = ({history}) =>
     <div>
@@ -16,13 +16,13 @@ const SignInPage = ({history}) =>
 
 const updateByPropertyName = (propertyName, value) => () => ({
     [propertyName]: value,
-});
+})
 
 const INITIAL_STATE = {
     email   : '',
     password: '',
     error   : null,
-};
+}
 
 class SignInForm extends Component {
     constructor(props) {
@@ -84,12 +84,12 @@ class SignInForm extends Component {
 
                 {error && <p>{error.message}</p>}
             </form>
-        );
+        )
     }
 }
 
-export default withRouter(SignInPage);
+export default withRouter(SignInPage)
 
 export {
     SignInForm,
-};
+}

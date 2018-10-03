@@ -1,5 +1,5 @@
-import React from 'react';
-import {auth} from '../../firebase';
+import React from 'react'
+import {auth} from '../../firebase'
 
 const SignOutButton = () =>
     <button
@@ -9,4 +9,4 @@ const SignOutButton = () =>
         Sign Out
     </button>
 
-export default SignOutButton;
+export default SignOutButton

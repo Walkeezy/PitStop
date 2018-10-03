@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
-import {auth} from '../../firebase';
+import {auth} from '../../firebase'
 
 const updateByPropertyName = (propertyName, value) => () => ({
     [propertyName]: value,
@@ -68,4 +68,4 @@ class PasswordChangeForm extends Component {
     }
 }
 
-export default PasswordChangeForm;
+export default PasswordChangeForm
