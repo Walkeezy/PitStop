@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class LogEntry extends Component {
   render() {
@@ -15,6 +16,10 @@ class LogEntry extends Component {
 
     )
   }
+}
+
+LogEntry.propTypes = {
+  entry: PropTypes.object.isRequired
 }
 
 export default LogEntry
