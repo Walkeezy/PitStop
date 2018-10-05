@@ -6,7 +6,7 @@ import Footer from '../Layout/Footer'
 import SignUpPage from '../User/SignUp'
 import SignInPage from '../User/SignIn'
 import PasswordForgetPage from '../User/PasswordForget'
-import HomePage from '../Home'
+import HomePage from '../Home/Home'
 import AccountPage from '../User/AccountPage'
 import AddVehiclePage from '../Vehicle/AddVehicle'
 import AddEventPage from '../Vehicle/AddEvent'
@@ -14,7 +14,7 @@ import StatisticPage from '../Vehicle/VehicleStatistic'
 import withAuthentication from '../Session/withAuthentication'
 import * as routes from '../../constants/routes'
 
-import './app.css'
+import './App.css'
 
 const App = () =>
     <Router>

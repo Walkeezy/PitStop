@@ -12,7 +12,7 @@ class Footer extends Component {
             <footer>
             <div className="footer__content">
                 <Link to={routes.ACCOUNT}><Icon name="user" width="32px" fill='#FFF' /></Link>
-                <Link to={routes.ADD_EVENT}>New event</Link>
+                <Link to={routes.ADD_EVENT}><Icon name="plus" width="40px" fill='#FFF' /></Link>
                 <Link to={routes.STATISTIC}><Icon name="statistic" width="48px" fill='#FFF' /></Link>
             </div>
             </footer>
