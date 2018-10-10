@@ -1,125 +1,53 @@
-import React, {Component} from 'react'
-import { Link, withRouter,} from 'react-router-dom'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router'
+import { auth } from '../../database/config'
 
-import {auth, db} from '../../firebase'
-import * as routes from '../../constants/routes'
+class SignUpContainer extends Component {
 
-const SignUpPage = ({history}) =>
-    <div>
-        <h1>SignUp</h1>
-        <SignUpForm history={history}/>
-    </div>
-
-const updateByPropertyName = (propertyName, value) => () => ({
-    [propertyName]: value,
-});
-
-const INITIAL_STATE = {
-    username   : '',
-    email      : '',
-    passwordOne: '',
-    passwordTwo: '',
-    error      : null,
-};
-
-class SignUpForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {...INITIAL_STATE};
+    constructor() {
+        super()
+        this.handleSignUp = this.handleSignUp.bind(this)
     }
 
-    onSubmit = (event) => {
-        const {
-                  username,
-                  email,
-                  passwordOne,
-              } = this.state;
-
-        const {
-                  history,
-              } = this.props;
-
-        auth.doCreateUserWithEmailAndPassword(email, passwordOne)
-            .then(authUser => {
-
-                // Create a user in your own accessible Firebase Database too
-                db.doCreateUser(authUser.user.uid, username, email)
-                    .then(() => {
-                        this.setState(() => ({...INITIAL_STATE}));
-                        history.push(routes.HOME);
-                    })
-                    .catch(error => {
-                        this.setState(updateByPropertyName('error', error));
-                    });
-
-            })
-            .catch(error => {
-                this.setState(updateByPropertyName('error', error));
-            });
-
+    handleSignUp = async event => {
         event.preventDefault();
-    };
+        const { email, password } = event.target.elements
+        try {
+            const user = await auth.createUserWithEmailAndPassword(email.value, password.value)
+            this.props.history.push("/")
+        } catch (error) {
+            alert(error)
+        }
+    }
 
     render() {
-        const {
-                  username,
-                  email,
-                  passwordOne,
-                  passwordTwo,
-                  error,
-              } = this.state;
-
-        const isInvalid =
-                  passwordOne !== passwordTwo ||
-                  passwordOne === '' ||
-                  username === '' ||
-                  email === '';
-
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    value={username}
-                    onChange={event => this.setState(updateByPropertyName('username', event.target.value))}
-                    type="text"
-                    placeholder="Full Name"
-                />
-                <input
-                    value={email}
-                    onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    value={passwordOne}
-                    onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
-                    type="password"
-                    placeholder="Password"
-                />
-                <input
-                    value={passwordTwo}
-                    onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
-                    type="password"
-                    placeholder="Confirm Password"
-                />
-                <button disabled={isInvalid} type="submit">
-                    Sign Up
-                </button>
 
-                {error && <p>{error.message}</p>}
-            </form>
-        );
+            <div>
+                <h1>Sign up</h1>
+                <form onSubmit={this.handleSignUp}>
+                    <label>
+                        Email
+          <input
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                        />
+                    </label>
+                    <label>
+                        Password
+          <input
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </label>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+
+        )
     }
 }
 
-const SignUpLink = () =>
-    <p>
-        Don't have an account?
-        {' '}
-        <Link to={routes.SIGN_UP}>Sign Up</Link>
-    </p>
-export default withRouter(SignUpPage)
-export {
-    SignUpForm,
-    SignUpLink,
-}
+export default withRouter(SignUpContainer)

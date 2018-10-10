@@ -1,145 +1,87 @@
 import React, {Component} from 'react'
-import {db, firebase} from '../../firebase'
-import {connect} from 'react-redux'
-import {compose} from 'recompose'
-import * as routes from '../../constants/routes'
-import withAuthorization from '../Session/withAuthorization'
+import { connect } from 'react-redux'
 
-const AddVehiclePage = ({history}) =>
-    <div>
-        <h1>Add Vehicle</h1>
-        <AddVehicleForm history={history}/>
-    </div>
+import { bindActionCreators } from 'redux'
+import * as actions from '../../redux/actions'
 
-const updateByPropertyName = (propertyName, value) => () => ({
-    [propertyName]: value,
-})
-
-const INITIAL_STATE = {
-    vehicleName: '',
-    brand      : '',
-    mark       : '',
-    date       : '',
-    mileage    : '',
-    tyres      : '',
+function mapStateToProps(state) {
+    return {
+        vehicles: state.vehicles
+    }
 }
 
-class AddVehicleForm extends Component {
-    constructor(props) {
-        super(props);
-        console.log('props', props);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actions, dispatch)
 
-        this.state = {...INITIAL_STATE};
+}
+
+class AddVehiclePage extends Component {
+
+    constructor() {
+        super()
+        console.log(this.props)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    onSubmit = (event) => {
-        const {
-                  vehicleName,
-                  brand,
-                  mark,
-                  date,
-                  mileage,
-                  tyres,
-              } = this.state;
-
-        const {
-                  history,
-              } = this.props;
-
-
-        // Create a user in your own accessible Firebase Database too
-        db.doCreateVehicle(
-            firebase.auth.currentUser.uid,
-            vehicleName,
-            brand,
-            mark,
-            date,
-            mileage,
-            tyres
-        ).then(() => {
-            this.setState(() => ({...INITIAL_STATE}));
-            history.push(routes.HOME);
-        }).catch(error => {
-            this.setState(updateByPropertyName('error', error));
-        });
-
+    handleSubmit(event) {
         event.preventDefault();
-    };
+        const vehicleName = event.target.elements.vehicleName.value
+        const vehicleMakeModel = event.target.elements.vehicleMakeModel.value
+        const vehicleFirstRegistration = event.target.elements.vehicleFirstRegistration.value
+        const vehicleMileage = event.target.elements.vehicleMileage.value
+        const vehicleTyres = event.target.elements.vehicleTyres.value
+        const vehicle = {
+            id: Number(new Date()),
+            name: vehicleName,
+            make_model: vehicleMakeModel,
+            registration: vehicleFirstRegistration,
+            mileage: vehicleMileage,
+            tyres: vehicleTyres
+        }
+        if (vehicleName) {
+            this.props.startAddingVehicle(vehicle)
+        }
+    }
 
     render() {
-        const {
-                  vehicleName,
-                  brand,
-                  mark,
-                  date,
-                  mileage,
-                  tyres,
-                  error,
-              } = this.state;
-
-        // const isInvalid =
-        //           passwordOne !== passwordTwo ||
-        //           passwordOne === '' ||
-        //           username === '' ||
-        //           email === '';
-
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    value={vehicleName}
-                    onChange={event => this.setState(updateByPropertyName('vehicleName', event.target.value))}
-                    type="text"
-                    placeholder="Vehicle Name"
-                />
-                <input
-                    value={brand}
-                    onChange={event => this.setState(updateByPropertyName('brand', event.target.value))}
-                    type="text"
-                    placeholder="Brand"
-                />
-                <input
-                    value={mark}
-                    onChange={event => this.setState(updateByPropertyName('mark', event.target.value))}
-                    type="text"
-                    placeholder="Mark"
-                />
-                <input
-                    value={date}
-                    onChange={event => this.setState(updateByPropertyName('date', event.target.value))}
-                    type="date"
-                    placeholder="Date"
-                />
-                <input
-                    value={mileage}
-                    onChange={event => this.setState(updateByPropertyName('mileage', event.target.value))}
-                    type="number"
-                    step="1000"
-                    placeholder="Mileage"
-                />
-                <input
-                    value={tyres}
-                    onChange={event => this.setState(updateByPropertyName('tyres', event.target.value))}
-                    type="text"
-                    placeholder="Tyres"
-                />
-                {/*<button disabled={isInvalid} type="submit">*/}
-                <button type="submit">
-                    Add Vehicle
-                </button>
 
-                {error && <p>{error.message}</p>}
-            </form>
-        );
+            <div className="add-vehicle-form">
+
+                <h1>Add vehicle</h1>
+
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form__field">
+                        <label htmlFor="vehicleName">Vehicle name</label>
+                        <input type="text" name="vehicleName" id="vehicleName" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="vehicleMakeModel">Make &amp; model</label>
+                        <input type="text" name="vehicleMakeModel" id="vehicleMakeModel" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="vehicleFirstRegistration">Date of first registration</label>
+                        <input type="date" name="vehicleFirstRegistration" id="vehicleFirstRegistration" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="vehicleMileage">Current mileage</label>
+                        <input type="number" step="1000" name="vehicleMileage" id="vehicleMileage" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="vehicleTyres">Tyres</label>
+                        <input type="text" name="vehicleTyres" id="vehicleTyres" />
+                    </div>
+
+                    <div className="form__field field--submit">
+                        <input type="submit" value="Add vehicle" />
+                    </div>
+
+                </form>
+
+            </div>
+
+        )
     }
 }
 
-const mapStateToProps = (state) => ({
-    authUser: state.sessionState.authUser,
-})
-
-const authCondition = (authUser) => !!authUser
-
-export default compose(
-    withAuthorization(authCondition),
-    connect(mapStateToProps)
-)(AddVehiclePage)
+export default connect(mapStateToProps, mapDispatchToProps)(AddVehiclePage)

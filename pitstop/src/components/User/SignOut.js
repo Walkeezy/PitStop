@@ -1,12 +1,31 @@
-import React from 'react'
-import {auth} from '../../firebase'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router'
+import { auth } from '../../database/config'
 
-const SignOutButton = () =>
-    <button
-        type="button"
-        onClick={auth.doSignOut}
-    >
-        Sign Out
-    </button>
+class SignOutButton extends Component {
 
-export default SignOutButton
+    constructor() {
+        super()
+        this.handleSignOut = this.handleSignOut.bind(this)
+    }
+
+    handleSignOut = async event => {
+        event.preventDefault();
+        try {
+            const user = await auth.signOut()
+            this.props.history.push("/")
+        } catch (error) {
+            alert(error)
+        }
+    };
+
+    render() {
+        return (
+
+            <button onClick={this.handleSignOut}>Sign out</button>
+
+        )
+    }
+}
+
+export default withRouter(SignOutButton)

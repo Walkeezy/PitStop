@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 class VehicleLogEntry extends Component {
     render() {
@@ -16,10 +15,6 @@ class VehicleLogEntry extends Component {
 
         )
     }
-}
-
-VehicleLogEntry.propTypes = {
-  entry: PropTypes.object.isRequired
 }
 
 export default VehicleLogEntry

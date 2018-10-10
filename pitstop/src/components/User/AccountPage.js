@@ -1,36 +1,26 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {compose} from 'recompose'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as routes from '../../constants/routes'
 
 import SignOutButton from './SignOut'
 
-import { PasswordForgetForm } from './PasswordForget'
-import PasswordChangeForm from './PasswordChange'
-import withAuthorization from '../Session/withAuthorization'
+class AccountPage extends Component {
+    componentDidMount() {
 
-const AccountPage = ({authUser}) =>
+    }
+
+    render() {
+        return (
             <div>
-                <h1>Account: {authUser.email}</h1>
-                <PasswordForgetForm/>
-                <PasswordChangeForm/>
+                <h1>Account Page</h1>
 
-                <div>
-                  <Link to={routes.ADD_VEHICLE}>Add Vehicle</Link>
-                </div>
-                <div>
-                  <SignOutButton />
-                </div>
+                <Link to={routes.ADD_VEHICLE}>Add Vehicle</Link>
+
+                <SignOutButton/>
+
             </div>
+        )
+    }
+}
 
-const mapStateToProps = (state) => ({
-    authUser: state.sessionState.authUser,
-});
-
-const authCondition = (authUser) => !!authUser;
-
-export default compose(
-    withAuthorization(authCondition),
-    connect(mapStateToProps)
-)(AccountPage)
+export default AccountPage
