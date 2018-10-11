@@ -1,53 +1,51 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { auth } from '../../database/config'
 
-class SignUpContainer extends Component {
+class SignInContainer extends Component {
 
     constructor() {
         super()
         this.handleSignIn = this.handleSignIn.bind(this)
     }
 
-    handleSignIn = async event => {
+    handleSignIn(event) {
         event.preventDefault();
-        const { email, password } = event.target.elements
-        try {
-            const user = await auth.signInWithEmailAndPassword(email.value, password.value)
-            this.props.history.push("/")
-        } catch (error) {
-            alert(error)
+        const userMail = event.target.elements.userMail.value
+        const userPassword = event.target.elements.userPassword.value
+        const user = {
+            email: userMail,
+            password: userPassword
         }
-    };
+        if (userMail) {
+            this.props.startLoginUser(user)
+        }
+    }
 
     render() {
         return (
 
-            <div>
-                <h1>Sign in</h1>
+            <div className="sign-in-form">
+
+                <h1>Login</h1>
+
                 <form onSubmit={this.handleSignIn}>
-                    <label>
-                        Email
-          <input
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                        />
-                    </label>
-                    <label>
-                        Password
-          <input
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                        />
-                    </label>
-                    <button type="submit">Sign Up</button>
+                    <div className="form__field">
+                        <label htmlFor="userMail">Your e-mail</label>
+                        <input type="email" name="userMail" id="userMail" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="userPassword">Your password</label>
+                        <input type="password" name="userPassword" id="userPassword" />
+                    </div>
+                    <div className="form__field field--submit">
+                        <input type="submit" value="Login" />
+                    </div>
                 </form>
+
             </div>
 
         )
     }
 }
 
-export default withRouter(SignUpContainer)
+export default withRouter(SignInContainer)

@@ -1,25 +1,9 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-
-import { bindActionCreators } from 'redux'
-import * as actions from '../../redux/actions'
-
-function mapStateToProps(state) {
-    return {
-        vehicles: state.vehicles
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch)
-
-}
 
 class AddVehiclePage extends Component {
 
     constructor() {
         super()
-        console.log(this.props)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
@@ -71,11 +55,9 @@ class AddVehiclePage extends Component {
                         <label htmlFor="vehicleTyres">Tyres</label>
                         <input type="text" name="vehicleTyres" id="vehicleTyres" />
                     </div>
-
                     <div className="form__field field--submit">
                         <input type="submit" value="Add vehicle" />
                     </div>
-
                 </form>
 
             </div>
@@ -84,4 +66,4 @@ class AddVehiclePage extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddVehiclePage)
+export default AddVehiclePage

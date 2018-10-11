@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { auth } from '../../database/config'
 
 class SignOutButton extends Component {
 
@@ -9,15 +8,10 @@ class SignOutButton extends Component {
         this.handleSignOut = this.handleSignOut.bind(this)
     }
 
-    handleSignOut = async event => {
+    handleSignOut(event) {
         event.preventDefault();
-        try {
-            const user = await auth.signOut()
-            this.props.history.push("/")
-        } catch (error) {
-            alert(error)
-        }
-    };
+        this.props.signOutUser()
+    }
 
     render() {
         return (

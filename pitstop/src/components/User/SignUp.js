@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { auth } from '../../database/config'
 
 class SignUpContainer extends Component {
 
@@ -9,41 +8,46 @@ class SignUpContainer extends Component {
         this.handleSignUp = this.handleSignUp.bind(this)
     }
 
-    handleSignUp = async event => {
+    handleSignUp(event) {
         event.preventDefault();
-        const { email, password } = event.target.elements
-        try {
-            const user = await auth.createUserWithEmailAndPassword(email.value, password.value)
-            this.props.history.push("/")
-        } catch (error) {
-            alert(error)
+        const userName = event.target.elements.userName.value
+        const userMail = event.target.elements.userMail.value
+        const userPassword = event.target.elements.userPassword.value
+        const user = {
+            username: userName,
+            email: userMail,
+            password: userPassword
+        }
+        if (userName) {
+            this.props.startAddingUser(user)
         }
     }
 
     render() {
         return (
 
-            <div>
-                <h1>Sign up</h1>
+            <div className="sign-up-form">
+
+                <h1>Create your account</h1>
+
                 <form onSubmit={this.handleSignUp}>
-                    <label>
-                        Email
-          <input
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                        />
-                    </label>
-                    <label>
-                        Password
-          <input
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                        />
-                    </label>
-                    <button type="submit">Sign Up</button>
+                    <div className="form__field">
+                        <label htmlFor="userName">Your name</label>
+                        <input type="text" name="userName" id="userName" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="userMail">Your e-mail</label>
+                        <input type="email" name="userMail" id="userMail" />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="userPassword">Your password</label>
+                        <input type="password" name="userPassword" id="userPassword" />
+                    </div>
+                    <div className="form__field field--submit">
+                        <input type="submit" value="Create account" />
+                    </div>
                 </form>
+
             </div>
 
         )

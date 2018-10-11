@@ -1,12 +1,33 @@
 import {combineReducers} from 'redux'
-import sessionReducer from './reducers/session'
-import userReducer from './reducers/user'
-import vehicleReducer from './reducers/vehicle'
 
-const rootReducer = combineReducers({
-    sessionState    : sessionReducer,
-    userState       : userReducer,
-    vehicleState    : vehicleReducer
-});
+function userReducer(state = [], action) {
+    switch (action.type) {
 
-export default rootReducer;
+        case 'SET_USER':
+            return action.user
+
+        default: return state
+
+    }
+}
+
+function vehicleReducer(state = [], action) {
+    switch (action.type) {
+
+        case 'REMOVE_VEHICLE':
+            return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
+
+        case 'ADD_VEHICLE':
+            return [...state, action.vehicle]
+
+        case 'LOAD_VEHICLES':
+            return action.posts
+
+        default: return state
+
+    }
+}
+
+const rootReducer = combineReducers({ userReducer, vehicleReducer })
+
+export default rootReducer

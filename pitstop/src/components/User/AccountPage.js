@@ -16,7 +16,7 @@ class AccountPage extends Component {
 
                 <Link to={routes.ADD_VEHICLE}>Add Vehicle</Link>
 
-                <SignOutButton/>
+                <SignOutButton {...this.props}/>
 
             </div>
         )
