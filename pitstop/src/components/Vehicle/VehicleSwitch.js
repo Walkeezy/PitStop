@@ -1,33 +1,21 @@
 import React, { Component } from 'react'
 
 class VehicleSwitch extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { activeVehicle: 'krasser BMW' }
 
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-    handleChange(event) {
-        this.setState({ activeVehicle: event.target.value })
-        console.log(event.target.value)
+    componentDidMount() {
+        // this.props.startLoadingVehicles()
+        console.log(this.props.vehicles)
     }
 
     render() {
-        const { vehicles } = this.props
-
         return (
 
-            <div>
-            <p>Aktives Fahrzeug: {this.state.activeVehicle}</p>
-            <select value={this.state.activeVehicle} onChange={this.handleChange}>
-                {Object.keys(vehicles).map(key => <option key={key} value={vehicles[key].vehicleName}>{vehicles[key].vehicleName}</option>)}
+            <select onChange={this.handleChange}>
+                {/* {Object.keys(this.props.vehicles).map(key => <option key={key} value={this.props.vehicles[key].name}>{this.props.vehicles[key].name}</option>)} */}
             </select>
-            </div>
 
         )
     }
-
 }
 
 export default VehicleSwitch

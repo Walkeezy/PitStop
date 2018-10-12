@@ -1,17 +1,17 @@
 import { database, auth } from '../database/config'
 
 // Create user on firebase, then save user to database, then dispatch setUser action
-export function startAddingUser(user) {
+export function startCreatingUser(user) {
     return (dispatch) => {
         return auth.createUserWithEmailAndPassword(user.email, user.password).then(authUser => {
             database.ref(`users/${authUser.user.uid}`).set({
                 username: user.username,
                 email: user.email
-            }).then(() => {
-                dispatch(setUser(user))
+            }).then((response) => {
+                dispatch(createUserSuccess(response))
             })
         }).catch((error) => {
-            alert(error)
+            dispatch(createUserFail(error));
         })
     }
 }
@@ -21,7 +21,7 @@ export function startLoginUser(user) {
     return (dispatch) => {
         return auth.signInWithEmailAndPassword(user.email, user.password).then(authUser => {
             console.log('eingeloggt!')
-            dispatch(setUser(user))
+            // dispatch(setUser(user))
         }).catch((error) => {
             alert(error)
         })
@@ -50,10 +50,31 @@ export function startAddingVehicle(vehicle) {
     }
 }
 
-export function setUser(user) {
+// Load vehicles from database, then dispatch loadVehicles action
+export function startLoadingVehicles() {
+    console.log('currentUser: ' + auth.currentUser)
+    return (dispatch) => {
+        return database.ref(`users/rjlehzKT0tW0yYSRpuC4YUUllqV2/vehicles`).once('value').then((snapshot) => {
+            let vehicles = {}
+            snapshot.forEach((childSnapshot) => {
+                vehicles[childSnapshot.key] = Object.values(childSnapshot.val())
+            })
+            dispatch(loadVehicles(vehicles))
+        })
+    }
+}
+
+export function createUserSuccess(response) {
     return {
-        type: 'SET_USER',
-        user: user
+        type: 'CREATE_USER_SUCCESS',
+        user: response
+    }
+}
+
+export function createUserFail(error) {
+    return {
+        type: 'CREATE_USER_FAIL',
+        error: error
     }
 }
 
@@ -61,5 +82,12 @@ export function addVehicle(vehicle) {
     return {
         type: 'ADD_VEHICLE',
         vehicle: vehicle
+    }
+}
+
+export function loadVehicles(vehicles) {
+    return {
+        type: 'LOAD_VEHICLES',
+        vehicles: vehicles
     }
 }

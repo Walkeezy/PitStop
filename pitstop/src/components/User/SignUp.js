@@ -19,7 +19,7 @@ class SignUpContainer extends Component {
             password: userPassword
         }
         if (userName) {
-            this.props.startAddingUser(user)
+            this.props.startCreatingUser(user)
         }
     }
 

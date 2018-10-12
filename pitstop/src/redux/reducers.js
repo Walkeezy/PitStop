@@ -1,17 +1,25 @@
 import {combineReducers} from 'redux'
 
-function userReducer(state = [], action) {
+// TODO: Remove this later
+import logEntries from '../fakedata/logentries'
+
+const userReducer = function user(state = [], action) {
     switch (action.type) {
 
-        case 'SET_USER':
-            return action.user
+        case 'CREATE_USER_SUCCESS':
+            const { user: { uid: userId } } = action
+            return { ...state, loggedIn: true, userId }
+
+        case 'CREATE_USER_FAIL':
+            const { error } = action
+            return { ...state, loggedIn: false, error }
 
         default: return state
 
     }
 }
 
-function vehicleReducer(state = [], action) {
+const vehicleReducer = function vehicles(state = [], action) {
     switch (action.type) {
 
         case 'REMOVE_VEHICLE':
@@ -21,13 +29,21 @@ function vehicleReducer(state = [], action) {
             return [...state, action.vehicle]
 
         case 'LOAD_VEHICLES':
-            return action.posts
+            return action.vehicles
 
         default: return state
 
     }
 }
 
-const rootReducer = combineReducers({ userReducer, vehicleReducer })
+const logReducer = function logentries(state = logEntries, action) {
+    switch (action.type) {
+
+        default: return state
+
+    }
+}
+
+const rootReducer = combineReducers({ userReducer, vehicleReducer, logReducer })
 
 export default rootReducer

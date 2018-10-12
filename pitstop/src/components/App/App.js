@@ -6,10 +6,12 @@ import { withRouter } from 'react-router'
 
 import './App.css'
 
+// Get state from store and map it to props
 function mapStateToProps(state) {
     return {
-        vehicles: state.vehicles,
-        user: state.user
+        user: state.userReducer,
+        vehicles: state.vehicleReducer,
+        logentries: state.logReducer
     }
 }
 

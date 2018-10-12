@@ -38,6 +38,8 @@ class Main extends Component {
 
     componentDidMount() {
 
+        this.props.startLoadingVehicles()
+
         // this.props.startLoadingPost().then(() => {
         //     this.setState({ loading: false })
         // })
@@ -45,6 +47,8 @@ class Main extends Component {
     }
 
     render() {
+
+        console.log(this.props.vehicles)
 
         return (
 
