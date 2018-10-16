@@ -21,7 +21,7 @@ export function startLoginUser(user) {
     return (dispatch) => {
         return auth.signInWithEmailAndPassword(user.email, user.password).then(authUser => {
             console.log('eingeloggt!')
-            // dispatch(setUser(user))
+            dispatch(authUser(authUser))
         }).catch((error) => {
             alert(error)
         })
@@ -31,10 +31,27 @@ export function startLoginUser(user) {
 // Sign out user on firebase
 export function signOutUser() {
     return (dispatch) => {
-        return auth.signOut().then(() => {
+        return auth.signOut().then(user => {
             console.log('ausgeloggt!')
+            dispatch(authUser(user))
         }).catch((error) => {
             alert(error)
+        })
+    }
+}
+
+// Check if user is signed in
+export function verifyUser() {
+    return (dispatch) => {
+        return auth.onAuthStateChanged(user => {
+            if (user) {
+                // If user is signed in, save user to redux store and load his vehicles
+                dispatch(authUser(user))
+                dispatch(startLoadingVehicles(user.uid))
+            } else {
+                console.log('kein user gefunden')
+                dispatch(signOutUser())
+            }
         })
     }
 }
@@ -51,13 +68,12 @@ export function startAddingVehicle(vehicle) {
 }
 
 // Load vehicles from database, then dispatch loadVehicles action
-export function startLoadingVehicles() {
-    console.log('currentUser: ' + auth.currentUser)
+export function startLoadingVehicles(userid) {
     return (dispatch) => {
-        return database.ref(`users/rjlehzKT0tW0yYSRpuC4YUUllqV2/vehicles`).once('value').then((snapshot) => {
-            let vehicles = {}
-            snapshot.forEach((childSnapshot) => {
-                vehicles[childSnapshot.key] = Object.values(childSnapshot.val())
+        return database.ref(`users/${userid}/vehicles`).once('value').then((snapshot) => {
+            let vehicles = []
+            snapshot.forEach(childSnapshot => {
+                vehicles.push(childSnapshot.val())
             })
             dispatch(loadVehicles(vehicles))
         })
@@ -89,5 +105,12 @@ export function loadVehicles(vehicles) {
     return {
         type: 'LOAD_VEHICLES',
         vehicles: vehicles
+    }
+}
+
+export function authUser(user) {
+    return {
+        type: 'AUTH_USER',
+        user
     }
 }

@@ -15,6 +15,7 @@ function mapStateToProps(state) {
     }
 }
 
+// Bind all actions to props
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(actions, dispatch)
 }

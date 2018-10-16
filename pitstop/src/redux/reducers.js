@@ -3,8 +3,11 @@ import {combineReducers} from 'redux'
 // TODO: Remove this later
 import logEntries from '../fakedata/logentries'
 
-const userReducer = function user(state = [], action) {
+const userReducer = function user(state = {}, action) {
     switch (action.type) {
+
+        case 'AUTH_USER':
+            return action.user
 
         case 'CREATE_USER_SUCCESS':
             const { user: { uid: userId } } = action

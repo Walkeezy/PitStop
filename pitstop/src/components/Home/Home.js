@@ -11,7 +11,7 @@ class HomePage extends Component {
             <div>
                 <h1>Home Page</h1>
 
-                {/* <VehicleSwitch {...this.props}/> */}
+                <VehicleSwitch {...this.props}/>
 
                 <VehicleLog {...this.props}/>
 

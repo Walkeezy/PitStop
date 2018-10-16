@@ -14,31 +14,11 @@ import StatisticPage from '../Vehicle/VehicleStatistic'
 import * as routes from '../../constants/routes'
 // import PrivateRoute from '../PrivateRoute'
 
-import { auth } from '../../database/config'
-
 class Main extends Component {
-
-    componentWillMount() {
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                console.log('This is the user: ', user)
-                this.setState({
-                    authenticated: true,
-                    currentUser: user
-                })
-            } else {
-                console.log('There is no logged in user')
-                this.setState({
-                    authenticated: false,
-                    currentUser: null
-                })
-            }
-        })
-    }
 
     componentDidMount() {
 
-        this.props.startLoadingVehicles()
+        this.props.verifyUser()
 
         // this.props.startLoadingPost().then(() => {
         //     this.setState({ loading: false })
@@ -47,8 +27,6 @@ class Main extends Component {
     }
 
     render() {
-
-        console.log(this.props.vehicles)
 
         return (
 
