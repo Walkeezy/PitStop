@@ -19,9 +19,8 @@ export function startCreatingUser(user) {
 // Sign in user on firebase, then dispatch setUser action
 export function startLoginUser(user) {
     return (dispatch) => {
-        return auth.signInWithEmailAndPassword(user.email, user.password).then(authUser => {
-            console.log('eingeloggt!')
-            dispatch(authUser(authUser))
+        return auth.signInWithEmailAndPassword(user.email, user.password).then(user => {
+            dispatch(setUser(user))
         }).catch((error) => {
             alert(error)
         })
@@ -31,9 +30,8 @@ export function startLoginUser(user) {
 // Sign out user on firebase
 export function signOutUser() {
     return (dispatch) => {
-        return auth.signOut().then(user => {
-            console.log('ausgeloggt!')
-            dispatch(authUser(user))
+        return auth.signOut().then(() => {
+            dispatch(unsetUser())
         }).catch((error) => {
             alert(error)
         })
@@ -46,11 +44,10 @@ export function verifyUser() {
         return auth.onAuthStateChanged(user => {
             if (user) {
                 // If user is signed in, save user to redux store and load his vehicles
-                dispatch(authUser(user))
+                dispatch(setUser(user))
                 dispatch(startLoadingVehicles(user.uid))
             } else {
-                console.log('kein user gefunden')
-                dispatch(signOutUser())
+                dispatch(unsetUser())
             }
         })
     }
@@ -77,12 +74,6 @@ export function startLoadingVehicles(userid) {
             })
             dispatch(loadVehicles(vehicles))
         })
-    }
-}
-
-export function startSettingVehicleId(vehicleId) {
-    return (dispatch) => {
-        return dispatch(setVehicleId(vehicleId))
     }
 }
 
@@ -114,16 +105,22 @@ export function loadVehicles(vehicles) {
     }
 }
 
-export function setVehicleId(vehicleId) {
+export function setVehicleToEdit(vehicleId) {
     return {
-        type: 'SET_VEHICLE_ID',
+        type: 'SET_VEHICLE_TO_EDIT',
         vehicleId: vehicleId
     }
 }
 
-export function authUser(user) {
+export function setUser(user) {
     return {
-        type: 'AUTH_USER',
+        type: 'SET_USER',
         user
+    }
+}
+
+export function unsetUser() {
+    return {
+        type: 'UNSET_USER'
     }
 }

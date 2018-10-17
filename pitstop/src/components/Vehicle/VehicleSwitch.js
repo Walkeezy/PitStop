@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class VehicleSwitch extends Component {
 
     render() {
-        const vehicles = this.props.vehicles
+        const vehicles = this.props.vehicles.vehicles
         return (
 
             <select>

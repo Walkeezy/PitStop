@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+import PrivateRoute from './PrivateRoute'
+
 import Header from '../Layout/Header'
 import Footer from '../Layout/Footer'
 import HomePage from '../Home/Home'
@@ -13,39 +15,31 @@ import StatisticPage from '../Vehicle/VehicleStatistic'
 import VehicleDetails from '../Vehicle/VehicleDetails'
 
 import * as routes from '../../constants/routes'
-// import PrivateRoute from '../PrivateRoute'
 
 class Main extends Component {
 
     componentDidMount() {
-
         this.props.verifyUser()
-
-        // this.props.startLoadingPost().then(() => {
-        //     this.setState({ loading: false })
-        // })
-        // this.props.startLoadingComments()
     }
 
     render() {
+        console.log('User props', this.props.user)
 
         return (
 
             <div className="app">
                 <Header />
                 <div className="view">
-                    {/* <PrivateRoute exact path={routes.HOME} component={() => <HomePage />} authenticated={this.state.authenticated} /> */}
-                    <Route exact path={routes.HOME} component={() => <HomePage {...this.props} />} />
-                    <Route exact path={routes.SIGN_UP} component={() => <SignUpPage {...this.props} />} />
-                    <Route exact path={routes.SIGN_IN} component={() => <SignInPage {...this.props} />} />
-                    {/* <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} /> */}
-                    <Route exact path={routes.ADD_VEHICLE} component={() => <AddVehiclePage {...this.props} />} />
-                    <Route exact path={routes.ADD_EVENT} component={() => <AddEventPage {...this.props} />} />
-                    <Route exact path={routes.ACCOUNT} component={() => <AccountPage {...this.props} />} />
-                    <Route exact path={routes.STATISTIC} component={() => <StatisticPage {...this.props} />} />
-                    {/* This does not work and I dont know why:
-                    <Route exact path={routes.VEHICLE} component={() => <VehicleDetails {...this.props} />} /> */}
-                    <Route exact path={routes.VEHICLE} component={VehicleDetails} />
+                    <Route exact path={routes.HOME} render={() => <HomePage {...this.props} />} />
+                    <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
+                    <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
+                    {/* <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage />} /> */}
+                    <Route exact path={routes.ADD_VEHICLE} render={() => <AddVehiclePage {...this.props} />} />
+                    <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} authed={this.props.user.authenticated} loading={this.props.user.loading} />
+                    <Route exact path={routes.ACCOUNT} render={() => <AccountPage {...this.props} />} />
+                    <Route exact path={routes.STATISTIC} render={() => <StatisticPage {...this.props} />} />
+                    <Route exact path={routes.VEHICLE} render={() => <VehicleDetails {...this.props} />} />
+                    {/* <Route exact path={routes.VEHICLE} render={VehicleDetails} /> */}
                 </div>
                 <Footer />
             </div>

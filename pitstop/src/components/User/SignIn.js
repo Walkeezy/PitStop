@@ -9,7 +9,7 @@ class SignInContainer extends Component {
     }
 
     handleSignIn(event) {
-        event.preventDefault();
+        event.preventDefault()
         const userMail = event.target.elements.userMail.value
         const userPassword = event.target.elements.userPassword.value
         const user = {

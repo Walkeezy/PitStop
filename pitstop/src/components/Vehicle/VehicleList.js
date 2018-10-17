@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 class VehicleList extends Component {
 
-    editVehicle(vehicleId) {
-        this.props.startSettingVehicleId(vehicleId)
+    constructor() {
+        super()
+        this.handleEditVehicle = this.handleEditVehicle.bind(this)
+    }
+
+    handleEditVehicle(vehicleId) {
+        console.log(vehicleId)
+        if (vehicleId) {
+            this.props.setVehicleToEdit(vehicleId)
+        }
     }
 
     render() {
-        const vehicles = this.props.vehicles
+        const vehicles = this.props.vehicles.vehicles
         return (
 
             <div className="vehicle-list">
@@ -17,8 +24,7 @@ class VehicleList extends Component {
                     {vehicles.map((vehicle, index) => (
                         <li key={index}>
                             <span>{vehicle.name} </span>
-                            <span><Link to={`/vehicle/${vehicle.id}`}>Edit vehicle</Link></span>
-                            <button onClick={() => this.editVehicle(vehicle.id)}>Edit vehicle</button>
+                            <button onClick={() => this.handleEditVehicle(vehicle.id)}>Edit vehicle</button>
                         </li>
                     ))}
                 </ul>
