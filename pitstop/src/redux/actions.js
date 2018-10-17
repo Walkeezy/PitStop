@@ -1,4 +1,5 @@
-import { database, auth } from '../database/config'
+import { database, auth } from './../database/config'
+import * as routes from './../constants/routes'
 
 // Create user on firebase, then save user to database, then dispatch setUser action
 export function startCreatingUser(user) {
@@ -21,6 +22,7 @@ export function startLoginUser(user) {
     return (dispatch) => {
         return auth.signInWithEmailAndPassword(user.email, user.password).then(user => {
             dispatch(setUser(user))
+            // this.props.history.push(routes.HOME)
         }).catch((error) => {
             alert(error)
         })

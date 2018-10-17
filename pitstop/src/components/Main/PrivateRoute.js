@@ -6,13 +6,13 @@ class PrivateRoute extends Component {
 
     render() {
         // Unpack values from props into variables (Destructuring assignment)
-        const { component: Component, authed, loading, ...rest } = this.props
+        const { component: Component, ...rest } = this.props
 
         const renderRoute = props => {
             // If state is still loading or user is logged in
-            if (loading === true || authed === true) {
+            if (this.props.user.loading === true || this.props.user.authenticated === true) {
                 return (
-                    <Component {...props} />
+                    <Component {...this.props} />
                 )
             }
 

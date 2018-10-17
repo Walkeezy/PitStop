@@ -23,23 +23,19 @@ class Main extends Component {
     }
 
     render() {
-        console.log('User props', this.props.user)
-
         return (
 
             <div className="app">
                 <Header />
                 <div className="view">
-                    <Route exact path={routes.HOME} render={() => <HomePage {...this.props} />} />
+                    <PrivateRoute exact path={routes.HOME} component={HomePage} {...this.props} />
                     <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
                     <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
-                    {/* <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage />} /> */}
-                    <Route exact path={routes.ADD_VEHICLE} render={() => <AddVehiclePage {...this.props} />} />
-                    <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} authed={this.props.user.authenticated} loading={this.props.user.loading} />
-                    <Route exact path={routes.ACCOUNT} render={() => <AccountPage {...this.props} />} />
-                    <Route exact path={routes.STATISTIC} render={() => <StatisticPage {...this.props} />} />
+                    <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />
+                    <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} {...this.props} />
+                    <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
+                    <PrivateRoute exact path={routes.STATISTIC} component={StatisticPage} {...this.props} />
                     <Route exact path={routes.VEHICLE} render={() => <VehicleDetails {...this.props} />} />
-                    {/* <Route exact path={routes.VEHICLE} render={VehicleDetails} /> */}
                 </div>
                 <Footer />
             </div>
