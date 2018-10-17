@@ -34,6 +34,9 @@ const vehicleReducer = function vehicles(state = [], action) {
         case 'LOAD_VEHICLES':
             return action.vehicles
 
+        case 'SET_VEHICLE_ID':
+            return [...state, action.vehicleId]
+
         default: return state
 
     }

@@ -80,6 +80,12 @@ export function startLoadingVehicles(userid) {
     }
 }
 
+export function startSettingVehicleId(vehicleId) {
+    return (dispatch) => {
+        return dispatch(setVehicleId(vehicleId))
+    }
+}
+
 export function createUserSuccess(response) {
     return {
         type: 'CREATE_USER_SUCCESS',
@@ -105,6 +111,13 @@ export function loadVehicles(vehicles) {
     return {
         type: 'LOAD_VEHICLES',
         vehicles: vehicles
+    }
+}
+
+export function setVehicleId(vehicleId) {
+    return {
+        type: 'SET_VEHICLE_ID',
+        vehicleId: vehicleId
     }
 }
 
