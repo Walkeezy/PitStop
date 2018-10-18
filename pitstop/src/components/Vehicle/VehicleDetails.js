@@ -4,7 +4,6 @@ class VehicleDetails extends Component {
 
     render() {
         const vehicleId = this.props.match.params.id
-        console.log(this.props)
         return (
 
             <div className="vehicle-list">
