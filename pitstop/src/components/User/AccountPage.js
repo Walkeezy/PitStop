@@ -12,7 +12,7 @@ class AccountPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page page--account">
                 <h1>Account Page</h1>
 
                 <Link to={routes.ADD_VEHICLE}>Add Vehicle</Link>

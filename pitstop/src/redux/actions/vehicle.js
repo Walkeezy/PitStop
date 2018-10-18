@@ -15,9 +15,9 @@ export function startAddingVehicle(vehicle) {
 }
 
 // Load vehicles from database, then dispatch loadVehicles action
-export function startLoadingVehicles(userid) {
+export function startLoadingVehicles(userId) {
     return (dispatch) => {
-        return database.ref(`users/${userid}/vehicles`).once('value').then((snapshot) => {
+        return database.ref(`users/${userId}/vehicles`).once('value').then((snapshot) => {
             let vehicles = []
             snapshot.forEach(childSnapshot => {
                 vehicles.push(childSnapshot.val())
@@ -27,10 +27,20 @@ export function startLoadingVehicles(userid) {
     }
 }
 
+// Save vehicle as active in database and dispatch action to save it to store
 export function saveVehicleAsActive(vehicleId) {
     return (dispatch) => {
         dispatch(setVehicleAsActive(vehicleId))
         database.ref(`users/${auth.currentUser.uid}/active_vehicle`).set(vehicleId)
+    }
+}
+
+export function loadActiveVehicle(userid) {
+    return (dispatch) => {
+        return database.ref(`users/${userid}/active_vehicle`).once('value').then((snapshot) => {
+            const activeVehicle = snapshot.val()
+            dispatch(setVehicleAsActive(activeVehicle))
+        })
     }
 }
 

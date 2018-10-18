@@ -39,12 +39,16 @@ class SignUpContainer extends Component {
                         <label htmlFor="userMail">Your e-mail</label>
                         <input type="email" name="userMail" id="userMail" />
                     </div>
-                    <div className="form__field">
+                    <div className="form__field field--half">
                         <label htmlFor="userPassword">Your password</label>
                         <input type="password" name="userPassword" id="userPassword" />
                     </div>
+                    <div className="form__field field--half">
+                        <label htmlFor="userPasswordRepeat">Repeat your password</label>
+                        <input type="password" name="userPasswordRepeat" id="userPasswordRepeat" />
+                    </div>
                     <div className="form__field field--submit">
-                        <input type="submit" value="Create account" />
+                        <button type="submit" className="button--yellow">Sign up</button>
                     </div>
                 </form>
 

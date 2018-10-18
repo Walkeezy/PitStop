@@ -32,7 +32,7 @@ class AddVehiclePage extends Component {
 
             <div className="add-vehicle-form">
 
-                <h1>Add vehicle</h1>
+                <h1>Add new vehicle</h1>
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="form__field">
@@ -43,20 +43,20 @@ class AddVehiclePage extends Component {
                         <label htmlFor="vehicleMakeModel">Make &amp; model</label>
                         <input type="text" name="vehicleMakeModel" id="vehicleMakeModel" />
                     </div>
-                    <div className="form__field">
+                    <div className="form__field field--half">
                         <label htmlFor="vehicleFirstRegistration">Date of first registration</label>
                         <input type="date" name="vehicleFirstRegistration" id="vehicleFirstRegistration" />
                     </div>
-                    <div className="form__field">
+                    <div className="form__field field--half">
                         <label htmlFor="vehicleMileage">Current mileage</label>
-                        <input type="number" step="1000" name="vehicleMileage" id="vehicleMileage" />
+                        <input type="number" min="0" name="vehicleMileage" id="vehicleMileage" />
                     </div>
                     <div className="form__field">
                         <label htmlFor="vehicleTyres">Tyres</label>
                         <input type="text" name="vehicleTyres" id="vehicleTyres" />
                     </div>
                     <div className="form__field field--submit">
-                        <input type="submit" value="Add vehicle" />
+                        <button type="submit" className="button--yellow">Save vehicle</button>
                     </div>
                 </form>
 

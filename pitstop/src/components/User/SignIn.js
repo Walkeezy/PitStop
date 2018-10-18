@@ -38,7 +38,7 @@ class SignInContainer extends Component {
                         <input type="password" name="userPassword" id="userPassword" />
                     </div>
                     <div className="form__field field--submit">
-                        <input type="submit" value="Login" />
+                        <button type="submit" className="button--yellow">Login</button>
                     </div>
                 </form>
 

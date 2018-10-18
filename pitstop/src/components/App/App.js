@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux'
 import * as actions from './../../redux/actions'
 import { withRouter } from 'react-router'
 
-import './App.css'
-
 // Get state from store and map it to props
 function mapStateToProps(state) {
     return {

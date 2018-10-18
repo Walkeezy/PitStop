@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import * as routes from '../../constants/routes'
 import Icon from './Icons'
 
-import './Header.css'
-
 class Header extends Component {
     render() {
         return (

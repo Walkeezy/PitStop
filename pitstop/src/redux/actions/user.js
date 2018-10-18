@@ -2,7 +2,7 @@ import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
 
-import { startLoadingVehicles } from './vehicle'
+import { startLoadingVehicles, loadActiveVehicle } from './vehicle'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -15,6 +15,7 @@ export function verifyUser() {
                 // If user is signed in, save user to redux store and load his vehicles
                 dispatch(setUser(user))
                 dispatch(startLoadingVehicles(user.uid))
+                dispatch(loadActiveVehicle(user.uid))
             } else {
                 dispatch(unsetUser())
             }
