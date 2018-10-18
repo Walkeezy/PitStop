@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {history} from '../../history';
+import * as routes from '../../constants/routes';
 
 class VehicleList extends Component {
 
@@ -11,6 +13,7 @@ class VehicleList extends Component {
         console.log(vehicleId)
         if (vehicleId) {
             this.props.setVehicleToEdit(vehicleId)
+            history.push(routes.ADD_VEHICLE)
         }
     }
 

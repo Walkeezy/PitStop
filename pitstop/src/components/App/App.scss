@@ -1,0 +1,35 @@
+@import
+    '../../../node_modules/normalize.css/normalize.css',
+    '../../styles/variables.scss';
+
+html {
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    line-height: $line-height;
+    color: $dark-blue;
+    background: $white;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.view {
+    max-width: $viewport-width;
+    width: $content-width;
+    margin: 0 auto;
+}
