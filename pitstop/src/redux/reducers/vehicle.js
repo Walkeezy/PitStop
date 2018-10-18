@@ -20,6 +20,9 @@ const vehicleReducer = function vehicles(state = initialVehicleReducer, action) 
         case 'SET_VEHICLE_TO_EDIT':
             return { ...state, toEdit: action.vehicleId }
 
+        case 'SET_VEHICLE_AS_ACTIVE':
+            return { ...state, activeVehicle: action.vehicleId }
+
         default: return state
 
     }

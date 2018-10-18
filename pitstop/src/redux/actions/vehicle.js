@@ -1,5 +1,8 @@
 import { database, auth } from './../../database/config'
 
+// ASYNC ACTIONS
+// -----------------------------------------------------
+
 // Save vehicle to current user in database, then dispatch addVehicle action
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
@@ -24,6 +27,16 @@ export function startLoadingVehicles(userid) {
     }
 }
 
+export function saveVehicleAsActive(vehicleId) {
+    return (dispatch) => {
+        dispatch(setVehicleAsActive(vehicleId))
+        database.ref(`users/${auth.currentUser.uid}/active_vehicle`).set(vehicleId)
+    }
+}
+
+// REGULAR ACTIONS
+// -----------------------------------------------------
+
 export function addVehicle(vehicle) {
     return {
         type: 'ADD_VEHICLE',
@@ -41,6 +54,13 @@ export function loadVehicles(vehicles) {
 export function setVehicleToEdit(vehicleId) {
     return {
         type: 'SET_VEHICLE_TO_EDIT',
+        vehicleId: vehicleId
+    }
+}
+
+export function setVehicleAsActive(vehicleId) {
+    return {
+        type: 'SET_VEHICLE_AS_ACTIVE',
         vehicleId: vehicleId
     }
 }

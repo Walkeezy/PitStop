@@ -4,6 +4,9 @@ import * as routes from './../../constants/routes'
 
 import { startLoadingVehicles } from './vehicle'
 
+// ASYNC ACTIONS
+// -----------------------------------------------------
+
 // Check if user is signed in
 export function verifyUser() {
     return (dispatch) => {
@@ -57,6 +60,9 @@ export function signOutUser() {
         })
     }
 }
+
+// REGULAR ACTIONS
+// -----------------------------------------------------
 
 export function setUser(user) {
     return {
