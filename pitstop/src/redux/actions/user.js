@@ -28,13 +28,15 @@ export function startCreatingUser(user) {
     return (dispatch) => {
         return auth.createUserWithEmailAndPassword(user.email, user.password).then(authUser => {
             database.ref(`users/${authUser.user.uid}`).set({
-                username: user.username,
+                firstname: user.firstname,
+                lastname: user.lastname,
                 email: user.email
             }).then((response) => {
-                dispatch(createUserSuccess(response))
+                //dispatch(createUserSuccess(response))
             })
         }).catch((error) => {
-            dispatch(createUserFail(error));
+            alert(error)
+            //dispatch(createUserFail(error));
         })
     }
 }

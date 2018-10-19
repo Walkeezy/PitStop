@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
+import * as routes from '../../constants/routes'
 
-class SignInContainer extends Component {
+class SignInPage extends Component {
 
     constructor() {
         super()
@@ -42,10 +43,12 @@ class SignInContainer extends Component {
                     </div>
                 </form>
 
+                <p>Don't have an account yet? <Link to={routes.SIGN_UP}>Sign up here!</Link></p>
+
             </div>
 
         )
     }
 }
 
-export default withRouter(SignInContainer)
+export default SignInPage

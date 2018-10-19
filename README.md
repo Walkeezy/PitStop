@@ -14,3 +14,8 @@ Logbuch pro Fahrzeug zum Erfassen von Ereignissen: Reifenwechsel, Service, Repar
 
 ### Modul 5: Statistik
 Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleistung der Reifen etc.
+
+## To do
+
+- [ ] Login & Sign up für eingeloggt Benutzer nicht aufrufbar
+- [ ] Fehler bei der Firebase-Authentifizierung schön ausgeben und so
