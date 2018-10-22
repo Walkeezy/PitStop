@@ -33,7 +33,7 @@ class AddVehiclePage extends Component {
         console.log('this.state', this.state);
         const vehicleName = event.target.elements.vehicleName.value
         const vehicle = {
-            id: this.state.vehicle.id || Number(new Date()),
+            id: this.state.vehicle.id || '',
             name: vehicleName,
             make_model: event.target.elements.vehicleMakeModel.value,
             registration: event.target.elements.vehicleFirstRegistration.value,
