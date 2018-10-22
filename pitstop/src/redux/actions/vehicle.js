@@ -17,11 +17,13 @@ export function startAddingVehicle(vehicle) {
 // Load vehicles from database, then dispatch loadVehicles action
 export function startLoadingVehicles(userId) {
     return (dispatch) => {
-        return database.ref(`users/${userId}/vehicles`).once('value').then((snapshot) => {
+        return database.ref(`users/${auth.currentUser.uid}/vehicles`).once('value').then((snapshot) => {
             let vehicles = []
-            snapshot.forEach(childSnapshot => {
-                vehicles.push(childSnapshot.val())
-            })
+            for (let key in snapshot.val()) {
+                let snapshotValue = snapshot.val()[key]
+                snapshotValue.id = key
+                vehicles.push(snapshotValue)
+            }
             dispatch(loadVehicles(vehicles))
         })
     }

@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import {history} from '../../history';
 import * as routes from '../../constants/routes';
+import {auth} from '../../database/config';
 
 class VehicleList extends Component {
 
     constructor() {
         super()
         this.handleEditVehicle = this.handleEditVehicle.bind(this)
+    }
+
+    componentWillMount() {
+        this.props.startLoadingVehicles()
     }
 
     handleEditVehicle(vehicleId) {
