@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import {history} from '../../history';
-import * as routes from '../../constants/routes';
-import {auth} from '../../database/config';
+import {history} from '../../history'
+import * as routes from '../../constants/routes'
 
 class VehicleList extends Component {
 
@@ -10,12 +9,11 @@ class VehicleList extends Component {
         this.handleEditVehicle = this.handleEditVehicle.bind(this)
     }
 
-    componentWillMount() {
-        this.props.startLoadingVehicles()
-    }
+    // componentWillMount() {
+    //     this.props.startLoadingVehicles()
+    // }
 
     handleEditVehicle(vehicleId) {
-        console.log(vehicleId)
         if (vehicleId) {
             this.props.setVehicleToEdit(vehicleId)
             history.push(routes.ADD_VEHICLE)

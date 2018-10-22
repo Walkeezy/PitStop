@@ -6,9 +6,6 @@ import VehicleList from '../Vehicle/VehicleList'
 import SignOutButton from './SignOut'
 
 class AccountPage extends Component {
-    componentDidMount() {
-
-    }
 
     render() {
         const firstname = this.props.user.details.firstname

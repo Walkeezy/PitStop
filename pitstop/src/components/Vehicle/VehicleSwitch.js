@@ -7,9 +7,9 @@ class VehicleSwitch extends Component {
         this.handleChangeVehicle = this.handleChangeVehicle.bind(this)
     }
 
-    componentWillMount() {
-        console.log('this.props switch', this.props);
-    }
+    // componentWillMount() {
+    //     console.log('this.props switch', this.props);
+    // }
 
     handleChangeVehicle(event) {
         const vehicleId = event.target.value
