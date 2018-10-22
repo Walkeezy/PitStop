@@ -16,13 +16,21 @@ class VehicleSwitch extends Component {
 
     render() {
         const vehicles = this.props.vehicles.vehicles
-        return (
+        if (vehicles && vehicles.length > 0){
+            return (
 
-            <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle}>
-                {vehicles.map((vehicle, index) => <option key={index} value={vehicle.id}>{vehicle.name}</option>) }
-            </select>
+                <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle}>
+                    {vehicles.map((vehicle, index) => <option key={index} value={vehicle.id}>{vehicle.name}</option>)}
+                </select>
 
-        )
+            )
+        } else {
+            return (
+
+                <div>No vehicles found.</div>
+
+            )
+        }
     }
 }
 

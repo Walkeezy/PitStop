@@ -1,5 +1,33 @@
 @import 'variables.scss';
 
+// GENERAL FORM STUFF
+// -----------------------------------------------------
+
+form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form__field {
+    width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 1.5rem;
+}
+
+.field--half {
+    width: 48%;
+    flex: 0 0 48%;
+}
+
+.field--submit {
+    margin-top: 2rem;
+}
+
+
+// INPUTS & LABELS
+// -----------------------------------------------------
+
 input, textarea {
     width: 100%;
     border: 1px solid $light-gray;
@@ -29,54 +57,18 @@ label {
     text-transform: uppercase;
 }
 
-form {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+
+// ERRORS
+// -----------------------------------------------------
+
+.input--error {
+    border-color: $red;
 }
 
-.form__field {
-    width: 100%;
-    flex: 0 0 100%;
-    margin-bottom: 1.5rem;
-}
-
-.field--half {
-    width: 48%;
-    flex: 0 0 48%;
-}
-
-.field--submit {
-    margin-top: 2rem;
-}
-
-button {
-    cursor: pointer;
-    background: $white;
-    border: 1px solid darken($light-gray, 3%);
-    border-radius: $border-radius;
-    padding: 0.7rem 1.3rem;
-    transition: 200ms all;
-
-    &:hover,
-    &:active,
-    &:focus {
-        border-color: darken($light-gray, 10%);
-        outline: none;
-    }
-}
-
-.button--yellow {
-    background: $yellow;
-    border-color: darken($yellow, 5%);
-    background-image: linear-gradient(0deg, darken($yellow, 2%) 0%, lighten($yellow, 2%) 100%);
-    box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
-
-    &:hover,
-    &:active,
-    &:focus {
-        border-color: darken($yellow, 10%);
-        background-image: linear-gradient(0deg, darken($yellow, 4%) 0%, lighten($yellow, 0%) 100%);
-        box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.18), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
-    }
+.field-error {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: $red;
+    margin-top: 0.5rem;
 }

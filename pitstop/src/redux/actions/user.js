@@ -2,7 +2,7 @@ import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
 
-import { startLoadingVehicles, loadActiveVehicle } from './vehicle'
+import { startLoadingVehicles, setVehicleAsActive } from './vehicle'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -15,7 +15,7 @@ export function verifyUser() {
                 // If user is signed in, save user to redux store and load his vehicles
                 dispatch(setUser(user))
                 dispatch(startLoadingVehicles(user.uid))
-                dispatch(loadActiveVehicle(user.uid))
+                dispatch(loadUserDetails(user.uid))
             } else {
                 dispatch(unsetUser())
             }
@@ -23,16 +23,34 @@ export function verifyUser() {
     }
 }
 
+// Load user details (firstname, lastname & active vehicle)
+export function loadUserDetails(userId) {
+    return (dispatch) => {
+        return database.ref(`users/${userId}`).once('value').then((snapshot) => {
+            const activeVehicle = snapshot.child('active_vehicle').val()
+            const details = {
+                'firstname': snapshot.child('firstname').val(),
+                'lastname': snapshot.child('lastname').val()
+            }
+            dispatch(setVehicleAsActive(activeVehicle))
+            dispatch(setUserDetails(details))
+        }).catch((error) => {
+            alert(error)
+        })
+    }
+}
+
 // Create user on firebase, then save user to database, then dispatch setUser action
 export function startCreatingUser(user) {
     return (dispatch) => {
-        return auth.createUserWithEmailAndPassword(user.email, user.password).then(authUser => {
-            database.ref(`users/${authUser.user.uid}`).set({
+        return auth.createUserWithEmailAndPassword(user.email, user.password).then(user => {
+            database.ref(`users/${user.user.uid}`).set({
                 firstname: user.firstname,
                 lastname: user.lastname,
                 email: user.email
-            }).then((response) => {
-                //dispatch(createUserSuccess(response))
+            }).then(() => {
+                dispatch(setUser(user))
+                history.push(routes.HOME)
             })
         }).catch((error) => {
             alert(error)
@@ -64,6 +82,17 @@ export function signOutUser() {
     }
 }
 
+// Do password reset on user
+export function passwordResetUser(email) {
+    return (dispatch) => {
+        return auth.sendPasswordResetEmail(email).then(() => {
+            history.push(routes.SIGN_IN)
+        }).catch((error) => {
+            alert(error)
+        });
+    }
+}
+
 // REGULAR ACTIONS
 // -----------------------------------------------------
 
@@ -80,16 +109,9 @@ export function unsetUser() {
     }
 }
 
-export function createUserSuccess(response) {
+export function setUserDetails(details) {
     return {
-        type: 'CREATE_USER_SUCCESS',
-        user: response
-    }
-}
-
-export function createUserFail(error) {
-    return {
-        type: 'CREATE_USER_FAIL',
-        error: error
+        type: 'SET_USER_DETAILS',
+        details
     }
 }

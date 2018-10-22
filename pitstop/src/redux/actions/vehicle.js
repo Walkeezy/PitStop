@@ -18,7 +18,7 @@ export function startAddingVehicle(vehicle) {
 export function startLoadingVehicles(userId) {
     return (dispatch) => {
         return database.ref(`users/${userId}/vehicles`).once('value').then((snapshot) => {
-            let vehicles = []
+            const vehicles = []
             snapshot.forEach(childSnapshot => {
                 vehicles.push(childSnapshot.val())
             })
@@ -35,14 +35,15 @@ export function saveVehicleAsActive(vehicleId) {
     }
 }
 
-export function loadActiveVehicle(userid) {
-    return (dispatch) => {
-        return database.ref(`users/${userid}/active_vehicle`).once('value').then((snapshot) => {
-            const activeVehicle = snapshot.val()
-            dispatch(setVehicleAsActive(activeVehicle))
-        })
-    }
-}
+// Don't need this anymore, already loading this with loadUserDetails()
+// export function loadActiveVehicle(userid) {
+//     return (dispatch) => {
+//         return database.ref(`users/${userid}/active_vehicle`).once('value').then((snapshot) => {
+//             const activeVehicle = snapshot.val()
+//             dispatch(setVehicleAsActive(activeVehicle))
+//         })
+//     }
+// }
 
 // REGULAR ACTIONS
 // -----------------------------------------------------

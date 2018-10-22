@@ -1,25 +1,24 @@
 const initialUserReducer = {
     loading: true,
     authenticated: false,
-    user: []
+    user: [],
+    details: {
+        firstname: '',
+        lastname: ''
+    }
 }
 
 const userReducer = function user(state = initialUserReducer, action) {
     switch (action.type) {
 
         case 'SET_USER':
-            return { loading: false, authenticated: true, user: action.user }
+            return { ...state, loading: false, authenticated: true, user: action.user }
 
         case 'UNSET_USER':
-            return { loading: false, authenticated: false, user: [] }
+            return { ...state, loading: false, authenticated: false }
 
-        case 'CREATE_USER_SUCCESS':
-            const { user: { uid: userId } } = action
-            return { ...state, loggedIn: true, userId }
-
-        case 'CREATE_USER_FAIL':
-            const { error } = action
-            return { ...state, loggedIn: false, error }
+        case 'SET_USER_DETAILS':
+            return { ...state, details: action.details }
 
         default: return state
 

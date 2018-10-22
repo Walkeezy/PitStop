@@ -44,33 +44,33 @@ class SignUpForm extends Component {
                 })}
                 onSubmit={this.handleSignUp}>
 
-                {({ isSubmitting }) => (
+                {({ isSubmitting, touched, errors }) => (
 
                     <Form>
                         <div className="form__field field--half">
                             <label htmlFor="userFirstName">Your first name</label>
-                            <Field type="text" name="userFirstName" id="userFirstName" />
-                            <ErrorMessage name="userFirstName" component="div" />
+                            <Field type="text" name="userFirstName" id="userFirstName" className={(touched.userFirstName && errors.userFirstName) && 'input--error'} />
+                            <ErrorMessage name="userFirstName" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
                             <label htmlFor="userLastName">Your last name</label>
-                            <Field type="text" name="userLastName" id="userLastName" />
-                            <ErrorMessage name="userLastName" component="div" />
+                            <Field type="text" name="userLastName" id="userLastName" className={(touched.userLastName && errors.userLastName) && 'input--error'} />
+                            <ErrorMessage name="userLastName" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field">
                             <label htmlFor="userMail">Your email-address</label>
-                            <Field type="mail" name="userMail" id="userMail" />
-                            <ErrorMessage name="userMail" component="div" />
+                            <Field type="mail" name="userMail" id="userMail" className={(touched.userMail && errors.userMail) && 'input--error'} />
+                            <ErrorMessage name="userMail" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
                             <label htmlFor="userPassword">Password</label>
-                            <Field type="password" name="userPassword" id="userPassword" />
-                            <ErrorMessage name="userPassword" component="div" />
+                            <Field type="password" name="userPassword" id="userPassword" className={(touched.userPassword && errors.userPassword) && 'input--error'} />
+                            <ErrorMessage name="userPassword" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
                             <label htmlFor="userPasswordRepeat">Repeat Password</label>
-                            <Field type="password" name="userPasswordRepeat" id="userPasswordRepeat" />
-                            <ErrorMessage name="userPasswordRepeat" component="div" />
+                            <Field type="password" name="userPasswordRepeat" id="userPasswordRepeat" className={(touched.userPasswordRepeat && errors.userPasswordRepeat) && 'input--error'} />
+                            <ErrorMessage name="userPasswordRepeat" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Sign up</button>

@@ -8,6 +8,7 @@ import Footer from '../Layout/Footer'
 import HomePage from '../Home/Home'
 import SignUpPage from '../User/SignUp'
 import SignInPage from '../User/SignIn'
+import PasswordForgetPage from '../User/PasswordForget'
 import AddVehiclePage from '../Vehicle/AddVehicle'
 import AddEventPage from '../Vehicle/AddEvent'
 import AccountPage from '../User/AccountPage'
@@ -31,6 +32,7 @@ class Main extends Component {
                     <PrivateRoute exact path={routes.HOME} component={HomePage} {...this.props} />
                     <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
                     <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
+                    <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage {...this.props} />} />
                     <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />
                     <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} {...this.props} />
                     <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />

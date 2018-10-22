@@ -1,0 +1,61 @@
+@import 'variables.scss';
+
+// GENERAL TYPOGRAPHY
+// -----------------------------------------------------
+
+a:link,
+a:visited,
+a:hover,
+a:visited {
+    color: inherit;
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-style: italic;
+}
+
+
+// BUTTONS
+// -----------------------------------------------------
+
+button {
+    cursor: pointer;
+    background: $white;
+    border: 1px solid darken($light-gray, 3%);
+    border-radius: $border-radius;
+    padding: 0.7rem 1.3rem;
+    transition: 200ms all;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-color: darken($light-gray, 10%);
+        outline: none;
+    }
+
+    &:disabled {
+        cursor: default;
+        opacity: 0.5;
+    }
+}
+
+.button--yellow {
+    background: $yellow;
+    border-color: darken($yellow, 5%);
+    background-image: linear-gradient(0deg, darken($yellow, 2%) 0%, lighten($yellow, 2%) 100%);
+    box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-color: darken($yellow, 10%);
+        background-image: linear-gradient(0deg, darken($yellow, 4%) 0%, lighten($yellow, 0%) 100%);
+        box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.18), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
+    }
+}

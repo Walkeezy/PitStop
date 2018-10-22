@@ -11,9 +11,10 @@ class AccountPage extends Component {
     }
 
     render() {
+        const firstname = this.props.user.details.firstname
         return (
             <div className="page page--account">
-                <h1>Account Page</h1>
+                <h1>Welcome {firstname}!</h1>
 
                 <Link to={routes.ADD_VEHICLE}>Add Vehicle</Link>
 

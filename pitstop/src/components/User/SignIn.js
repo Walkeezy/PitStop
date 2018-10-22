@@ -43,6 +43,7 @@ class SignInPage extends Component {
                     </div>
                 </form>
 
+                <p>Lost your password? <Link to={routes.PASSWORD_FORGET}>Reset it here!</Link></p>
                 <p>Don't have an account yet? <Link to={routes.SIGN_UP}>Sign up here!</Link></p>
 
             </div>
