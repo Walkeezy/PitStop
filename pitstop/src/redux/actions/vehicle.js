@@ -14,6 +14,16 @@ export function startAddingVehicle(vehicle) {
     }
 }
 
+export function startEditingVehicle(vehicleId, vehicle) {
+    return (dispatch) => {
+        return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).update(vehicle).then(() => {
+            dispatch(addVehicle(vehicle))
+        }).catch((error) => {
+            alert(error)
+        })
+    }
+}
+
 // Load vehicles from database, then dispatch loadVehicles action
 export function startLoadingVehicles(userId) {
     return (dispatch) => {

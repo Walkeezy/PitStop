@@ -17,7 +17,11 @@ class AddVehicleForm extends Component {
             initial_mileage: values.vehicleMileage,
             tyres: values.vehicleTyres
         }
-        this.props.startAddingVehicle(vehicle)
+
+        this.props.vehicles.toEdit === ''
+            ? this.props.startAddingVehicle(vehicle)
+            : this.props.startEditingVehicle(this.props.vehicles.toEdit, vehicle);
+
         setSubmitting(false)
         return
     }
