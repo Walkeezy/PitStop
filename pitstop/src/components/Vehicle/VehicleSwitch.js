@@ -7,10 +7,6 @@ class VehicleSwitch extends Component {
         this.handleChangeVehicle = this.handleChangeVehicle.bind(this)
     }
 
-    // componentWillMount() {
-    //     console.log('this.props switch', this.props);
-    // }
-
     handleChangeVehicle(event) {
         const vehicleId = event.target.value
         if (vehicleId) {
@@ -20,11 +16,15 @@ class VehicleSwitch extends Component {
 
     render() {
         const vehicles = this.props.vehicles.vehicles
-        if (vehicles && vehicles.length > 0){
+        if (vehicles){
             return (
 
                 <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle}>
-                    {vehicles.map((vehicle, index) => <option key={index} value={vehicle.id}>{vehicle.name}</option>)}
+                    {Object.keys(vehicles).map((key, index) => {
+                        return (
+                            <option key={index} value={key}>{vehicles[key].name}</option>
+                        )
+                    })}
                 </select>
 
             )

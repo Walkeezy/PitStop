@@ -1,23 +1,42 @@
 import { database, auth } from './../../database/config'
+import { history } from './../../history'
+import * as routes from './../../constants/routes'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
 
-// Save vehicle to current user in database, then dispatch addVehicle action
+// Save vehicle to current user in database, then dispatch editVehicle action with key of new vehicle item in database and vehicle data
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
-        return database.ref(`users/${auth.currentUser.uid}/vehicles`).push(vehicle).then(() => {
-            dispatch(addVehicle(vehicle))
+        return database.ref(`users/${auth.currentUser.uid}/vehicles`).push(vehicle).then((response) => {
+            const vehicleId = response.key
+            dispatch(editVehicle(vehicleId, vehicle))
+            history.push(routes.ACCOUNT)
         }).catch((error) => {
             alert(error)
         })
     }
 }
 
+// Edit vehicle in database, then dispatch editVehicle action with key of vehicle and vehicle data
 export function startEditingVehicle(vehicleId, vehicle) {
     return (dispatch) => {
         return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).update(vehicle).then(() => {
-            dispatch(addVehicle(vehicle))
+            dispatch(editVehicle(vehicleId, vehicle))
+            history.push(routes.ACCOUNT)
+        }).catch((error) => {
+            alert(error)
+        })
+    }
+}
+
+// Delete vehicle
+export function startRemovingVehicle(vehicleId) {
+    return (dispatch) => {
+        return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).remove().then(() => {
+            dispatch(resetVehicleToEdit())
+            dispatch(removeVehicle(vehicleId))
+            history.push(routes.ACCOUNT)
         }).catch((error) => {
             alert(error)
         })
@@ -28,12 +47,7 @@ export function startEditingVehicle(vehicleId, vehicle) {
 export function startLoadingVehicles(userId) {
     return (dispatch) => {
         return database.ref(`users/${userId}/vehicles`).once('value').then((snapshot) => {
-            const vehicles = []
-            for (let key in snapshot.val()) {
-                let snapshotValue = snapshot.val()[key]
-                snapshotValue.id = key
-                vehicles.push(snapshotValue)
-            }
+            const vehicles = snapshot.val()
             dispatch(loadVehicles(vehicles))
         })
     }
@@ -60,24 +74,40 @@ export function saveVehicleAsActive(vehicleId) {
 // REGULAR ACTIONS
 // -----------------------------------------------------
 
-export function addVehicle(vehicle) {
+export function editVehicle(vehicleId, vehicle) {
     return {
-        type: 'ADD_VEHICLE',
-        vehicle: vehicle
+        type: 'EDIT_VEHICLE',
+        vehicleId,
+        vehicle
+    }
+}
+
+export function updateVehicle(vehicleId, vehicle) {
+    return {
+        type: 'UPDATE_VEHICLE',
+        vehicleId,
+        vehicle
+    }
+}
+
+export function removeVehicle(vehicleId) {
+    return {
+        type: 'REMOVE_VEHICLE',
+        vehicleId
     }
 }
 
 export function loadVehicles(vehicles) {
     return {
         type: 'LOAD_VEHICLES',
-        vehicles: vehicles
+        vehicles
     }
 }
 
 export function setVehicleToEdit(vehicleId) {
     return {
         type: 'SET_VEHICLE_TO_EDIT',
-        vehicleId: vehicleId
+        vehicleId
     }
 }
 
@@ -90,6 +120,6 @@ export function resetVehicleToEdit() {
 export function setVehicleAsActive(vehicleId) {
     return {
         type: 'SET_VEHICLE_AS_ACTIVE',
-        vehicleId: vehicleId
+        vehicleId
     }
 }

@@ -8,27 +8,40 @@ const initialVehicleReducer = {
 const vehicleReducer = function vehicles(state = initialVehicleReducer, action) {
     switch (action.type) {
 
-        case 'REMOVE_VEHICLE':
-            // This is not working
-            // return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
-            return
+        case 'EDIT_VEHICLE':
+            return {
+                ...state,
+                vehicles: {
+                    ...state.vehicles,
+                    [action.vehicleId]: action.vehicle
+                }
+            }
 
-        case 'ADD_VEHICLE':
-            // This is not working
-            // return [...state, action.vehicle]
-            return
+        case 'REMOVE_VEHICLE':
+            // Seperate vehicle to remove and all other vehicles into seperate variables
+            // Read more about this here:
+            // https://github.com/airbnb/javascript/blob/master/README.md#objects--rest-spread
+            const { [action.vehicleId]:vehicle, ...vehiclesWithoutRemoved } = state.vehicles
+            return {
+                ...state,
+                vehicles: vehiclesWithoutRemoved
+            }
 
         case 'LOAD_VEHICLES':
-            return { ...state, vehicles: action.vehicles }
+            return { ...state,
+                        vehicles: action.vehicles }
 
         case 'SET_VEHICLE_TO_EDIT':
-            return { ...state, toEdit: action.vehicleId }
+            return { ...state,
+                        toEdit: action.vehicleId }
 
         case 'RESET_VEHICLE_TO_EDIT':
-            return { ...state, toEdit: '' }
+            return { ...state,
+                        toEdit: '' }
 
         case 'SET_VEHICLE_AS_ACTIVE':
-            return { ...state, activeVehicle: action.vehicleId }
+            return { ...state,
+                        activeVehicle: action.vehicleId }
 
         default: return state
 

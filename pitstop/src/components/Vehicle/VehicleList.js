@@ -9,10 +9,6 @@ class VehicleList extends Component {
         this.handleEditVehicle = this.handleEditVehicle.bind(this)
     }
 
-    // componentWillMount() {
-    //     this.props.startLoadingVehicles()
-    // }
-
     handleEditVehicle(vehicleId) {
         if (vehicleId) {
             this.props.setVehicleToEdit(vehicleId)
@@ -27,12 +23,14 @@ class VehicleList extends Component {
             <div className="vehicle-list">
                 <h2>Your vehicles</h2>
                 <ul className="vehicle-list__list">
-                    {vehicles.map((vehicle, index) => (
-                        <li key={index}>
-                            <span>{vehicle.name} </span>
-                            <button onClick={() => this.handleEditVehicle(vehicle.id)}>Edit vehicle</button>
-                        </li>
-                    ))}
+                    {Object.keys(vehicles).map((key, index) => {
+                        return (
+                            <li key={index}>
+                                <span>{vehicles[key].name}</span>
+                                <button onClick={() => this.handleEditVehicle(key)}>Edit vehicle</button>
+                            </li>
+                        )
+                    }) }
                 </ul>
             </div>
 
