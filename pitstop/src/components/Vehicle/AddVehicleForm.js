@@ -33,6 +33,10 @@ class AddVehicleForm extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.resetVehicleToEdit()
+    }
+
     render() {
 
         let vehicleValues = {

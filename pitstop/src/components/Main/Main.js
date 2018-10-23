@@ -13,7 +13,6 @@ import AddVehiclePage from '../Vehicle/AddVehicle'
 import AddEventPage from '../Vehicle/AddEvent'
 import AccountPage from '../User/AccountPage'
 import StatisticPage from '../Vehicle/VehicleStatistic'
-import VehicleDetails from '../Vehicle/VehicleDetails'
 
 import * as routes from '../../constants/routes'
 
@@ -37,7 +36,6 @@ class Main extends Component {
                     <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} {...this.props} />
                     <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
                     <PrivateRoute exact path={routes.STATISTIC} component={StatisticPage} {...this.props} />
-                    <Route exact path={routes.VEHICLE} render={() => <VehicleDetails {...this.props} />} />
                 </div>
                 <Footer />
             </div>
