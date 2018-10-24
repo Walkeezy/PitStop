@@ -1,21 +1,22 @@
 import React, {Component} from 'react'
 
+import Header from '../Layout/Header'
 import VehicleSwitch from '../Vehicle/VehicleSwitch'
 import VehicleLog from '../Vehicle/VehicleLog'
 
 class HomePage extends Component {
 
     render() {
-
         return (
-            <div>
-                <h1>Home Page</h1>
 
-                <VehicleSwitch {...this.props}/>
-
-                <VehicleLog {...this.props}/>
-
+            <div className="page">
+                <Header />
+                <div className="page__content">
+                    <VehicleSwitch {...this.props} />
+                    <VehicleLog {...this.props} />
+                </div>
             </div>
+
         )
     }
 }

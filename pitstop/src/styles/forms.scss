@@ -28,7 +28,8 @@ form {
 // INPUTS & LABELS
 // -----------------------------------------------------
 
-input, textarea {
+input, textarea, select {
+    appearance: none;
     width: 100%;
     border: 1px solid $light-gray;
     border-radius: $border-radius;
@@ -55,6 +56,18 @@ label {
     color: $gray;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
+}
+
+
+// SELECT VEHICLE
+// -----------------------------------------------------
+
+.select-vehicle {
+    color: $blue;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-width: 2px;
+    padding: 0.7rem 1.2rem;
 }
 
 

@@ -19,9 +19,9 @@ class AddVehicleForm extends Component {
             tyres: values.vehicleTyres
         }
 
-        this.props.vehicles.toEdit === ''
-            ? this.props.startAddingVehicle(vehicle)
-            : this.props.startEditingVehicle(this.props.vehicles.toEdit, vehicle);
+        this.props.editVehicleId 
+            ? this.props.startEditingVehicle(this.props.editVehicleId, vehicle)
+            : this.props.startAddingVehicle(vehicle)
 
         setSubmitting(false)
         return
@@ -33,11 +33,9 @@ class AddVehicleForm extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.resetVehicleToEdit()
-    }
-
     render() {
+        const editVehicleId = this.props.editVehicleId
+        const vehicles = this.props.vehicles.vehicles
 
         let vehicleValues = {
             vehicleName: '',
@@ -48,14 +46,8 @@ class AddVehicleForm extends Component {
         }
 
         // If there is a vehicle saved to the state to be edited, get its values as default values
-        if (this.props.vehicles.toEdit) {
-            // get vehicle to edit id
-            const toEdit = this.props.vehicles.toEdit
-            // get vehicles
-            const vehicles = this.props.vehicles.vehicles
-            // get only the 1 vehicle to edit
-            const vehicleToEdit = vehicles[toEdit]
-            // set values
+        if (editVehicleId && Object.getOwnPropertyNames(vehicles).length > 0) {
+            const vehicleToEdit = vehicles[editVehicleId]
             vehicleValues = {
                 vehicleName: vehicleToEdit.name,
                 vehicleMakeModel: vehicleToEdit.make_model,
@@ -63,7 +55,6 @@ class AddVehicleForm extends Component {
                 vehicleMileage: vehicleToEdit.initial_mileage,
                 vehicleTyres: vehicleToEdit.tyres
             }
-            //this.props.resetVehicleToEdit()
         }
 
         return (
@@ -77,7 +68,8 @@ class AddVehicleForm extends Component {
                     vehicleMileage: Yup.number().required('Mileage of your vehicle is required.'),
                     vehicleTyres: Yup.string().required('Tyres of your vehicle is required.'),
                 })}
-                onSubmit={this.handleSubmitVehicle}>
+                onSubmit={this.handleSubmitVehicle}
+                enableReinitialize="true">
 
                 {({ isSubmitting, touched, errors }) => (
 
@@ -102,14 +94,14 @@ class AddVehicleForm extends Component {
                             <Field type="number" name="vehicleMileage" id="vehicleMileage" className={(touched.vehicleMileage && errors.vehicleMileage) && 'input--error'} />
                             <ErrorMessage name="vehicleMileage" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
-                        <div className="form__field field--half">
+                        <div className="form__field">
                             <label htmlFor="vehicleTyres">Tyres</label>
                             <Field type="text" name="vehicleTyres" id="vehicleTyres" className={(touched.vehicleTyres && errors.vehicleTyres) && 'input--error'} />
                             <ErrorMessage name="vehicleTyres" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Save vehicle</button>
-                            <button type="button" className="button--red" onClick={() => this.handleRemoveVehicle(this.props.vehicles.toEdit)}>Delete vehicle</button>
+                            {editVehicleId && <button type="button" onClick={() => this.handleRemoveVehicle(this.props.editVehicleId)}>Delete vehicle</button>}
                         </div>
                     </Form>
 

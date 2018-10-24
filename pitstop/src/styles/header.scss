@@ -1,14 +1,35 @@
 @import 'variables.scss';
 
 header {
-    color: $white;
     background: $dark-blue;
-    text-align: center;
-    padding: 0.75rem 0;
-    line-height: 0;
+}
+
+.header__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $header-height;
+    overflow: hidden;
+    color: $white;
+    max-width: $viewport-width;
+    width: $content-width;
+    margin: 0 auto;
 }
 
 .header__home-link {
     display: inline-block;
+    font-size: 0;
+}
+
+.header__title {
+    margin: 0;
+    line-height: 1;
+}
+
+.header__back-link {
+    display: inline-block;
+    position: absolute;
+    left: 0;
     font-size: 0;
 }

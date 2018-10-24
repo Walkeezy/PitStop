@@ -5,13 +5,31 @@ import Icon from './Icons'
 
 class Header extends Component {
     render() {
-        return (
 
-            <header>
-                <Link className="header__home-link" to={routes.HOME}><Icon name="logo" width="107" /></Link>
-            </header>
+        if(this.props.title){
+            const backlink = this.props.backLink || routes.HOME
+            return (
 
-        )
+                <header>
+                    <div className="header__content">
+                        {this.props.backButton !== 'false' && <Link className="header__back-link" to={backlink}><Icon name="back" width="18" /></Link>}
+                        <h1 className="header__title">{this.props.title}</h1>
+                    </div>
+                </header>
+
+            )
+        } else {
+            return (
+
+                <header>
+                    <div className="header__content">
+                        <Link className="header__home-link" to={routes.HOME}><Icon name="logo" width="107" /></Link>
+                    </div>
+                </header>
+
+            )
+        }
+
     }
 }
 

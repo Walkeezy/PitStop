@@ -34,9 +34,8 @@ export function startEditingVehicle(vehicleId, vehicle) {
 export function startRemovingVehicle(vehicleId) {
     return (dispatch) => {
         return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).remove().then(() => {
-            dispatch(resetVehicleToEdit())
-            dispatch(removeVehicle(vehicleId))
             history.push(routes.ACCOUNT)
+            dispatch(removeVehicle(vehicleId))
         }).catch((error) => {
             alert(error)
         })
@@ -61,15 +60,6 @@ export function saveVehicleAsActive(vehicleId) {
     }
 }
 
-// Don't need this anymore, already loading this with loadUserDetails()
-// export function loadActiveVehicle(userid) {
-//     return (dispatch) => {
-//         return database.ref(`users/${userid}/active_vehicle`).once('value').then((snapshot) => {
-//             const activeVehicle = snapshot.val()
-//             dispatch(setVehicleAsActive(activeVehicle))
-//         })
-//     }
-// }
 
 // REGULAR ACTIONS
 // -----------------------------------------------------
@@ -101,19 +91,6 @@ export function loadVehicles(vehicles) {
     return {
         type: 'LOAD_VEHICLES',
         vehicles
-    }
-}
-
-export function setVehicleToEdit(vehicleId) {
-    return {
-        type: 'SET_VEHICLE_TO_EDIT',
-        vehicleId
-    }
-}
-
-export function resetVehicleToEdit() {
-    return {
-        type: 'RESET_VEHICLE_TO_EDIT'
     }
 }
 

@@ -19,7 +19,7 @@ class VehicleSwitch extends Component {
         if (vehicles){
             return (
 
-                <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle}>
+                <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle ? this.props.vehicles.activeVehicle : ''} className="select-vehicle">
                     {Object.keys(vehicles).map((key, index) => {
                         return (
                             <option key={index} value={key}>{vehicles[key].name}</option>

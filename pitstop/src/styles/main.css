@@ -14,7 +14,7 @@ body {
 *, *:before, *:after {
   box-sizing: inherit; }
 
-.view {
+.page__content {
   max-width: 94vw;
   width: 1000px;
   background: #FFFFFF;
@@ -23,10 +23,7 @@ body {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
   border-radius: 4px; }
 
-a:link,
-a:visited,
-a:hover,
-a:visited {
+a {
   color: inherit;
   text-decoration: underline; }
 
@@ -38,17 +35,41 @@ h5,
 h6 {
   font-style: italic; }
 
-button {
+h1 {
+  font-size: 1.8rem; }
+
+h2 {
+  font-size: 1.7rem; }
+
+h3 {
+  font-size: 1.6rem; }
+
+h4 {
+  font-size: 1.5rem; }
+
+h5 {
+  font-size: 1.4rem; }
+
+h6 {
+  font-size: 1.2rem; }
+
+button,
+.button {
   cursor: pointer;
   background: #FFFFFF;
   border: 1px solid #e0e5ed;
   border-radius: 4px;
   padding: 0.7rem 1.3rem;
+  text-decoration: none;
   transition: 200ms all; }
-  button:hover, button:active, button:focus {
+  button:hover, button:active, button:focus,
+  .button:hover,
+  .button:active,
+  .button:focus {
     border-color: #cad1e0;
     outline: none; }
-  button:disabled {
+  button:disabled,
+  .button:disabled {
     cursor: default;
     opacity: 0.5; }
 
@@ -62,15 +83,36 @@ button {
     background-image: linear-gradient(0deg, #f9c946 0%, #facf5a 100%);
     box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.18), inset 0 2px 0 0 rgba(255, 255, 255, 0.06); }
 
+button + button {
+  margin-left: 1rem; }
+
 header {
+  background: #233142; }
+
+.header__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  overflow: hidden;
   color: #FFFFFF;
-  background: #233142;
-  text-align: center;
-  padding: 0.75rem 0;
-  line-height: 0; }
+  max-width: 94vw;
+  width: 1000px;
+  margin: 0 auto; }
 
 .header__home-link {
   display: inline-block;
+  font-size: 0; }
+
+.header__title {
+  margin: 0;
+  line-height: 1; }
+
+.header__back-link {
+  display: inline-block;
+  position: absolute;
+  left: 0;
   font-size: 0; }
 
 footer {
@@ -129,7 +171,8 @@ form {
 .field--submit {
   margin-top: 2rem; }
 
-input, textarea {
+input, textarea, select {
+  appearance: none;
   width: 100%;
   border: 1px solid #EAEDF3;
   border-radius: 4px;
@@ -139,7 +182,7 @@ input, textarea {
   font-size: 1rem;
   line-height: 1.55556;
   transition: 200ms all; }
-  input:focus, textarea:focus {
+  input:focus, textarea:focus, select:focus {
     border-color: #57769b; }
 
 [type=date] {
@@ -152,6 +195,13 @@ label {
   color: #9EA0A5;
   margin-bottom: 0.5rem;
   text-transform: uppercase; }
+
+.select-vehicle {
+  color: #455D7A;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-width: 2px;
+  padding: 0.7rem 1.2rem; }
 
 .input--error {
   border-color: #E6492D; }

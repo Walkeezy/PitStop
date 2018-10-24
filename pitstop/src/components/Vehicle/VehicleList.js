@@ -1,20 +1,8 @@
 import React, { Component } from 'react'
-import {history} from '../../history'
+import { Link } from 'react-router-dom'
 import * as routes from '../../constants/routes'
 
 class VehicleList extends Component {
-
-    constructor() {
-        super()
-        this.handleEditVehicle = this.handleEditVehicle.bind(this)
-    }
-
-    handleEditVehicle(vehicleId) {
-        if (vehicleId) {
-            this.props.setVehicleToEdit(vehicleId)
-            history.push(routes.ADD_VEHICLE)
-        }
-    }
 
     render() {
         const vehicles = this.props.vehicles.vehicles
@@ -27,7 +15,7 @@ class VehicleList extends Component {
                         return (
                             <li key={index}>
                                 <span>{vehicles[key].name}</span>
-                                <button onClick={() => this.handleEditVehicle(key)}>Edit vehicle</button>
+                                <Link className="button" to={routes.EDIT_VEHICLE + "/" + key}>Edit vehicle</Link>
                             </li>
                         )
                     }) }

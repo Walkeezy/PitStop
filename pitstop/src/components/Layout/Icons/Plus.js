@@ -1,9 +1,9 @@
 import React from "react"
 
 const SVG = ({
-    fill = "#000",
-    width = "100%",
-    className = ""
+    fill = '#000',
+    width = '100%',
+    className = ''
 }) => (
 
     <svg

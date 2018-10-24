@@ -1,8 +1,7 @@
 const initialVehicleReducer = {
     loading: true,
-    vehicles: [],
-    activeVehicle: '',
-    toEdit: '',
+    vehicles: {},
+    activeVehicle: ''
 }
 
 const vehicleReducer = function vehicles(state = initialVehicleReducer, action) {
@@ -30,14 +29,6 @@ const vehicleReducer = function vehicles(state = initialVehicleReducer, action) 
         case 'LOAD_VEHICLES':
             return { ...state,
                         vehicles: action.vehicles }
-
-        case 'SET_VEHICLE_TO_EDIT':
-            return { ...state,
-                        toEdit: action.vehicleId }
-
-        case 'RESET_VEHICLE_TO_EDIT':
-            return { ...state,
-                        toEdit: '' }
 
         case 'SET_VEHICLE_AS_ACTIVE':
             return { ...state,
