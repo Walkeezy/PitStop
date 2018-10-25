@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import * as routes from '../../constants/routes'
 
 import Header from './../Layout/Header'
 import VehicleList from '../Vehicle/VehicleList'
@@ -14,11 +12,12 @@ class AccountPage extends Component {
 
             <div className="page">
                 <Header title="Your account" />
-                <div className="page__content">
+                <div className="content-box">
                     <p>Welcome {firstname}!</p>
-                    <p><Link to={routes.ADD_VEHICLE}>Add Vehicle</Link></p>
-                    <VehicleList {...this.props} />
                     <p><SignOutButton {...this.props} /></p>
+                </div>
+                <div className="content-box box--no-padding">
+                    <VehicleList {...this.props} />
                 </div>
             </div>
 

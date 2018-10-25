@@ -10,7 +10,7 @@ import SignInPage from '../User/SignIn'
 import PasswordForgetPage from '../User/PasswordForget'
 import AddVehiclePage from '../Vehicle/AddVehicle'
 import EditVehiclePage from '../Vehicle/EditVehicle'
-import AddEventPage from '../Vehicle/AddEvent'
+import AddEventPage from '../Event/AddEvent'
 import AccountPage from '../User/AccountPage'
 import StatisticPage from '../Vehicle/VehicleStatistic'
 

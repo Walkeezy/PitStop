@@ -12,9 +12,9 @@ class PasswordForgetPage extends Component {
 
             <div className="page">
                 <Header title="Reset your password" backButton="false" />
-                <div className="page__content">
+                <div className="content-box">
                     <PasswordForgetForm {...this.props} />
-                    <p>Remember your password? <Link to={routes.SIGN_IN}>Login here!</Link></p>
+                    <p>Remember your password? <Link to={routes.SIGN_IN}>Sign in here!</Link></p>
                 </div>
             </div>
 

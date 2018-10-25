@@ -1,0 +1,43 @@
+// GENERAL
+// -----------------------------------------------------
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $light-gray;
+}
+
+.list-header__title {
+    margin: 0;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $light-gray;
+    padding: 1rem 1.5rem;
+}
+
+
+// VEHICLE LIST
+// -----------------------------------------------------
+
+.vehicles-item__name {
+    width: 30%;
+    flex: 0 0 30%;
+    font-weight: 700;
+}
+
+.vehicles-item__makemodel {
+    width: 30%;
+    flex: 0 0 30%;
+}

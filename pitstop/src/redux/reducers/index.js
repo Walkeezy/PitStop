@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import userReducer from './user'
 import vehicleReducer from './vehicle'
-import vehiclelogReducer from './vehiclelog'
+import eventReducer from './event'
 
 const rootReducer = combineReducers({
     userState: userReducer,
     vehicleState: vehicleReducer,
-    vehiclelogState: vehiclelogReducer
+    eventState: eventReducer
 })
 
 export default rootReducer

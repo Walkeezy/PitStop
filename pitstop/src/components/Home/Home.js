@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 
 import Header from '../Layout/Header'
-import VehicleSwitch from '../Vehicle/VehicleSwitch'
-import VehicleLog from '../Vehicle/VehicleLog'
+import EventLog from '../Event/EventLog'
 
 class HomePage extends Component {
 
@@ -11,9 +10,8 @@ class HomePage extends Component {
 
             <div className="page">
                 <Header />
-                <div className="page__content">
-                    <VehicleSwitch {...this.props} />
-                    <VehicleLog {...this.props} />
+                <div className="content-box">
+                    <EventLog {...this.props} />
                 </div>
             </div>
 

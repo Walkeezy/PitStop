@@ -14,14 +14,21 @@ body {
 *, *:before, *:after {
   box-sizing: inherit; }
 
-.page__content {
-  max-width: 94vw;
+.page {
+  margin-bottom: 8rem; }
+
+.content-box {
+  max-width: 92vw;
   width: 1000px;
+  margin: 4vw auto 4vw;
   background: #FFFFFF;
-  margin: 3vw auto 8rem;
-  padding: 3vw;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  border: 1px solid #EAEDF3;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
   border-radius: 4px; }
+
+.box--no-padding {
+  padding: 0; }
 
 a {
   color: inherit;
@@ -55,18 +62,24 @@ h6 {
 
 button,
 .button {
+  display: inline-block;
   cursor: pointer;
   background: #FFFFFF;
   border: 1px solid #e0e5ed;
+  background-image: linear-gradient(0deg, #FBFBFD 0%, #FFFFFF 100%);
+  box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.05), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
   border-radius: 4px;
   padding: 0.7rem 1.3rem;
   text-decoration: none;
+  line-height: 1.15;
   transition: 200ms all; }
   button:hover, button:active, button:focus,
   .button:hover,
   .button:active,
   .button:focus {
     border-color: #cad1e0;
+    background-image: linear-gradient(0deg, #f8f8fb 0%, #FFFFFF 100%);
+    box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
     outline: none; }
   button:disabled,
   .button:disabled {
@@ -76,11 +89,11 @@ button,
 .button--yellow {
   background: #FACF5A;
   border-color: #f9c841;
-  background-image: linear-gradient(0deg, #facc50 0%, #fad264 100%);
+  background-image: linear-gradient(0deg, #facc50 0%, #fad369 100%);
   box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06); }
   .button--yellow:hover, .button--yellow:active, .button--yellow:focus {
-    border-color: #f9c129;
-    background-image: linear-gradient(0deg, #f9c946 0%, #facf5a 100%);
+    border-color: #f8bd1c;
+    background-image: linear-gradient(0deg, #f9c841 0%, #facf5a 100%);
     box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.18), inset 0 2px 0 0 rgba(255, 255, 255, 0.06); }
 
 button + button {
@@ -97,7 +110,7 @@ header {
   height: 4rem;
   overflow: hidden;
   color: #FFFFFF;
-  max-width: 94vw;
+  max-width: 92vw;
   width: 1000px;
   margin: 0 auto; }
 
@@ -114,6 +127,9 @@ header {
   position: absolute;
   left: 0;
   font-size: 0; }
+  @media only screen and (max-width: 400px) {
+    .header__back-link {
+      left: 4vw; } }
 
 footer {
   position: fixed;
@@ -129,7 +145,7 @@ footer {
   height: 4rem;
   align-items: center;
   justify-content: space-around;
-  max-width: 94vw;
+  max-width: 92vw;
   width: 1000px;
   margin: 0 auto;
   line-height: 0;
@@ -212,3 +228,34 @@ label {
   font-weight: 700;
   color: #E6492D;
   margin-top: 0.5rem; }
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #EAEDF3; }
+
+.list-header__title {
+  margin: 0; }
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #EAEDF3;
+  padding: 1rem 1.5rem; }
+
+.vehicles-item__name {
+  width: 30%;
+  flex: 0 0 30%;
+  font-weight: 700; }
+
+.vehicles-item__makemodel {
+  width: 30%;
+  flex: 0 0 30%; }

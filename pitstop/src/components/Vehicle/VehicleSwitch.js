@@ -11,6 +11,7 @@ class VehicleSwitch extends Component {
         const vehicleId = event.target.value
         if (vehicleId) {
             this.props.saveVehicleAsActive(vehicleId)
+            this.props.startLoadingEvents(this.props.user.user.uid, vehicleId)
         }
     }
 

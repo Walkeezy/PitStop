@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import * as routes from '../../constants/routes'
 
 import Header from './../Layout/Header'
-import VehicleForm from './VehicleForm'
+import EventForm from './EventForm'
 
 class AddVehiclePage extends Component {
 
@@ -10,9 +10,9 @@ class AddVehiclePage extends Component {
         return (
 
             <div className="page">
-                <Header title="Add new vehicle" backLink={routes.ACCOUNT} />
+                <Header title="Add new event" backLink={routes.ACCOUNT} />
                 <div className="content-box">
-                    <VehicleForm {...this.props} />
+                    <EventForm {...this.props} />
                 </div>
             </div>
 

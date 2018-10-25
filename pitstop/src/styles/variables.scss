@@ -14,7 +14,8 @@ $red:               #E6492D;
 // OTHER STUFF
 
 $content-width:       1000px;
-$viewport-width:      94vw;
+$viewport-width:      92vw;
+$viewport-spacing:    4vw;
 $header-height:       4rem;
 $footer-height:       4rem;
 $border-radius:       4px;
@@ -24,7 +25,4 @@ $transition:          200ms ease-in-out;
 
 // BREAKPOINTS
 
-$breakpoint1:         "only screen and (max-width: 1200px)";
-$breakpoint2:         "only screen and (max-width: 1000px)";
-$breakpoint3:         "only screen and (max-width: 800px)";
-$breakpoint4:         "only screen and (max-width: 800px)";
+$bp-smartphones:         "only screen and (max-width: 400px)";

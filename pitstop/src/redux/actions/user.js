@@ -3,6 +3,7 @@ import { history } from './../../history'
 import * as routes from './../../constants/routes'
 
 import { startLoadingVehicles, setVehicleAsActive } from './vehicle'
+import { startLoadingEvents } from './event'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -34,6 +35,7 @@ export function loadUserDetails(userId) {
             }
             dispatch(setVehicleAsActive(activeVehicle))
             dispatch(setUserDetails(details))
+            dispatch(startLoadingEvents(userId, activeVehicle))
         }).catch((error) => {
             alert(error)
         })

@@ -32,4 +32,8 @@ header {
     position: absolute;
     left: 0;
     font-size: 0;
+
+    @media #{$bp-smartphones} {
+        left: $viewport-spacing;
+    }
 }

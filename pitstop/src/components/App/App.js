@@ -9,7 +9,7 @@ function mapStateToProps(state) {
     return {
         user: state.userState,
         vehicles: state.vehicleState,
-        logentries: state.vehiclelogState
+        events: state.eventState
     }
 }
 

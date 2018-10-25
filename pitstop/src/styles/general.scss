@@ -18,12 +18,21 @@ body {
     box-sizing: inherit;
 }
 
-.page__content {
+.page {
+    margin-bottom: (2 * $footer-height);
+}
+
+.content-box {
     max-width: $viewport-width;
     width: $content-width;
+    margin: $viewport-spacing auto $viewport-spacing;
     background: $white;
-    margin: 3vw auto (2 * $footer-height);
-    padding: 3vw;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    border: 1px solid $light-gray;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
     border-radius: $border-radius;
+}
+
+.box--no-padding {
+    padding: 0;
 }

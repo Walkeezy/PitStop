@@ -8,7 +8,7 @@ class StatisticPage extends Component {
 
             <div className="page">
                 <Header title="Your statistic" />
-                <div className="page__content">
+                <div className="content-box">
                     <p>Hier kommt dann so die Statistik hin.</p>
                 </div>
             </div>

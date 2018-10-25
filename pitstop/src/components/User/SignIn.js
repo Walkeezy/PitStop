@@ -28,8 +28,8 @@ class SignInPage extends Component {
         return (
 
             <div className="page">
-                <Header title="Login to your account" backButton="false" />
-                <div className="page__content">
+                <Header title="Sign in to your account" backButton="false" />
+                <div className="content-box">
                     <form onSubmit={this.handleSignIn}>
                         <div className="form__field">
                             <label htmlFor="userMail">Your e-mail</label>
@@ -40,7 +40,7 @@ class SignInPage extends Component {
                             <input type="password" name="userPassword" id="userPassword" />
                         </div>
                         <div className="form__field field--submit">
-                            <button type="submit" className="button--yellow">Login</button>
+                            <button type="submit" className="button--yellow">Sign in</button>
                         </div>
                     </form>
 
