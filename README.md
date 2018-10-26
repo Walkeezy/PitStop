@@ -19,3 +19,9 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 
 - [ ] Login & Sign up für eingeloggt Benutzer nicht aufrufbar
 - [ ] Fehler bei der Firebase-Authentifizierung schön ausgeben und so
+- [ ] Fehler falls Benutzer noch kein Fahrzeug erstellt hat
+- [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs
+
+## Ideen
+
+- [ ] Möglichkeit Farbe (und Icon?) für ein Fahrzeug festzulegen, welche dann auch im Eventlog verwendet wird

@@ -45,6 +45,10 @@ input, textarea, select {
     }
 }
 
+textarea {
+    resize: vertical;
+}
+
 [type=date] {
     line-height: 1.3;
 }

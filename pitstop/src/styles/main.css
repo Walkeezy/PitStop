@@ -17,6 +17,11 @@ body {
 .page {
   margin-bottom: 8rem; }
 
+.content {
+  max-width: 92vw;
+  width: 1000px;
+  margin: 4vw auto 4vw; }
+
 .content-box {
   max-width: 92vw;
   width: 1000px;
@@ -201,6 +206,9 @@ input, textarea, select {
   input:focus, textarea:focus, select:focus {
     border-color: #57769b; }
 
+textarea {
+  resize: vertical; }
+
 [type=date] {
   line-height: 1.3; }
 
@@ -259,3 +267,44 @@ label {
 .vehicles-item__makemodel {
   width: 30%;
   flex: 0 0 30%; }
+
+.event-log {
+  position: relative; }
+
+.event-log-line {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  margin-left: -2px;
+  width: 4px;
+  height: 100%;
+  background: #EAEDF3; }
+
+.event-log-item {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-items: top;
+  justify-content: stretch;
+  padding-bottom: 3rem; }
+
+.event__icon {
+  width: 4rem;
+  height: 4rem;
+  flex: 0 0 4rem;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #E6492D;
+  padding: 1.25rem; }
+
+.event__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0.5em 0 0; }
+
+.event__details {
+  color: #455D7A; }

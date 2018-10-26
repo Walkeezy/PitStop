@@ -12,9 +12,11 @@ class EventForm extends Component {
     handleSubmitEvent = (values, { setSubmitting }) => {
 
         const event = {
+            _created: new Date().toLocaleString(),
             type: values.eventType,
             date: values.eventDate,
-            mileage: values.eventMileage
+            mileage: values.eventMileage,
+            description: values.eventDescription
         }
 
         this.props.startAddingEvent(this.props.vehicles.activeVehicle, event)
@@ -28,7 +30,8 @@ class EventForm extends Component {
         let eventValues = {
             eventType: 'refuel',
             eventDate: '',
-            eventMileage: ''
+            eventMileage: '',
+            eventDescription: ''
         }
 
         return (
@@ -65,6 +68,11 @@ class EventForm extends Component {
                             <label htmlFor="eventMileage">Current mileage</label>
                             <Field type="number" name="eventMileage" id="eventMileage" className={(touched.eventMileage && errors.eventMileage) && 'input--error'} />
                             <ErrorMessage name="eventMileage" render={msg => <div className="field-error">{msg}</div>} />
+                        </div>
+                        <div className="form__field">
+                            <label htmlFor="eventDescription">Description</label>
+                            <Field component="textarea" name="eventDescription" id="eventDescription" className={(touched.eventDescription && errors.eventDescription) && 'input--error'} />
+                            <ErrorMessage name="eventDescription" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Save event</button>

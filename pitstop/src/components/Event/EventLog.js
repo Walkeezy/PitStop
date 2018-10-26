@@ -1,45 +1,28 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
+import * as routes from '../../constants/routes'
 
-import VehicleSwitch from '../Vehicle/VehicleSwitch'
+import EventLogItem from './EventLogItem'
 
 class EventLog extends Component {
     render() {
         const events = this.props.events.events
+        let eventlog
 
         if (events) {
-            return (
-
-                <div className="vehicle-log">
-                    <VehicleSwitch {...this.props} />
-
-                    <h2>Events</h2>
-
-                    {Object.keys(events).map((key, index) => {
-                        return (
-                            <li className="list-item" key={index}>
-                                <span className="">{events[key].type}</span>
-                                <span className="">{events[key].date}</span>
-                            </li>
-                        )
-                    })}
-
-                </div>
-
-            )
+            eventlog = Object.entries(events).map((event, index) => <EventLogItem key={index} eventId={event[0]} event={event[1]} />)
         } else {
-            return (
-
-                <div className="vehicle-log">
-                    <VehicleSwitch {...this.props} />
-
-                    <h2>Events</h2>
-
-                    <p>No events found for this vehicle. Go and add some!</p>
-
-                </div>
-
-            )
+            eventlog = <p>No events found for this vehicle. <Link to={routes.ADD_EVENT}>Go and add some!</Link></p>
         }
+
+        return (
+
+            <div className="event-log">
+                {events && <div className="event-log-line"></div>}
+                {eventlog}
+            </div>
+
+        )
     }
 }
 

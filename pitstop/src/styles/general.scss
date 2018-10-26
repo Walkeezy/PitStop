@@ -22,6 +22,12 @@ body {
     margin-bottom: (2 * $footer-height);
 }
 
+.content {
+    max-width: $viewport-width;
+    width: $content-width;
+    margin: $viewport-spacing auto $viewport-spacing;
+}
+
 .content-box {
     max-width: $viewport-width;
     width: $content-width;

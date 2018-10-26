@@ -1,0 +1,49 @@
+// EVENTLOG
+// -----------------------------------------------------
+
+.event-log {
+    position: relative;
+}
+
+.event-log-line {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    margin-left: -2px;
+    width: 4px;
+    height: 100%;
+    background: $light-gray;
+}
+
+.event-log-item {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    align-items: top;
+    justify-content: stretch;
+    padding-bottom: 3rem;
+}
+
+.event__icon {
+    width: 4rem;
+    height: 4rem;
+    flex: 0 0 4rem;
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $red;
+    padding: 1.25rem;
+}
+
+.event__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0.5em 0 0;
+}
+
+.event__details {
+    color: $blue;
+}
