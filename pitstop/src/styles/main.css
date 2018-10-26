@@ -142,7 +142,8 @@ footer {
   left: 0;
   bottom: 0;
   color: #FFFFFF;
-  background: #233142; }
+  background: #233142;
+  z-index: 2; }
 
 .footer__content {
   position: relative;
