@@ -26,11 +26,10 @@ class EventForm extends Component {
     }
 
     render() {
-
         let eventValues = {
             eventType: 'refuel',
-            eventDate: '',
-            eventMileage: '',
+            eventDate: new Date().toISOString().slice(0,10),
+            eventMileage: this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
             eventDescription: ''
         }
 

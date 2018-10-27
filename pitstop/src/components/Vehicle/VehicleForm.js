@@ -16,6 +16,7 @@ class AddVehicleForm extends Component {
             make_model: values.vehicleMakeModel,
             registration: values.vehicleFirstRegistration,
             initial_mileage: values.vehicleMileage,
+            actual_mileage: values.vehicleMileage,
             tyres: values.vehicleTyres
         }
 
