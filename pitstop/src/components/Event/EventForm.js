@@ -20,6 +20,7 @@ class EventForm extends Component {
         }
 
         this.props.startAddingEvent(this.props.vehicles.activeVehicle, event)
+        this.props.saveActualMileage(this.props.vehicles.activeVehicle, event.mileage)
 
         setSubmitting(false)
         return

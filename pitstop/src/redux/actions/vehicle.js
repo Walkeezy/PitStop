@@ -60,6 +60,13 @@ export function saveVehicleAsActive(vehicleId) {
     }
 }
 
+export function saveActualMileage(vehicleId, mileage) {
+    return (dispatch) => {
+            dispatch(setActualMileage(vehicleId, mileage))
+            database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/actual_mileage`).set(mileage)
+    }
+}
+
 
 // REGULAR ACTIONS
 // -----------------------------------------------------
@@ -98,5 +105,13 @@ export function setVehicleAsActive(vehicleId) {
     return {
         type: 'SET_VEHICLE_AS_ACTIVE',
         vehicleId
+    }
+}
+
+export function setActualMileage(vehicleId, mileage) {
+    return {
+        type: 'SET_ACTUAL_MILEAGE',
+        vehicleId,
+        mileage
     }
 }
