@@ -18,7 +18,8 @@ const eventReducer = function event(state = initialeventReducer, action) {
         case 'LOAD_EVENTS':
             return {
                 ...state,
-                events: action.events
+                events: action.events,
+                loading: false
             }
 
         default: return state

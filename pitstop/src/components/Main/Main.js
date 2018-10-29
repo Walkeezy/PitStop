@@ -12,7 +12,7 @@ import AddVehiclePage from '../Vehicle/AddVehicle'
 import EditVehiclePage from '../Vehicle/EditVehicle'
 import AddEventPage from '../Event/AddEvent'
 import AccountPage from '../User/AccountPage'
-import StatisticPage from '../Vehicle/VehicleStatistic'
+import StatisticPage from '../Statistic/Statistic'
 
 import * as routes from '../../constants/routes'
 
@@ -23,22 +23,42 @@ class Main extends Component {
     }
 
     render() {
-        return (
+        const loadingUserData = this.props.user.loading
+        const loadingVehicleData = this.props.vehicles.loading
+        const loadingEventData = this.props.events.loading
 
-            <div className="app">
-                <PrivateRoute exact path={routes.HOME} component={HomePage} {...this.props} />
-                <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
-                <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
-                <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage {...this.props} />} />
-                <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />
-                <PrivateRoute exact path='/edit-vehicle/:id' component={EditVehiclePage} {...this.props} />
-                <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} {...this.props} />
-                <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
-                <PrivateRoute exact path={routes.STATISTIC} component={StatisticPage} {...this.props} />
-                <Footer />
-            </div>
+        // Display loading screen until all data is loaded
+        if (loadingUserData || loadingVehicleData || loadingEventData){
+            return (
 
-        )
+                <div className="loading-screen">
+                    <Header/>
+                    <div className="bouncing-loader">
+                        <div className="bouncing-loader__dot"></div>
+                        <div className="bouncing-loader__dot"></div>
+                        <div className="bouncing-loader__dot"></div>
+                    </div>
+                </div>
+
+            )
+        } else {
+            return (
+
+                <div className="app">
+                    <PrivateRoute exact path={routes.HOME} component={HomePage} {...this.props} />
+                    <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
+                    <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
+                    <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage {...this.props} />} />
+                    <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />
+                    <PrivateRoute exact path='/edit-vehicle/:id' component={EditVehiclePage} {...this.props} />
+                    <PrivateRoute exact path={routes.ADD_EVENT} component={AddEventPage} {...this.props} />
+                    <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
+                    <PrivateRoute exact path={routes.STATISTIC} component={StatisticPage} {...this.props} />
+                    <Footer />
+                </div>
+
+            )
+        }
     }
 
 }

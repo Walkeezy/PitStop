@@ -19,7 +19,7 @@ body {
 }
 
 .page {
-    margin-bottom: (2 * $footer-height);
+    padding: $header-height 0 (1.25 * $footer-height);
 }
 
 .content {

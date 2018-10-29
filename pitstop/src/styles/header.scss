@@ -1,7 +1,13 @@
 @import 'variables.scss';
 
 header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    color: $white;
     background: $dark-blue;
+    z-index: 2;
 }
 
 .header__content {

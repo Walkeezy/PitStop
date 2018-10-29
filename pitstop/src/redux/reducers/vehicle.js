@@ -27,23 +27,28 @@ const vehicleReducer = function vehicles(state = initialVehicleReducer, action) 
             }
 
         case 'LOAD_VEHICLES':
-            return { ...state,
-                        vehicles: action.vehicles }
+            return {
+                ...state,
+                vehicles: action.vehicles,
+                loading: false
+            }
 
         case 'SET_VEHICLE_AS_ACTIVE':
-            return { ...state,
-                        activeVehicle: action.vehicleId }
+            return {
+                ...state,
+                activeVehicle: action.vehicleId
+            }
 
         case 'SET_ACTUAL_MILEAGE':
             return {
-                    ...state,
-                    vehicles: {
-                        ...state.vehicles,
-                        [action.vehicleId]: {
-                            ...state.vehicles[action.vehicleId],
-                            actual_mileage: action.mileage
-                        }
+                ...state,
+                vehicles: {
+                    ...state.vehicles,
+                    [action.vehicleId]: {
+                        ...state.vehicles[action.vehicleId],
+                        actual_mileage: action.mileage
                     }
+                }
             }
 
         default: return state
