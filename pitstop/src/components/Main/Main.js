@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 
 import PrivateRoute from './PrivateRoute'
 
+import Header from '../Layout/Header'
 import Footer from '../Layout/Footer'
 import HomePage from '../Home/Home'
 import SignUpPage from '../User/SignUp'
