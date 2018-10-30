@@ -1,6 +1,7 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
+import moment from 'moment'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -8,6 +9,7 @@ import * as routes from './../../constants/routes'
 // Save vehicle to current user in database, then dispatch editVehicle action with key of new vehicle item in database and vehicle data
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
+        vehicle._created = moment().format('DD.MM.YYYY HH:mm:ss')
         return database.ref(`users/${auth.currentUser.uid}/vehicles`).push(vehicle).then((response) => {
             const vehicleId = response.key
             dispatch(editVehicle(vehicleId, vehicle))
@@ -21,6 +23,7 @@ export function startAddingVehicle(vehicle) {
 // Edit vehicle in database, then dispatch editVehicle action with key of vehicle and vehicle data
 export function startEditingVehicle(vehicleId, vehicle) {
     return (dispatch) => {
+        vehicle._modified = moment().format('DD.MM.YYYY HH:mm:ss')
         return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).update(vehicle).then(() => {
             dispatch(editVehicle(vehicleId, vehicle))
             history.push(routes.ACCOUNT)
@@ -113,5 +116,11 @@ export function setActualMileage(vehicleId, mileage) {
         type: 'SET_ACTUAL_MILEAGE',
         vehicleId,
         mileage
+    }
+}
+
+export function resetVehicleLoading() {
+    return {
+        type: 'RESET_VEHICLE_LOADING'
     }
 }

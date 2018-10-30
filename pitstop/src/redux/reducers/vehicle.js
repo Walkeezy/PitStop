@@ -51,6 +51,13 @@ const vehicleReducer = function vehicles(state = initialVehicleReducer, action) 
                 }
             }
 
+        // This isn't the most beautiful solution ...
+        case 'RESET_VEHICLE_LOADING':
+            return {
+                ...state,
+                loading: false
+            }
+
         default: return state
 
     }

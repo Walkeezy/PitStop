@@ -1,12 +1,14 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
+import moment from 'moment'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
 
 export function startAddingEvent(vehicleId, event) {
     return (dispatch) => {
+        event._created = moment().format('DD.MM.YYYY HH:mm:ss')
         return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/events`).push(event).then((response) => {
             const eventId = response.key
             dispatch(addEvent(eventId, event))
@@ -43,5 +45,11 @@ export function loadEvents(events) {
     return {
         type: 'LOAD_EVENTS',
         events
+    }
+}
+
+export function resetEventLoading() {
+    return {
+        type: 'RESET_EVENT_LOADING'
     }
 }

@@ -15,8 +15,8 @@ Logbuch pro Fahrzeug zum Erfassen von Ereignissen: Reifenwechsel, Service, Repar
 ### Modul 5: Statistik
 Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleistung der Reifen etc.
 
-## Errors
-- [ ] Loading screen für neue Benutzer verschwindet nicht, da "loading" im Vehicle-Reducer und im Events-Reducer nicht auf "false" gesetzt werden ...
+## Fehler
+- [X] Loading screen für neue Benutzer verschwindet nicht, da "loading" im Vehicle-Reducer und im Events-Reducer nicht auf "false" gesetzt werden ...
 
 ## To do
 

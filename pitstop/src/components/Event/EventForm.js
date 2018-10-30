@@ -12,7 +12,6 @@ class EventForm extends Component {
     handleSubmitEvent = (values, { setSubmitting }) => {
 
         const event = {
-            _created: new Date().toLocaleString(),
             type: values.eventType,
             date: values.eventDate,
             mileage: values.eventMileage,

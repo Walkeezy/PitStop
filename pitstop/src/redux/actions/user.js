@@ -1,9 +1,10 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
+import moment from 'moment'
 
-import { startLoadingVehicles, setVehicleAsActive } from './vehicle'
-import { startLoadingEvents } from './event'
+import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
+import { startLoadingEvents, resetEventLoading } from './event'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -19,6 +20,10 @@ export function verifyUser() {
                 dispatch(loadUserDetails(user.uid))
             } else {
                 dispatch(unsetUser())
+
+                // This isn't the most beautiful solution ...
+                dispatch(resetVehicleLoading())
+                dispatch(resetEventLoading())
             }
         })
     }
@@ -45,8 +50,9 @@ export function loadUserDetails(userId) {
 // Create user on firebase, then save user to database, then dispatch setUser action
 export function startCreatingUser(user) {
     return (dispatch) => {
-        return auth.createUserWithEmailAndPassword(user.email, user.password).then(user => {
-            database.ref(`users/${user.user.uid}`).set({
+        return auth.createUserWithEmailAndPassword(user.email, user.password).then(authUser => {
+            database.ref(`users/${authUser.user.uid}`).set({
+                _created: moment().format('DD.MM.YYYY HH:mm:ss'),
                 firstname: user.firstname,
                 lastname: user.lastname,
                 email: user.email

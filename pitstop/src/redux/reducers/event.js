@@ -22,6 +22,13 @@ const eventReducer = function event(state = initialeventReducer, action) {
                 loading: false
             }
 
+        // This isn't the most beautiful solution ...
+        case 'RESET_EVENT_LOADING':
+            return {
+                ...state,
+                loading: false
+            }
+
         default: return state
 
     }
