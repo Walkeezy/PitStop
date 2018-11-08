@@ -10,7 +10,7 @@ import moment from 'moment'
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
         vehicle._created = moment().format('DD.MM.YYYY HH:mm:ss')
-        return database.ref(`users/${auth.currentUser.uid}/vehicles`).push(vehicle).then((response) => {
+        return database.collection(`users/${auth.currentUser.uid}/vehicles`).push(vehicle).then((response) => {
             const vehicleId = response.key
             dispatch(editVehicle(vehicleId, vehicle))
             history.push(routes.ACCOUNT)
@@ -24,7 +24,7 @@ export function startAddingVehicle(vehicle) {
 export function startEditingVehicle(vehicleId, vehicle) {
     return (dispatch) => {
         vehicle._modified = moment().format('DD.MM.YYYY HH:mm:ss')
-        return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).update(vehicle).then(() => {
+        return database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).update(vehicle).then(() => {
             dispatch(editVehicle(vehicleId, vehicle))
             history.push(routes.ACCOUNT)
         }).catch((error) => {
@@ -36,7 +36,7 @@ export function startEditingVehicle(vehicleId, vehicle) {
 // Delete vehicle
 export function startRemovingVehicle(vehicleId) {
     return (dispatch) => {
-        return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).remove().then(() => {
+        return database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).remove().then(() => {
             history.push(routes.ACCOUNT)
             dispatch(removeVehicle(vehicleId))
         }).catch((error) => {
@@ -47,11 +47,15 @@ export function startRemovingVehicle(vehicleId) {
 
 // Load vehicles from database, then dispatch loadVehicles action
 export function startLoadingVehicles(userId) {
+    console.info('startloadingvehicle');
     return (dispatch) => {
-        return database.ref(`users/${userId}/vehicles`).once('value').then((snapshot) => {
+        return database.collection(`users`).doc(userId).get().then(snapshot => {
+            console.log('snap', snapshot);
             const vehicles = snapshot.val()
             dispatch(loadVehicles(vehicles))
-        })
+        }).catch(err => {
+            console.log("Error getting document", err);
+        });
     }
 }
 
@@ -59,14 +63,14 @@ export function startLoadingVehicles(userId) {
 export function saveVehicleAsActive(vehicleId) {
     return (dispatch) => {
         dispatch(setVehicleAsActive(vehicleId))
-        database.ref(`users/${auth.currentUser.uid}/active_vehicle`).set(vehicleId)
+        database.collection(`users/${auth.currentUser.uid}/active_vehicle`).set(vehicleId)
     }
 }
 
 export function saveActualMileage(vehicleId, mileage) {
     return (dispatch) => {
             dispatch(setActualMileage(vehicleId, mileage))
-            database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/actual_mileage`).set(mileage)
+            database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/actual_mileage`).set(mileage)
     }
 }
 

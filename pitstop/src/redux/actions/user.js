@@ -16,6 +16,7 @@ export function verifyUser() {
             if (user) {
                 // If user is signed in, save user to redux store and load his vehicles
                 dispatch(setUser(user))
+                console.log('user', user);
                 dispatch(startLoadingVehicles(user.uid))
                 dispatch(loadUserDetails(user.uid))
             } else {
@@ -32,15 +33,17 @@ export function verifyUser() {
 // Load user details (firstname, lastname & active vehicle)
 export function loadUserDetails(userId) {
     return (dispatch) => {
-        return database.ref(`users/${userId}`).once('value').then((snapshot) => {
+        console.log('userid', userId);
+        return database.collection(`users`).doc(userId).get().then((snapshot) => {
+            console.log('snapshot12', snapshot);
             const activeVehicle = snapshot.child('active_vehicle').val()
             const details = {
                 'firstname': snapshot.child('firstname').val(),
                 'lastname': snapshot.child('lastname').val()
             }
-            dispatch(setVehicleAsActive(activeVehicle))
-            dispatch(setUserDetails(details))
-            dispatch(startLoadingEvents(userId, activeVehicle))
+            // dispatch(setVehicleAsActive(activeVehicle))
+            // dispatch(setUserDetails(details))
+            // dispatch(startLoadingEvents(userId, activeVehicle))
         }).catch((error) => {
             alert(error)
         })
@@ -51,7 +54,7 @@ export function loadUserDetails(userId) {
 export function startCreatingUser(user) {
     return (dispatch) => {
         return auth.createUserWithEmailAndPassword(user.email, user.password).then(authUser => {
-            database.ref(`users/${authUser.user.uid}`).set({
+            database.collection(`users/${authUser.user.uid}`).add({
                 _created: moment().format('DD.MM.YYYY HH:mm:ss'),
                 firstname: user.firstname,
                 lastname: user.lastname,

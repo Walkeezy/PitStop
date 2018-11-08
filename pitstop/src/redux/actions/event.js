@@ -9,7 +9,7 @@ import moment from 'moment'
 export function startAddingEvent(vehicleId, event) {
     return (dispatch) => {
         event._created = moment().format('DD.MM.YYYY HH:mm:ss')
-        return database.ref(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/events`).push(event).then((response) => {
+        return database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/events`).push(event).then((response) => {
             const eventId = response.key
             dispatch(addEvent(eventId, event))
             history.push(routes.HOME)
@@ -22,7 +22,7 @@ export function startAddingEvent(vehicleId, event) {
 // Load events from database, then dispatch loadEvents action
 export function startLoadingEvents(userId, vehicleId) {
     return (dispatch) => {
-        return database.ref(`users/${userId}/vehicles/${vehicleId}/events`).once('value').then((snapshot) => {
+        return database.collection(`users/${userId}/vehicles/${vehicleId}/events`).get('value').then((snapshot) => {
             const events = snapshot.val()
             dispatch(loadEvents(events))
         })
