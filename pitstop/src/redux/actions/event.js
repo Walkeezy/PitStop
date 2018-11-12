@@ -9,12 +9,13 @@ import moment from 'moment'
 export function startAddingEvent(vehicleId, event) {
     return (dispatch) => {
         event._created = moment().format('DD.MM.YYYY HH:mm:ss')
-        return database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/events`).push(event).then((response) => {
-            const eventId = response.key
-            dispatch(addEvent(eventId, event))
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).collection('events').add(event)
+        .then((doc) => {
+            dispatch(addEvent(doc.id, event))
             history.push(routes.HOME)
-        }).catch((error) => {
-            alert(error)
+        })
+        .catch((error) => {
+            console.error('Error adding event: ', error)
         })
     }
 }
@@ -22,9 +23,17 @@ export function startAddingEvent(vehicleId, event) {
 // Load events from database, then dispatch loadEvents action
 export function startLoadingEvents(userId, vehicleId) {
     return (dispatch) => {
-        return database.collection(`users/${userId}/vehicles/${vehicleId}/events`).get('value').then((snapshot) => {
-            const events = snapshot.val()
+        return database.collection('users').doc(userId).collection('vehicles').doc(vehicleId).collection('events').get()
+        .then((docs) => {
+            let events = {}
+            docs.forEach(function (doc) {
+                const key = doc.id
+                events[key] = doc.data()
+            })
             dispatch(loadEvents(events))
+        })
+        .catch((error) => {
+            console.error('Error loading vehicles: ', error)
         })
     }
 }

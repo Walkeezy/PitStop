@@ -10,12 +10,13 @@ import moment from 'moment'
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
         vehicle._created = moment().format('DD.MM.YYYY HH:mm:ss')
-        return database.collection(`users/${auth.currentUser.uid}/vehicles`).push(vehicle).then((response) => {
-            const vehicleId = response.key
-            dispatch(editVehicle(vehicleId, vehicle))
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').add(vehicle)
+        .then((doc) => {
+            dispatch(editVehicle(doc.id, vehicle))
+            dispatch(setVehicleAsActive(doc.id))
             history.push(routes.ACCOUNT)
         }).catch((error) => {
-            alert(error)
+            console.error('Error adding vehicle: ', error)
         })
     }
 }
@@ -24,11 +25,13 @@ export function startAddingVehicle(vehicle) {
 export function startEditingVehicle(vehicleId, vehicle) {
     return (dispatch) => {
         vehicle._modified = moment().format('DD.MM.YYYY HH:mm:ss')
-        return database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).update(vehicle).then(() => {
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).update(vehicle)
+        .then(() => {
             dispatch(editVehicle(vehicleId, vehicle))
             history.push(routes.ACCOUNT)
-        }).catch((error) => {
-            alert(error)
+        })
+        .catch((error) => {
+            console.error('Error updating vehicle: ', error)
         })
     }
 }
@@ -36,41 +39,61 @@ export function startEditingVehicle(vehicleId, vehicle) {
 // Delete vehicle
 export function startRemovingVehicle(vehicleId) {
     return (dispatch) => {
-        return database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}`).remove().then(() => {
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).delete()
+        .then(() => {
             history.push(routes.ACCOUNT)
             dispatch(removeVehicle(vehicleId))
-        }).catch((error) => {
-            alert(error)
+        })
+        .catch((error) => {
+            console.error('Error removing vehicle: ', error)
         })
     }
 }
 
 // Load vehicles from database, then dispatch loadVehicles action
 export function startLoadingVehicles(userId) {
-    console.info('startloadingvehicle');
     return (dispatch) => {
-        return database.collection(`users`).doc(userId).get().then(snapshot => {
-            console.log('snap', snapshot);
-            const vehicles = snapshot.val()
+        return database.collection('users').doc(userId).collection('vehicles').get()
+        .then((docs) => {
+            let vehicles = {}
+            docs.forEach(function (doc) {
+                const key = doc.id
+                vehicles[key] = doc.data()
+            })
             dispatch(loadVehicles(vehicles))
-        }).catch(err => {
-            console.log("Error getting document", err);
-        });
+        })
+        .catch((error) => {
+            console.error('Error loading vehicles: ', error)
+        })
     }
 }
 
 // Save vehicle as active in database and dispatch action to save it to store
 export function saveVehicleAsActive(vehicleId) {
     return (dispatch) => {
-        dispatch(setVehicleAsActive(vehicleId))
-        database.collection(`users/${auth.currentUser.uid}/active_vehicle`).set(vehicleId)
+        return database.collection('users').doc(auth.currentUser.uid).update({
+            active_vehicle: vehicleId
+        })
+        .then(() => {
+            dispatch(setVehicleAsActive(vehicleId))
+        })
+        .catch((error) => {
+            console.error('Error setting active vehicle: ', error)
+        })
     }
 }
 
 export function saveActualMileage(vehicleId, mileage) {
     return (dispatch) => {
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).update({
+            actual_mileage: mileage
+        })
+        .then(() => {
             dispatch(setActualMileage(vehicleId, mileage))
-            database.collection(`users/${auth.currentUser.uid}/vehicles/${vehicleId}/actual_mileage`).set(mileage)
+        })
+        .catch((error) => {
+            console.error('Error setting actual mileage to vehicle: ', error)
+        })
     }
 }
 
