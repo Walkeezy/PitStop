@@ -8,6 +8,7 @@ import Fuel from './Fuel'
 import Oil from './Oil'
 import Wheel from './Wheel'
 import Breakdown from './Breakdown'
+import Funnel from './Funnel'
 
 const Icon = props => {
     switch (props.name) {
@@ -29,6 +30,8 @@ const Icon = props => {
             return <Wheel {...props} />
         case "breakdown":
             return <Breakdown {...props} />
+        case "funnel":
+            return <Funnel {...props} />
         default:
             return <div />
     }

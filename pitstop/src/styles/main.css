@@ -163,6 +163,10 @@ footer {
   line-height: 0;
   font-size: 0; }
 
+.footer__button {
+  width: 4.5rem;
+  text-align: center; }
+
 .add-event-button {
   position: absolute;
   top: -1.25rem;
@@ -195,6 +199,10 @@ form {
 .field--half {
   width: 48%;
   flex: 0 0 48%; }
+  @media only screen and (max-width: 400px) {
+    .field--half {
+      width: 100%;
+      flex: 0 0 100%; } }
 
 .field--submit {
   margin-top: 2rem; }
@@ -234,6 +242,20 @@ label {
   border-width: 2px;
   padding: 0.7rem 1.2rem; }
 
+.select-event {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap; }
+
+.select-event__item {
+  width: 33%;
+  flex: 0 0 33%;
+  text-align: center;
+  margin: 4vw 0; }
+  .select-event__item .event__icon {
+    margin: 0 auto; }
+
 .input--error {
   border-color: #E6492D; }
 
@@ -250,6 +272,9 @@ label {
   justify-content: space-between;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #EAEDF3; }
+  @media only screen and (max-width: 400px) {
+    .list-header {
+      display: block; } }
 
 .list-header__title {
   margin: 0; }
@@ -263,6 +288,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   border-bottom: 1px solid #EAEDF3;
   padding: 1rem 1.5rem; }
 
@@ -270,10 +296,18 @@ label {
   width: 30%;
   flex: 0 0 30%;
   font-weight: 700; }
+  @media only screen and (max-width: 400px) {
+    .vehicles-item__name {
+      width: 100%;
+      flex: 0 0 100%; } }
 
 .vehicles-item__makemodel {
   width: 30%;
   flex: 0 0 30%; }
+  @media only screen and (max-width: 400px) {
+    .vehicles-item__makemodel {
+      width: 100%;
+      flex: 0 0 100%; } }
 
 .event-log {
   position: relative; }

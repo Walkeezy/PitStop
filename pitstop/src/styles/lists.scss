@@ -7,6 +7,10 @@
     justify-content: space-between;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid $light-gray;
+
+    @media #{$bp-smartphones} {
+        display: block;
+    }
 }
 
 .list-header__title {
@@ -23,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     border-bottom: 1px solid $light-gray;
     padding: 1rem 1.5rem;
 }
@@ -35,9 +40,19 @@
     width: 30%;
     flex: 0 0 30%;
     font-weight: 700;
+
+    @media #{$bp-smartphones} {
+        width: 100%;
+        flex: 0 0 100%;
+    }
 }
 
 .vehicles-item__makemodel {
     width: 30%;
     flex: 0 0 30%;
+
+    @media #{$bp-smartphones} {
+        width: 100%;
+        flex: 0 0 100%;
+    }
 }

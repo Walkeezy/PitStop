@@ -18,6 +18,11 @@ form {
 .field--half {
     width: 48%;
     flex: 0 0 48%;
+
+    @media #{$bp-smartphones} {
+      width: 100%;
+      flex: 0 0 100%;
+    }
 }
 
 .field--submit {
@@ -72,6 +77,28 @@ label {
     font-size: 1.2rem;
     border-width: 2px;
     padding: 0.7rem 1.2rem;
+}
+
+
+// SELECT EVENT
+// -----------------------------------------------------
+
+.select-event {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.select-event__item {
+    width: 33%;
+    flex: 0 0 33%;
+    text-align: center;
+    margin: 4vw 0;
+
+    .event__icon {
+        margin: 0 auto;
+    }
 }
 
 

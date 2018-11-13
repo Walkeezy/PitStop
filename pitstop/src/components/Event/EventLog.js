@@ -9,7 +9,7 @@ class EventLog extends Component {
         const events = this.props.events.events
         let eventlog
 
-        if (events) {
+        if (Object.keys(events).length !== 0) {
             eventlog = Object.entries(events).map((event, index) => <EventLogItem key={index} eventId={event[0]} event={event[1]} />)
         } else {
             eventlog = <p>No events found for this vehicle. <Link to={routes.ADD_EVENT}>Go and add some!</Link></p>
@@ -18,7 +18,7 @@ class EventLog extends Component {
         return (
 
             <div className="event-log">
-                {events && <div className="event-log-line"></div>}
+                {Object.keys(events).length !== 0 && <div className="event-log-line"></div>}
                 {eventlog}
             </div>
 

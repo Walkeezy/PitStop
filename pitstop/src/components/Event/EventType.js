@@ -15,25 +15,34 @@ class EventTypePage extends Component {
 
             <div className="page">
                 <Header title={headerTitle} backLink={routes.HOME} />
-                <div className="content-box">
-                    <Link to={routes.ADD_EVENT + "/refuel"}>
-                        <div className="event__icon"><Icon name="fuel"/></div>
-                    </Link>
-                    <Link to={routes.ADD_EVENT + "/tires-change"}>
-                        <div className="event__icon"><Icon name="wheel"/></div>
-                    </Link>
-                    <Link to={routes.ADD_EVENT + "/oil-refill"}>
-                        <div className="event__icon"><Icon name="oil"/></div>
-                    </Link>
-                    <Link to={routes.ADD_EVENT + "/oil-change"}>
-                        <div className="event__icon"><Icon name="oil"/></div>
-                    </Link>
-                    <Link to={routes.ADD_EVENT + "/inspection-service"}>
-                        <div className="event__icon"><Icon name="breakdown"/></div>
-                    </Link>
-
-
-
+                <div className="content">
+                    <div className="select-event">
+                        <div className="select-event__item">
+                            <Link to={routes.ADD_EVENT + "/refuel"}>
+                                <div className="event__icon"><Icon name="fuel"/></div>
+                            </Link>
+                        </div>
+                        <div className="select-event__item">
+                            <Link to={routes.ADD_EVENT + "/tires-change"}>
+                                <div className="event__icon"><Icon name="wheel"/></div>
+                            </Link>
+                        </div>
+                        <div className="select-event__item">
+                            <Link to={routes.ADD_EVENT + "/oil-refill"}>
+                                <div className="event__icon"><Icon name="oil"/></div>
+                            </Link>
+                        </div>
+                        <div className="select-event__item">
+                            <Link to={routes.ADD_EVENT + "/oil-change"}>
+                                <div className="event__icon"><Icon name="funnel"/></div>
+                            </Link>
+                        </div>
+                        <div className="select-event__item">
+                            <Link to={routes.ADD_EVENT + "/inspection-service"}>
+                                <div className="event__icon"><Icon name="breakdown"/></div>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 
