@@ -8,6 +8,11 @@ class AccountPage extends Component {
 
     render() {
         const firstname = this.props.user.details.firstname
+
+        if (Object.keys(this.props.vehicles.vehicles).length === 1) {
+            this.props.saveVehicleAsActive(Object.keys(this.props.vehicles.vehicles)[0])
+        }
+
         return (
 
             <div className="page">

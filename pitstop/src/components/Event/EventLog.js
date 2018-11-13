@@ -12,7 +12,7 @@ class EventLog extends Component {
         if (Object.keys(events).length !== 0) {
             eventlog = Object.entries(events).map((event, index) => <EventLogItem key={index} eventId={event[0]} event={event[1]} />)
         } else {
-            eventlog = <p>No events found for this vehicle. <Link to={routes.ADD_EVENT}>Go and add some!</Link></p>
+            eventlog = <p>No events found for this vehicle. <Link to={routes.EVENT_TYPE}>Go and add some!</Link></p>
         }
 
         return (
