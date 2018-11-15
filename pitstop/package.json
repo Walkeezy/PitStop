@@ -2,9 +2,8 @@
   "name": "pitstop",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pitstop-app.ch",
   "dependencies": {
-    "@firebase/firestore": "^0.8.7",
-    "@google-cloud/firestore": "^0.18.0",
     "firebase": "^5.4.2",
     "formik": "^1.3.1",
     "formik-effect": "^1.2.0",
@@ -32,11 +31,5 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/styles/main.scss -o src/styles/",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/main.scss -o src/styles/ --watch --recursive"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }
