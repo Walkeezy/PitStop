@@ -4,9 +4,12 @@
   "private": true,
   "homepage": "https://pitstop-app.ch",
   "dependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "firebase": "^5.4.2",
     "formik": "^1.3.1",
     "formik-effect": "^1.2.0",
+    "jest": "^23.6.0",
     "moment": "^2.22.2",
     "node-sass-chokidar": "^1.3.3",
     "normalize.css": "^8.0.0",
@@ -17,6 +20,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.1",
+    "react-test-renderer": "^16.6.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
@@ -31,5 +35,11 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/styles/main.scss -o src/styles/",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/main.scss -o src/styles/ --watch --recursive"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
