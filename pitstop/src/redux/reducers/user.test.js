@@ -12,4 +12,29 @@ describe('auth user reducer', () => {
             }
         });
     });
+
+    it('should store a user', () => {
+        expect(userReducer({
+            loading: true,
+            authenticated: false,
+            user: [],
+            details: {
+                firstname: '',
+                lastname: ''
+            }
+        }, {
+            type: 'SET_USER',
+            loading: false,
+            authenticated: true,
+            user: 'some-user'
+        })).toEqual({
+            loading: false,
+            authenticated: true,
+            user: 'some-user',
+            details: {
+                firstname: '',
+                lastname: ''
+            }
+        });
+    })
 });
