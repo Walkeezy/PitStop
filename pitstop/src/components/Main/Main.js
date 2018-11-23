@@ -57,7 +57,7 @@ class Main extends Component {
                     <PrivateRoute exact path='/add-event/:type' component={AddEventPage} {...this.props} />
                     <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
                     <PrivateRoute exact path={routes.STATISTIC} component={StatisticPage} {...this.props} />
-                    <Footer />
+                    <Footer {...this.props} />
                 </div>
 
             )
