@@ -6,12 +6,14 @@ import SignOutButton from './SignOut'
 
 class AccountPage extends Component {
 
-    render() {
-        const firstname = this.props.user.details.firstname
-
+    componentDidMount() {
         if (Object.keys(this.props.vehicles.vehicles).length === 1) {
             this.props.saveVehicleAsActive(Object.keys(this.props.vehicles.vehicles)[0])
         }
+    }
+
+    render() {
+        const firstname = this.props.user.details.firstname
 
         return (
 
