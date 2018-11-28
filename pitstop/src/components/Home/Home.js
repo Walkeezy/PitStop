@@ -8,12 +8,6 @@ import * as routes from '../../constants/routes';
 
 class HomePage extends Component {
 
-    componentDidMount() {
-        if (this.props.vehicles.activeVehicle) {
-            this.props.startLoadingEvents(this.props.user.user.uid, this.props.vehicles.activeVehicle)
-        }
-    }
-
     render() {
             return (
 
