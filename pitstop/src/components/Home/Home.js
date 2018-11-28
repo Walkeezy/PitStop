@@ -19,16 +19,18 @@ class HomePage extends Component {
 
                 <div className="page">
                     <Header/>
-                    <div className="content">
-                        {Object.keys(this.props.vehicles.vehicles).length ? (
-                            <div>
+                    {Object.keys(this.props.vehicles.vehicles).length ? (
+                        <React.Fragment>
+                            <div className="content">
                                 <VehicleSwitch {...this.props} />
+                            </div>
+                            <div className="content">
                                 <EventLog {...this.props} />
                             </div>
-                        ) : (
-                            <div>No vehicles found. <Link to={routes.ADD_VEHICLE}>Go and add one!</Link></div>
-                        )}
-                    </div>
+                        </React.Fragment>
+                    ) : (
+                        <div className="content">No vehicles found. <Link to={routes.ADD_VEHICLE}>Go and add one!</Link></div>
+                    )}
                 </div>
 
             )

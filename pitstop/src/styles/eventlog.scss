@@ -9,7 +9,7 @@
     z-index: 0;
     position: absolute;
     top: 0;
-    left: 2rem;
+    left: 1.5rem;
     margin-left: -2px;
     width: 4px;
     height: 100%;
@@ -23,6 +23,10 @@
     align-items: top;
     justify-content: stretch;
     padding-bottom: 3rem;
+
+    @media #{$bp-smartphones} {
+        padding-bottom: 1rem;
+    }
 }
 
 .event__icon {
@@ -36,12 +40,25 @@
     border-radius: 50%;
     background: $red;
     padding: 1.25rem;
+
+    @media #{$bp-smartphones} {
+        width: 3rem;
+        height: 3rem;
+        flex: 0 0 3rem;
+        padding: 1rem;
+        margin-right: 1.5rem;
+    }
 }
 
 .event__title {
     font-size: 1.6rem;
     font-weight: 700;
     margin: 0.5em 0 0;
+
+    @media #{$bp-smartphones} {
+        font-size: 1.4rem;
+        margin: 0.2rem 0 0;
+    }
 }
 
 .event__details {

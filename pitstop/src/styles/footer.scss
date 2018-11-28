@@ -8,6 +8,10 @@ footer {
     color: $white;
     background: $dark-blue;
     z-index: 2;
+
+    @media #{$bp-smartphones} {
+        padding-bottom: 1rem;
+    }
 }
 
 .footer__content {
@@ -26,6 +30,24 @@ footer {
 .footer__button {
     width: 4.5rem;
     text-align: center;
+    svg {
+        transition: transform 200ms;
+    }
+
+    &:active svg {
+        transform: scale(0.95);
+    }
+
+    path {
+        transition: fill 200ms;
+    }
+}
+
+.footer__button--active {
+
+    path {
+        fill: $yellow;
+    }
 }
 
 .add-event-button {
@@ -49,5 +71,20 @@ footer {
     &:active,
     &:focus {
         background: darken($yellow, 5%)
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    @media #{$bp-smartphones} {
+        width: 4rem;
+        height: 4rem;
+        top: -1rem;
+        margin-left: -2rem;
+
+        svg {
+            width: 36px;
+        }
     }
 }

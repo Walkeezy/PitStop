@@ -54,8 +54,10 @@ textarea {
     resize: vertical;
 }
 
-[type=date] {
-    line-height: 1.3;
+input[type=text],
+input[type=email],
+input[type=date] {
+    height: 3.024rem;
 }
 
 label {

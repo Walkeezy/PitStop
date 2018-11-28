@@ -5,8 +5,7 @@ html {
   font-size: 100%;
   line-height: 1.55556;
   color: #233142;
-  background: #FBFBFD;
-  min-height: 100%; }
+  background: #FBFBFD; }
 
 body {
   min-height: 100%;
@@ -19,6 +18,9 @@ body {
 
 .page {
   padding: 4rem 0 5rem; }
+  @media only screen and (max-width: 400px) {
+    .page {
+      padding: 4rem 0 6rem; } }
 
 .content {
   max-width: 92vw;
@@ -34,6 +36,9 @@ body {
   border: 1px solid #EAEDF3;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
   border-radius: 4px; }
+  @media only screen and (max-width: 400px) {
+    .content-box {
+      padding: 1rem; } }
 
 .box--no-padding {
   padding: 0; }
@@ -52,21 +57,39 @@ h6 {
 
 h1 {
   font-size: 1.8rem; }
+  @media only screen and (max-width: 400px) {
+    h1 {
+      font-size: 1.5rem; } }
 
 h2 {
   font-size: 1.7rem; }
+  @media only screen and (max-width: 400px) {
+    h2 {
+      font-size: 1.4rem; } }
 
 h3 {
   font-size: 1.6rem; }
+  @media only screen and (max-width: 400px) {
+    h3 {
+      font-size: 1.3rem; } }
 
 h4 {
   font-size: 1.5rem; }
+  @media only screen and (max-width: 400px) {
+    h4 {
+      font-size: 1.2rem; } }
 
 h5 {
   font-size: 1.4rem; }
+  @media only screen and (max-width: 400px) {
+    h5 {
+      font-size: 1.1rem; } }
 
 h6 {
   font-size: 1.2rem; }
+  @media only screen and (max-width: 400px) {
+    h6 {
+      font-size: 1.1rem; } }
 
 button,
 .button {
@@ -89,6 +112,9 @@ button,
     background-image: linear-gradient(0deg, #f8f8fb 0%, #FFFFFF 100%);
     box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
     outline: none; }
+  button:active,
+  .button:active {
+    transform: scale(0.95); }
   button:disabled,
   .button:disabled {
     cursor: default;
@@ -153,6 +179,9 @@ footer {
   color: #FFFFFF;
   background: #233142;
   z-index: 2; }
+  @media only screen and (max-width: 400px) {
+    footer {
+      padding-bottom: 1rem; } }
 
 .footer__content {
   position: relative;
@@ -169,6 +198,15 @@ footer {
 .footer__button {
   width: 4.5rem;
   text-align: center; }
+  .footer__button svg {
+    transition: transform 200ms; }
+  .footer__button:active svg {
+    transform: scale(0.95); }
+  .footer__button path {
+    transition: fill 200ms; }
+
+.footer__button--active path {
+  fill: #FACF5A; }
 
 .add-event-button {
   position: absolute;
@@ -188,6 +226,16 @@ footer {
   transition: all 200ms; }
   .add-event-button:hover, .add-event-button:active, .add-event-button:focus {
     background: #f9c841; }
+  .add-event-button:active {
+    transform: scale(0.95); }
+  @media only screen and (max-width: 400px) {
+    .add-event-button {
+      width: 4rem;
+      height: 4rem;
+      top: -1rem;
+      margin-left: -2rem; }
+      .add-event-button svg {
+        width: 36px; } }
 
 form {
   display: flex;
@@ -227,8 +275,10 @@ input, textarea, select {
 textarea {
   resize: vertical; }
 
-[type=date] {
-  line-height: 1.3; }
+input[type=text],
+input[type=email],
+input[type=date] {
+  height: 3.024rem; }
 
 label {
   display: block;
@@ -319,7 +369,7 @@ label {
   z-index: 0;
   position: absolute;
   top: 0;
-  left: 2rem;
+  left: 1.5rem;
   margin-left: -2px;
   width: 4px;
   height: 100%;
@@ -332,6 +382,9 @@ label {
   align-items: top;
   justify-content: stretch;
   padding-bottom: 3rem; }
+  @media only screen and (max-width: 400px) {
+    .event-log-item {
+      padding-bottom: 1rem; } }
 
 .event__icon {
   width: 4rem;
@@ -344,11 +397,22 @@ label {
   border-radius: 50%;
   background: #E6492D;
   padding: 1.25rem; }
+  @media only screen and (max-width: 400px) {
+    .event__icon {
+      width: 3rem;
+      height: 3rem;
+      flex: 0 0 3rem;
+      padding: 1rem;
+      margin-right: 1.5rem; } }
 
 .event__title {
   font-size: 1.6rem;
   font-weight: 700;
   margin: 0.5em 0 0; }
+  @media only screen and (max-width: 400px) {
+    .event__title {
+      font-size: 1.4rem;
+      margin: 0.2rem 0 0; } }
 
 .event__details {
   color: #455D7A; }

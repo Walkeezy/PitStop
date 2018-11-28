@@ -7,7 +7,6 @@ html {
     line-height: $line-height;
     color: $dark-blue;
     background: $gray-white;
-    min-height: 100%;
 }
 
 body {
@@ -23,6 +22,10 @@ body {
 
 .page {
     padding: $header-height 0 (1.25 * $footer-height);
+
+    @media #{$bp-smartphones} {
+        padding: $header-height 0 (1.25 * $footer-height + 1rem);
+    }
 }
 
 .content {
@@ -40,6 +43,10 @@ body {
     border: 1px solid $light-gray;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
     border-radius: $border-radius;
+
+    @media #{$bp-smartphones} {
+        padding: 1rem;
+    }
 }
 
 .box--no-padding {
