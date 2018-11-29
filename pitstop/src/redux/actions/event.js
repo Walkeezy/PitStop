@@ -33,7 +33,7 @@ export function startLoadingEvents(userId, vehicleId) {
             dispatch(loadEvents(events))
         })
         .catch((error) => {
-            console.error('Error loading vehicles: ', error)
+            console.error('Error loading events: ', error)
         })
     }
 }

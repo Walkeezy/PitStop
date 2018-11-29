@@ -12,25 +12,27 @@ import Funnel from './Funnel'
 
 const Icon = props => {
     switch (props.name) {
-        case "logo":
+        case 'logo':
             return <Logo {...props} />
-        case "user":
+        case 'user':
             return <User {...props} />
-        case "statistic":
+        case 'statistic':
             return <Statistic {...props} />
-        case "plus":
+        case 'plus':
             return <Plus {...props} />
-        case "back":
+        case 'back':
             return <Back {...props} />
-        case "fuel":
+        case 'fuel':
+        case 'refuel':
             return <Fuel {...props} />
-        case "oil":
+        case 'oil':
             return <Oil {...props} />
-        case "wheel":
+        case 'wheel':
             return <Wheel {...props} />
-        case "breakdown":
+        case 'breakdown':
+        case 'inspection-service':
             return <Breakdown {...props} />
-        case "funnel":
+        case 'funnel':
             return <Funnel {...props} />
         default:
             return <div />

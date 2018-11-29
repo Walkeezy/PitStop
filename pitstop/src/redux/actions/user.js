@@ -5,6 +5,7 @@ import moment from 'moment'
 
 import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
 import { startLoadingEvents, resetEventLoading } from './event'
+import { resetStatisticLoading } from './statistic'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -24,6 +25,7 @@ export function verifyUser() {
                 // This isn't the most beautiful solution ...
                 dispatch(resetVehicleLoading())
                 dispatch(resetEventLoading())
+                dispatch(resetStatisticLoading())
             }
         })
     }
