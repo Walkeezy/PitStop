@@ -8,7 +8,6 @@ export function startLoadingStatistics(userId, vehicleId, statisticName) {
     return (dispatch) => {
         return database.collection('users').doc(userId).collection('vehicles').doc(vehicleId).collection('events').where('type', '==', statisticName).get()
             .then((docs) => {
-                console.log('docs', docs);
                 let statistic = {}
                 docs.forEach(function (doc) {
                     statistic[doc.id] = doc.data()
