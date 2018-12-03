@@ -26,13 +26,16 @@ const Icon = props => {
         case 'refuel':
             return <Fuel {...props} />
         case 'oil':
+        case 'oil-refill':
             return <Oil {...props} />
         case 'wheel':
+        case 'tires-change':
             return <Wheel {...props} />
         case 'breakdown':
         case 'inspection-service':
             return <Breakdown {...props} />
         case 'funnel':
+        case 'oil-change':
             return <Funnel {...props} />
         default:
             return <div />

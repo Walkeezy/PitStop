@@ -27,59 +27,69 @@ class EventForm extends Component {
 
     render() {
         let eventValues = {
-            eventType: 'refuel',
-            eventDate: new Date().toISOString().slice(0,10),
-            eventMileage: this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
-            eventDescription: ''
-        }
+                eventType: 'refuel',
+                eventDate: new Date().toISOString().slice(0,10),
+                eventMileage: this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
+                eventDescription: ''
+            },
+            validationSchema = Yup.object().shape({
+                eventDate: Yup.date().required('Date of event is required.'),
+                eventMileage: Yup.number().required('Mileage of your vehicle is required.'),
+            }),
+            formtype = this.props.match.params.type,
+            handleSubmitEvent = this.handleSubmitEvent
 
         return (
+            <div>
+                {(function() {
+                    switch(formtype) {
+                        case 'refuel':
+                            return <Formik
+                                initialValues={eventValues}
+                                validationSchema={validationSchema}
+                                onSubmit={handleSubmitEvent}
+                                enableReinitialize="true">
 
-            <Formik
-                initialValues={eventValues}
-                validationSchema={Yup.object().shape({
-                    eventDate: Yup.date().required('Date of event is required.'),
-                    eventMileage: Yup.number().required('Mileage of your vehicle is required.'),
-                })}
-                onSubmit={this.handleSubmitEvent}
-                enableReinitialize="true">
+                                {({ isSubmitting, touched, errors }) => (
 
-                {({ isSubmitting, touched, errors }) => (
+                                    <Form>
+                                        <input type="hidden" id="eventType" name="eventType" value={eventValues.eventType} />
+                                        <div className="form__field">
+                                            <label htmlFor="eventDate">Date</label>
+                                            <Field type="date" name="eventDate" id="eventDate" className={(touched.eventDate && errors.eventDate) && 'input--error'} />
+                                            <ErrorMessage name="eventDate" render={msg => <div className="field-error">{msg}</div>} />
+                                        </div>
+                                        <div className="form__field">
+                                            <label htmlFor="eventMileage">Current mileage</label>
+                                            <Field type="number" name="eventMileage" id="eventMileage" className={(touched.eventMileage && errors.eventMileage) && 'input--error'} />
+                                            <ErrorMessage name="eventMileage" render={msg => <div className="field-error">{msg}</div>} />
+                                        </div>
+                                        <div className="form__field">
+                                            <label htmlFor="eventDescription">Description</label>
+                                            <Field component="textarea" name="eventDescription" id="eventDescription" className={(touched.eventDescription && errors.eventDescription) && 'input--error'} />
+                                            <ErrorMessage name="eventDescription" render={msg => <div className="field-error">{msg}</div>} />
+                                        </div>
+                                        <div className="form__field field--submit">
+                                            <button type="submit" disabled={isSubmitting} className="button--yellow">Save event</button>
+                                        </div>
+                                    </Form>
 
-                    <Form>
-                        <div className="form__field">
-                            <label htmlFor="eventType">Type of event</label>
-                            <Field component="select" name="eventType" id="eventType" className={(touched.eventType && errors.eventType) && 'input--error'}>
-                                <option value="refuel">Refuel</option>
-                                <option value="tires-change">Tires change</option>
-                                <option value="oil-refill">Oil refill</option>
-                                <option value="oil-change">Oil change</option>
-                                <option value="inspection-service">Inspection/service</option>
-                            </Field>
-                            <ErrorMessage name="eventType" render={msg => <div className="field-error">{msg}</div>} />
-                        </div>
-                        <div className="form__field">
-                            <label htmlFor="eventDate">Date</label>
-                            <Field type="date" name="eventDate" id="eventDate" className={(touched.eventDate && errors.eventDate) && 'input--error'} />
-                            <ErrorMessage name="eventDate" render={msg => <div className="field-error">{msg}</div>} />
-                        </div>
-                        <div className="form__field">
-                            <label htmlFor="eventMileage">Current mileage</label>
-                            <Field type="number" name="eventMileage" id="eventMileage" className={(touched.eventMileage && errors.eventMileage) && 'input--error'} />
-                            <ErrorMessage name="eventMileage" render={msg => <div className="field-error">{msg}</div>} />
-                        </div>
-                        <div className="form__field">
-                            <label htmlFor="eventDescription">Description</label>
-                            <Field component="textarea" name="eventDescription" id="eventDescription" className={(touched.eventDescription && errors.eventDescription) && 'input--error'} />
-                            <ErrorMessage name="eventDescription" render={msg => <div className="field-error">{msg}</div>} />
-                        </div>
-                        <div className="form__field field--submit">
-                            <button type="submit" disabled={isSubmitting} className="button--yellow">Save event</button>
-                        </div>
-                    </Form>
+                                )}
+                            </Formik>
+                        case 'tires-change':
+                            return 'form tires-change';
+                        case 'oil-refill':
+                            return 'form oil-refill';
+                        case 'oil-change':
+                            return 'form oil-change';
+                        case 'inspection-service':
+                            return 'form inspection-service';
+                        default:
+                            return null;
+                    }
+                })()}
+            </div>
 
-                )}
-            </Formik>
         )
     }
 }
