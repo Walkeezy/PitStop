@@ -20,7 +20,7 @@ class AddVehicleForm extends Component {
             tyres: values.vehicleTyres
         }
 
-        this.props.editVehicleId 
+        this.props.editVehicleId
             ? this.props.startEditingVehicle(this.props.editVehicleId, vehicle)
             : this.props.startAddingVehicle(vehicle)
 
@@ -75,12 +75,12 @@ class AddVehicleForm extends Component {
                 {({ isSubmitting, touched, errors }) => (
 
                     <Form>
-                        <div className="form__field">
+                        <div className="form__field field--half">
                             <label htmlFor="vehicleName">Vehicle name</label>
                             <Field type="text" name="vehicleName" id="vehicleName" className={(touched.vehicleName && errors.vehicleName) && 'input--error'} />
                             <ErrorMessage name="vehicleName" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
-                        <div className="form__field">
+                        <div className="form__field field--half">
                             <label htmlFor="vehicleMakeModel">Make &amp; model</label>
                             <Field type="text" name="vehicleMakeModel" id="vehicleMakeModel" className={(touched.vehicleMakeModel && errors.vehicleMakeModel) && 'input--error'} />
                             <ErrorMessage name="vehicleMakeModel" render={msg => <div className="field-error">{msg}</div>} />
@@ -95,7 +95,7 @@ class AddVehicleForm extends Component {
                             <Field type="number" name="vehicleMileage" id="vehicleMileage" className={(touched.vehicleMileage && errors.vehicleMileage) && 'input--error'} />
                             <ErrorMessage name="vehicleMileage" render={msg => <div className="field-error">{msg}</div>} />
                         </div>
-                        <div className="form__field">
+                        <div className="form__field field--half">
                             <label htmlFor="vehicleTyres">Tyres</label>
                             <Field type="text" name="vehicleTyres" id="vehicleTyres" className={(touched.vehicleTyres && errors.vehicleTyres) && 'input--error'} />
                             <ErrorMessage name="vehicleTyres" render={msg => <div className="field-error">{msg}</div>} />

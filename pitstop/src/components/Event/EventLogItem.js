@@ -16,7 +16,7 @@ class EventLogItem extends Component {
                         <span className="event__description">{event.description}</span><br/>
                         <span className="event__date">{event.date}</span><br/>
                         <span className="event__mileage">{event.mileage}</span><br/>
-                        <span className="event__refuelPrice">{event.refuelPrice}</span>
+                        <span className="event__price">{event.price}</span>
                     </p>
                 </div>
             </div>

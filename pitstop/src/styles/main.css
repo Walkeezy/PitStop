@@ -187,7 +187,7 @@ footer {
   position: relative;
   display: flex;
   height: 4rem;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-around;
   max-width: 92vw;
   width: 1000px;
@@ -196,12 +196,14 @@ footer {
   font-size: 0; }
 
 .footer__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 4.5rem;
-  text-align: center; }
-  .footer__button svg {
-    transition: transform 200ms; }
-  .footer__button:active svg {
-    transform: scale(0.95); }
+  text-align: center;
+  transition: transform 200ms; }
+  .footer__button:active {
+    transform: scale(0.9); }
   .footer__button path {
     transition: fill 200ms; }
 
@@ -227,7 +229,7 @@ footer {
   .add-event-button:hover, .add-event-button:active, .add-event-button:focus {
     background: #f9c841; }
   .add-event-button:active {
-    transform: scale(0.95); }
+    transform: scale(0.9); }
   @media only screen and (max-width: 400px) {
     .add-event-button {
       width: 4rem;
@@ -369,11 +371,14 @@ label {
   z-index: 0;
   position: absolute;
   top: 0;
-  left: 1.5rem;
+  left: 2rem;
   margin-left: -2px;
   width: 4px;
   height: 100%;
   background: #EAEDF3; }
+  @media only screen and (max-width: 400px) {
+    .event-log-line {
+      left: 1.5rem; } }
 
 .event-log-item {
   z-index: 1;

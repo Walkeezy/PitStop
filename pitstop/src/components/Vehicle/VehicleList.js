@@ -11,7 +11,7 @@ class VehicleList extends Component {
             <div className="vehicle-list">
                 <div className="list-header">
                     <h2 className="list-header__title">Your vehicles</h2>
-                    <Link className="list-header__button button button--add-vehicle" to={routes.ADD_VEHICLE}>Add new vehicle</Link>
+                    <Link className="list-header__button button button--add-vehicle" to={routes.ADD_VEHICLE}>Add new</Link>
                 </div>
                 <ul className="list list--vehicles">
                     {Object.keys(vehicles).map((key, index) => {
@@ -19,7 +19,7 @@ class VehicleList extends Component {
                             <li className="list-item" key={index}>
                                 <span className="vehicles-item__name">{vehicles[key].name}</span>
                                 <span className="vehicles-item__makemodel">{vehicles[key].make_model}</span>
-                                <span className="vehicles-item__edit"><Link to={routes.EDIT_VEHICLE + "/" + key} className="button">Edit vehicle</Link></span>
+                                <span className="vehicles-item__edit"><Link to={routes.EDIT_VEHICLE + "/" + key} className="button">Edit</Link></span>
                             </li>
                         )
                     }) }

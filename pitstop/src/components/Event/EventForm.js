@@ -15,7 +15,8 @@ class EventForm extends Component {
             type: values.eventType,
             date: values.eventDate,
             mileage: values.eventMileage,
-            refuelPrice: values.eventRefuelPrice,
+            amount: values.eventRefuelAmount,
+            price: values.eventRefuelPrice,
             description: values.eventDescription
         }
 
@@ -32,6 +33,7 @@ class EventForm extends Component {
                 eventDate: new Date().toISOString().slice(0,10),
                 eventMileage: this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
                 eventDescription: '',
+                eventRefuelAmount: 0,
                 eventRefuelPrice: 0,
                 eventTires: '',
                 eventTiresPrice: 0
@@ -49,6 +51,7 @@ class EventForm extends Component {
                                 validationSchema={Yup.object().shape({
                                     eventDate: Yup.date().required('Date of event is required.'),
                                     eventMileage: Yup.number().required('Mileage of your vehicle is required.'),
+                                    eventRefuelAmount: Yup.number().required('Amount of your refuel is required.'),
                                     eventRefuelPrice: Yup.number().required('Price of your refuel is required.')
                                 })}
                                 onSubmit={handleSubmitEvent}
@@ -58,18 +61,23 @@ class EventForm extends Component {
 
                                     <Form>
                                         <input type="hidden" id="eventType" name="eventType" value={eventValues.eventType} />
-                                        <div className="form__field">
+                                        <div className="form__field field--half">
                                             <label htmlFor="eventDate">Date</label>
                                             <Field type="date" name="eventDate" id="eventDate" className={(touched.eventDate && errors.eventDate) && 'input--error'} />
                                             <ErrorMessage name="eventDate" render={msg => <div className="field-error">{msg}</div>} />
                                         </div>
-                                        <div className="form__field">
+                                        <div className="form__field field--half">
                                             <label htmlFor="eventMileage">Current mileage</label>
                                             <Field type="number" name="eventMileage" id="eventMileage" className={(touched.eventMileage && errors.eventMileage) && 'input--error'} />
                                             <ErrorMessage name="eventMileage" render={msg => <div className="field-error">{msg}</div>} />
                                         </div>
-                                        <div className="form__field">
-                                            <label htmlFor="eventRefuelPrice">Price</label>
+                                        <div className="form__field field--half">
+                                            <label htmlFor="eventRefuelAmount">Liters refilled</label>
+                                            <Field type="number" name="eventRefuelAmount" id="eventRefuelAmount" className={(touched.eventRefuelAmount && errors.eventRefuelAmount) && 'input--error'} />
+                                            <ErrorMessage name="eventRefuelAmount" render={msg => <div className="field-error">{msg}</div>} />
+                                        </div>
+                                        <div className="form__field field--half">
+                                            <label htmlFor="eventRefuelPrice">Price in CHF</label>
                                             <Field type="number" name="eventRefuelPrice" id="eventRefuelPrice" className={(touched.eventRefuelPrice && errors.eventRefuelPrice) && 'input--error'} />
                                             <ErrorMessage name="eventRefuelPrice" render={msg => <div className="field-error">{msg}</div>} />
                                         </div>
@@ -85,6 +93,7 @@ class EventForm extends Component {
 
                                 )}
                             </Formik>
+
                         case 'tires-change':
                             return <Formik
                                 initialValues={eventValues}
@@ -133,6 +142,7 @@ class EventForm extends Component {
 
                                 )}
                             </Formik>
+
                         case 'oil-refill':
                             return 'form oil-refill';
                         case 'oil-change':

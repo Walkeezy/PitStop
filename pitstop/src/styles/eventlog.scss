@@ -9,11 +9,15 @@
     z-index: 0;
     position: absolute;
     top: 0;
-    left: 1.5rem;
+    left: 2rem;
     margin-left: -2px;
     width: 4px;
     height: 100%;
     background: $light-gray;
+
+    @media #{$bp-smartphones} {
+        left: 1.5rem;
+    }
 }
 
 .event-log-item {

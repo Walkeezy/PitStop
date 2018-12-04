@@ -14,7 +14,7 @@ class SignUpPage extends Component {
                 <Header title="Create your account" backButton="false" />
                 <div className="content-box">
                     <SignUpForm {...this.props} />
-                    <p>Already have an account? <Link to={routes.SIGN_IN}>Sign in here!</Link></p>
+                    <p>Already have an account? <Link to={routes.SIGN_IN}>Sign in here.</Link></p>
                 </div>
             </div>
 
