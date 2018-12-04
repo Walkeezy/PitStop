@@ -11,7 +11,7 @@ class AddVehiclePage extends Component {
         const headerTitle = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle]
             ? 'Add new event for ' + this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].name
             : 'Add new event'
-        console.log('type', this.props.match.params)
+
         return (
 
             <div className="page">
