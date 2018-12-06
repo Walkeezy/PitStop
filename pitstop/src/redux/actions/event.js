@@ -21,10 +21,10 @@ export function startAddingEvent(vehicleId, event) {
 }
 
 // Load events from database, then dispatch loadEvents action
-export function startLoadingEvents(userId, vehicleId, orderDirection) {
+export function startLoadingEvents(userId, vehicleId) {
     console.log('startLoadingEvents')
     return (dispatch) => {
-        return database.collection('users').doc(userId).collection('vehicles').doc(vehicleId).collection('events').orderBy('date', orderDirection ? orderDirection: 'asc').get()
+        return database.collection('users').doc(userId).collection('vehicles').doc(vehicleId).collection('events').orderBy('date', 'desc').get()
         .then((docs) => {
             let events = {}
             docs.forEach(function (doc) {

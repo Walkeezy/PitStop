@@ -8,7 +8,7 @@ class EventLog extends Component {
 
     componentDidMount() {
         if (this.props.vehicles.activeVehicle && this.props.user.user.uid) {
-            this.props.startLoadingEvents(this.props.user.user.uid, this.props.vehicles.activeVehicle, 'desc')
+            this.props.startLoadingEvents(this.props.user.user.uid, this.props.vehicles.activeVehicle)
         }
     }
 

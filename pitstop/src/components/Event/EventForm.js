@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import EventFormRefuel from './Forms/EventFormRefuel'
 import EventFormTiresChange from './Forms/EventFormTiresChange'
+import EventFormOilRefill from './Forms/EventFormOilRefill'
+import EventFormOilChange from './Forms/EventFormOilChange'
 
 class EventForm extends Component {
 
@@ -11,9 +13,9 @@ class EventForm extends Component {
             case 'tires-change':
                 return <EventFormTiresChange {...this.props}/>
             case 'oil-refill':
-                return 'form oil-refill';
+                return <EventFormOilRefill {...this.props}/>
             case 'oil-change':
-                return 'form oil-change';
+                return <EventFormOilChange {...this.props}/>
             case 'inspection-service':
                 return 'form inspection-service';
             default:

@@ -15,8 +15,9 @@ class EventFormTiresChange extends Component {
             type       : values.eventType,
             date       : values.eventDate,
             mileage    : values.eventMileage,
-            amount     : values.eventRefuelAmount,
-            price      : values.eventRefuelPrice,
+            tires      : values.eventTires,
+            company    : values.eventCompany,
+            price      : values.eventTiresPrice,
             description: values.eventDescription
         }
 
@@ -29,14 +30,13 @@ class EventFormTiresChange extends Component {
 
     render() {
         let eventValues = {
-            eventType        : this.props.match.params.type,
-            eventDate        : new Date().toISOString().slice(0, 10),
-            eventMileage     : this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
-            eventDescription : '',
-            eventRefuelAmount: 0,
-            eventRefuelPrice : 0,
-            eventTires       : '',
-            eventTiresPrice  : 0
+            eventType       : this.props.match.params.type,
+            eventDate       : new Date().toISOString().slice(0, 10),
+            eventMileage    : this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
+            eventDescription: '',
+            eventTires      : '',
+            eventTiresPrice : 0,
+            eventCompany    : ''
         }
 
         return (
@@ -55,32 +55,44 @@ class EventFormTiresChange extends Component {
 
                     <Form>
                         <input type="hidden" id="eventType" name="eventType" value={eventValues.eventType}/>
-                        <div className="form__field">
-                            <label htmlFor="eventDate">Date</label>
+                        <div className="form__field field--half">
+                            <label htmlFor="eventDate">Date *</label>
                             <Field type="date"
                                    name="eventDate"
                                    id="eventDate"
                                    className={(touched.eventDate && errors.eventDate) && 'input--error'}/>
-                            <ErrorMessage name="eventDate" render={msg => <div className="field-error">{msg}</div>}/>
+                            <ErrorMessage name="eventDate"
+                                          render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
-                        <div className="form__field">
-                            <label htmlFor="eventMileage">Current mileage</label>
+                        <div className="form__field field--half">
+                            <label htmlFor="eventMileage">Current mileage *</label>
                             <Field type="number"
                                    name="eventMileage"
                                    id="eventMileage"
                                    className={(touched.eventMileage && errors.eventMileage) && 'input--error'}/>
-                            <ErrorMessage name="eventMileage" render={msg => <div className="field-error">{msg}</div>}/>
+                            <ErrorMessage name="eventMileage"
+                                          render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field">
-                            <label htmlFor="eventTires">Tires</label>
+                            <label htmlFor="eventTires">Tires *</label>
                             <Field type="text"
                                    name="eventTires"
                                    id="eventTires"
                                    className={(touched.eventTires && errors.eventTires) && 'input--error'}/>
-                            <ErrorMessage name="eventTires" render={msg => <div className="field-error">{msg}</div>}/>
+                            <ErrorMessage name="eventTires"
+                                          render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
-                        <div className="form__field">
-                            <label htmlFor="eventTiresPrice">Price</label>
+                        <div className="form__field field--half">
+                            <label htmlFor="eventCompany">Company</label>
+                            <Field type="text"
+                                   name="eventCompany"
+                                   id="eventCompany"
+                                   className={(touched.eventCompany && errors.eventCompany) && 'input--error'}/>
+                            <ErrorMessage name="eventCompany"
+                                          render={msg => <div className="field-error">{msg}</div>}/>
+                        </div>
+                        <div className="form__field field--half">
+                            <label htmlFor="eventTiresPrice">Price in CHF *</label>
                             <Field type="number"
                                    name="eventTiresPrice"
                                    id="eventTiresPrice"
@@ -96,6 +108,9 @@ class EventFormTiresChange extends Component {
                                    className={(touched.eventDescription && errors.eventDescription) && 'input--error'}/>
                             <ErrorMessage name="eventDescription"
                                           render={msg => <div className="field-error">{msg}</div>}/>
+                        </div>
+                        <div className="form__field">
+                            <p>*Fields are required</p>
                         </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Save event</button>

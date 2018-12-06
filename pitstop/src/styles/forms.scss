@@ -25,6 +25,16 @@ form {
     }
 }
 
+.field--third {
+    width: 32%;
+    flex: 0 0 32%;
+
+    @media #{$bp-smartphones} {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+}
+
 .field--submit {
     margin-top: 2rem;
 }
