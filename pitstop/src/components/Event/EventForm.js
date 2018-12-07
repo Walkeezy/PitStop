@@ -3,6 +3,7 @@ import EventFormRefuel from './Forms/EventFormRefuel'
 import EventFormTiresChange from './Forms/EventFormTiresChange'
 import EventFormOilRefill from './Forms/EventFormOilRefill'
 import EventFormOilChange from './Forms/EventFormOilChange'
+import EventFormInspectionService from './Forms/EventFormInspectionService'
 
 class EventForm extends Component {
 
@@ -17,7 +18,7 @@ class EventForm extends Component {
             case 'oil-change':
                 return <EventFormOilChange {...this.props}/>
             case 'inspection-service':
-                return 'form inspection-service';
+                return <EventFormInspectionService {...this.props}/>
             default:
                 return null;
         }
