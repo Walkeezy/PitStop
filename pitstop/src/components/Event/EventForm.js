@@ -25,13 +25,7 @@ class EventForm extends Component {
     }
 
     render() {
-        return (
-
-            <div>
-                {this.renderFormSwitch(this.props.match.params.type)}
-            </div>
-
-        )
+        return this.renderFormSwitch(this.props.match.params.type)
     }
 }
 

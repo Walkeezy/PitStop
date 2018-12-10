@@ -31,6 +31,10 @@
     @media #{$bp-smartphones} {
         padding-bottom: 1rem;
     }
+
+    &:last-child {
+        background: $gray-white;
+    }
 }
 
 .event__icon {

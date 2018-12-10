@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
-import Icon from './../Layout/Icons'
+import Refuel from './EventLogItems/Refuel'
+import TiresChange from './EventLogItems/TiresChange'
+import OilRefill from './EventLogItems/OilRefill'
+import OilChange from './EventLogItems/OilChange'
+import InspectionService from './EventLogItems/InspectionService'
 
 class EventLogItem extends Component {
-    render() {
-        const event = this.props.event
-        return (
 
-            <div className="event-log-item">
-                <div className="event__icon">
-                    <Icon name={event.type} />
-                </div>
-                <div className="event__content">
-                    <p className="event__title">{event.type}</p>
-                    <p className="event__details">
-                        <span className="event__description">{event.description}</span><br/>
-                        <span className="event__date">{event.date}</span><br/>
-                        <span className="event__mileage">{event.mileage}</span><br/>
-                        <span className="event__price">{event.price}</span>
-                    </p>
-                </div>
-            </div>
-
-        )
+    renderEventLogItemSwitch = param => {
+        switch (param) {
+            case 'refuel':
+                return <Refuel {...this.props} />
+            case 'tires-change':
+                return <TiresChange {...this.props} />
+            case 'oil-refill':
+                return <OilRefill {...this.props} />
+            case 'oil-change':
+                return <OilChange {...this.props} />
+            case 'inspection-service':
+                return <InspectionService {...this.props} />
+            default:
+                return null;
+        }
     }
+
+    render() {
+        return this.renderEventLogItemSwitch(this.props.event.type)
+    }
+
 }
 
 export default EventLogItem

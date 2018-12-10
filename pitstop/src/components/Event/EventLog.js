@@ -6,11 +6,11 @@ import EventLogItem from './EventLogItem'
 
 class EventLog extends Component {
 
-    componentDidMount() {
-        if (this.props.vehicles.activeVehicle && this.props.user.user.uid) {
-            this.props.startLoadingEvents(this.props.user.user.uid, this.props.vehicles.activeVehicle)
-        }
-    }
+    // componentDidMount() {
+    //     if (this.props.vehicles.activeVehicle && this.props.user.user.uid) {
+    //         this.props.startLoadingEvents(this.props.user.user.uid, this.props.vehicles.activeVehicle)
+    //     }
+    // }
 
     render() {
         const events = this.props.events.events

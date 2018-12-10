@@ -59,13 +59,13 @@ h1 {
   font-size: 1.8rem; }
   @media only screen and (max-width: 400px) {
     h1 {
-      font-size: 1.5rem; } }
+      font-size: 1.4rem; } }
 
 h2 {
   font-size: 1.7rem; }
   @media only screen and (max-width: 400px) {
     h2 {
-      font-size: 1.4rem; } }
+      font-size: 1.35rem; } }
 
 h3 {
   font-size: 1.6rem; }
@@ -77,19 +77,19 @@ h4 {
   font-size: 1.5rem; }
   @media only screen and (max-width: 400px) {
     h4 {
-      font-size: 1.2rem; } }
+      font-size: 1.25rem; } }
 
 h5 {
   font-size: 1.4rem; }
   @media only screen and (max-width: 400px) {
     h5 {
-      font-size: 1.1rem; } }
+      font-size: 1.2rem; } }
 
 h6 {
   font-size: 1.2rem; }
   @media only screen and (max-width: 400px) {
     h6 {
-      font-size: 1.1rem; } }
+      font-size: 1.15rem; } }
 
 button,
 .button {
@@ -110,8 +110,7 @@ button,
   .button:focus {
     border-color: #cad1e0;
     background-image: linear-gradient(0deg, #f8f8fb 0%, #FFFFFF 100%);
-    box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06);
-    outline: none; }
+    box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.06); }
   button:active,
   .button:active {
     transform: scale(0.95); }
@@ -271,10 +270,10 @@ form {
 input, textarea, select {
   appearance: none;
   width: 100%;
-  border: 1px solid #EAEDF3;
-  border-radius: 4px;
+  border: none;
+  border-bottom: 1px solid #EAEDF3;
   background: #FFFFFF;
-  padding: 0.7rem 0.9rem;
+  padding: 0.7rem 0;
   outline: none;
   font-size: 1rem;
   line-height: 1.55556;
@@ -283,7 +282,9 @@ input, textarea, select {
     border-color: #57769b; }
 
 textarea {
-  resize: vertical; }
+  resize: vertical;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #EAEDF3; }
 
 input[type=text],
 input[type=email],
@@ -302,7 +303,7 @@ label {
   color: #455D7A;
   font-weight: 700;
   font-size: 1.2rem;
-  border-width: 2px;
+  border: 2px solid #EAEDF3;
   padding: 0.7rem 1.2rem; }
 
 .select-event {
@@ -398,6 +399,8 @@ label {
   @media only screen and (max-width: 400px) {
     .event-log-item {
       padding-bottom: 1rem; } }
+  .event-log-item:last-child {
+    background: #FBFBFD; }
 
 .event__icon {
   width: 4rem;

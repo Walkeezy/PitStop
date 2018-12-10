@@ -84,7 +84,7 @@ class EventFormOilRefill extends Component {
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field field--third">
-                            <label htmlFor="eventOilAmount">Liters refilled *</label>
+                            <label htmlFor="eventOilAmount">Deciliters refilled *</label>
                             <Field type="number"
                                    name="eventOilAmount"
                                    id="eventOilAmount"

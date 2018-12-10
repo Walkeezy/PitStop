@@ -44,7 +44,7 @@ class EventTypePage extends Component {
                         <div className="select-event__item">
                             <Link to={routes.ADD_EVENT + "/inspection-service"}>
                                 <div className="event__icon"><Icon name="breakdown"/></div>
-                                <span className="event__label">Inspection / Service</span>
+                                <span className="event__label">Inspection/Service</span>
                             </Link>
                         </div>
                     </div>
