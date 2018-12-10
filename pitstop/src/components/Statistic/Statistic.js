@@ -9,11 +9,12 @@ class StatisticPage extends Component {
 
     componentDidMount() {
         if (this.props.vehicles.activeVehicle && this.props.user.user.uid) {
-            this.props.startLoadingEvents(this.props.user.user.uid, this.props.vehicles.activeVehicle)
+            this.props.startLoadingStatistics(this.props.user.user.uid, this.props.vehicles.activeVehicle, 'refuel')
         }
     }
 
     render() {
+
             if (this.props.events.events) {
                 let events = this.props.events.events,
                 label = [],
