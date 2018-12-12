@@ -42,10 +42,10 @@ export function startLoadingEvents(userId, vehicleId) {
 // REGULAR ACTIONS
 // -----------------------------------------------------
 
-export function addEvent(vehicleId, event) {
+export function addEvent(eventId, event) {
     return {
         type: 'ADD_EVENT',
-        vehicleId,
+        eventId,
         event
     }
 }
