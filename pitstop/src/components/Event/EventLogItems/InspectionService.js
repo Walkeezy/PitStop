@@ -3,6 +3,8 @@ import Icon from '../../Layout/Icons'
 
 class EventLogItem extends Component {
 
+    numberWithThousands = number => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")
+
     render() {
         const event = this.props.event
 
@@ -13,12 +15,12 @@ class EventLogItem extends Component {
                     <Icon name={event.type} />
                 </div>
                 <div className="event__content">
+                    <p className="event__date">{event.date}</p>
                     <p className="event__title">Inspection/Service</p>
                     <p className="event__details">
-                        <span className="event__description">{event.description}</span><br />
-                        <span className="event__date">{event.date}</span><br />
-                        <span className="event__mileage">{event.mileage}</span><br />
-                        <span className="event__price">{event.price}</span>
+                        <span className="event__mileage">{this.numberWithThousands(event.mileage)} km</span><br />
+                        <span className="event__price">CHF {this.numberWithThousands(event.price)}</span><br />
+                        {event.company && <span className="event__company">Company: {event.company}</span>}
                     </p>
                 </div>
             </div>

@@ -16,8 +16,7 @@ class EventFormRefuel extends Component {
             date       : values.eventDate,
             mileage    : values.eventMileage,
             amount     : values.eventRefuelAmount,
-            price      : values.eventRefuelPrice,
-            description: values.eventDescription
+            price      : values.eventRefuelPrice
         }
 
         this.props.startAddingEvent(this.props.vehicles.activeVehicle, event)
@@ -32,7 +31,6 @@ class EventFormRefuel extends Component {
                 eventType        : this.props.match.params.type,
                 eventDate        : new Date().toISOString().slice(0, 10),
                 eventMileage     : this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
-                eventDescription : '',
                 eventRefuelAmount: 0,
                 eventRefuelPrice : 0,
                 eventTires       : '',
@@ -89,15 +87,6 @@ class EventFormRefuel extends Component {
                                    id="eventRefuelPrice"
                                    className={(touched.eventRefuelPrice && errors.eventRefuelPrice) && 'input--error'}/>
                             <ErrorMessage name="eventRefuelPrice"
-                                          render={msg => <div className="field-error">{msg}</div>}/>
-                        </div>
-                        <div className="form__field">
-                            <label htmlFor="eventDescription">Description</label>
-                            <Field component="textarea"
-                                   name="eventDescription"
-                                   id="eventDescription"
-                                   className={(touched.eventDescription && errors.eventDescription) && 'input--error'}/>
-                            <ErrorMessage name="eventDescription"
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field">
