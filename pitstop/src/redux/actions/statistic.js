@@ -4,21 +4,30 @@ import { database } from './../../database/config'
 // -----------------------------------------------------
 
 // Load events from database for statistics, then dispatch loadStatistic action
-export function startLoadingStatistics(userId, vehicleId, statisticName) {
+export function startLoadingRefuelStatistic(userId, vehicleId) {
     return (dispatch) => {
         return database.collection('users').doc(userId).collection('vehicles').doc(vehicleId).collection('events')
-            .where('type', '==', statisticName)
-            .orderBy('type')
+            .where('type', '==', 'refuel')
             .get()
             .then((docs) => {
-                let statistic = {}
-                console.log('docs', docs)
+                let statistic = {},
+                    eventArr = []
+
                 docs.forEach(function (doc) {
-                    console.log('doc.id', doc.id)
-                    console.log('doc.data()', doc.data())
-                    statistic[doc.id] = doc.data()
+                    eventArr.push(doc.data())
                 })
-                dispatch(loadStatistic(statistic, statisticName))
+                eventArr.sort((a,b) => (a.mileage - b.mileage) );
+
+                for (let eventData in eventArr) {
+                    for (let type in eventArr[eventData]) {
+                        if (!Array.isArray(statistic[type])) {
+                            statistic[type] = []
+                        }
+                        statistic[type].push(eventArr[eventData][type])
+                    }
+                }
+
+                dispatch(loadStatistic(statistic))
             })
             .catch((error) => {
                 console.error('Error loading refuel statistic: ', error)
@@ -31,11 +40,10 @@ export function startLoadingStatistics(userId, vehicleId, statisticName) {
 // -----------------------------------------------------
 
 
-export function loadStatistic(statistic, name) {
+export function loadStatistic(statistic) {
     return {
         type: 'LOAD_STATISTIC',
-        statistic,
-        name
+        statistic
     }
 }
 

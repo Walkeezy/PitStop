@@ -10,10 +10,7 @@ const statisticReducer = function event(state = initialStatisticReducer, action)
         case 'LOAD_STATISTIC':
             let obj = {
                 ...state,
-                loading: false
-            }
-            obj[action.name] = {
-                name: action.name,
+                loading: false,
                 statistic: action.statistic
             }
 
