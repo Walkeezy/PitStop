@@ -13,7 +13,7 @@ class EventFormTiresChange extends Component {
 
         const event = {
             type       : values.eventType,
-            date       : values.eventDate,
+            date       : new Date(values.eventDate),
             mileage    : values.eventMileage,
             tires      : values.eventTires,
             company    : values.eventCompany,

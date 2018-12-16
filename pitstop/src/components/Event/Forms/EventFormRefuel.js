@@ -13,7 +13,7 @@ class EventFormRefuel extends Component {
 
         const event = {
             type       : values.eventType,
-            date       : values.eventDate,
+            date       : new Date(values.eventDate),
             mileage    : values.eventMileage,
             amount     : values.eventRefuelAmount,
             price      : values.eventRefuelPrice
@@ -27,10 +27,12 @@ class EventFormRefuel extends Component {
     }
 
     render() {
+        const minimumMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage
+
         let eventValues       = {
                 eventType        : this.props.match.params.type,
                 eventDate        : new Date().toISOString().slice(0, 10),
-                eventMileage     : this.props.vehicles.vehicles[this.props.vehicles.activeVehicle] ? this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].actual_mileage : '',
+                eventMileage     : minimumMileage,
                 eventRefuelAmount: 0,
                 eventRefuelPrice : 0,
                 eventTires       : '',
@@ -42,9 +44,9 @@ class EventFormRefuel extends Component {
                 initialValues={eventValues}
                 validationSchema={Yup.object().shape({
                     eventDate        : Yup.date().required('Date of event is required.'),
-                    eventMileage     : Yup.number().required('Mileage of your vehicle is required.'),
-                    eventRefuelAmount: Yup.number().required('Amount of your refuel is required.'),
-                    eventRefuelPrice : Yup.number().required('Price of your refuel is required.')
+                    eventMileage     : Yup.number().min(minimumMileage, 'Mileage can not be lower than the current mileage of your vehicle').required('Mileage of your vehicle is required.'),
+                    eventRefuelAmount: Yup.number().min(1, 'Amount of your refuel is too low.').required('Amount of your refuel is required.'),
+                    eventRefuelPrice : Yup.number().min(1, 'Price of your refuel is too low.').required('Price of your refuel is required.')
                 })}
                 onSubmit={this.handleSubmitEvent}
                 enableReinitialize="true">

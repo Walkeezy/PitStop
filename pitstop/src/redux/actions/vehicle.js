@@ -1,7 +1,6 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
-import moment from 'moment'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -9,7 +8,7 @@ import moment from 'moment'
 // Save vehicle to current user in database, then dispatch editVehicle action with key of new vehicle item in database and vehicle data
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
-        vehicle._created = moment().format('DD.MM.YYYY HH:mm:ss')
+        vehicle._created = new Date()
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').add(vehicle)
         .then((doc) => {
             dispatch(editVehicle(doc.id, vehicle))
@@ -24,7 +23,7 @@ export function startAddingVehicle(vehicle) {
 // Edit vehicle in database, then dispatch editVehicle action with key of vehicle and vehicle data
 export function startEditingVehicle(vehicleId, vehicle) {
     return (dispatch) => {
-        vehicle._modified = moment().format('DD.MM.YYYY HH:mm:ss')
+        vehicle._modified = new Date()
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).update(vehicle)
         .then(() => {
             dispatch(editVehicle(vehicleId, vehicle))

@@ -1,17 +1,16 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
-import moment from 'moment'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
 
 export function startAddingEvent(vehicleId, event) {
     return (dispatch) => {
-        event._created = moment().format('DD.MM.YYYY HH:mm:ss')
+        event._created = new Date()
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).collection('events').add(event)
-        .then((doc) => {
-            dispatch(addEvent(doc.id, event))
+        .then(() => {
+            dispatch(startLoadingEvents(auth.currentUser.uid, vehicleId))
             history.push(routes.HOME)
         })
         .catch((error) => {

@@ -19,7 +19,7 @@ class EventTypePage extends Component {
                     <div className="select-event">
                         <div className="select-event__item">
                             <Link to={routes.ADD_EVENT + "/refuel"}>
-                                <div className="event__icon"><Icon name="wheel" /></div>
+                                <div className="event__icon"><Icon name="fuel" /></div>
                                 <span className="event__label">Refuel</span>
                             </Link>
                         </div>

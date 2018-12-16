@@ -1,7 +1,6 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
-import moment from 'moment'
 
 import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
 import { startLoadingEvents, resetEventLoading } from './event'
@@ -65,7 +64,7 @@ export function startCreatingUser(user) {
         return auth.createUserWithEmailAndPassword(user.email, user.password)
         .then(authUser => {
             database.collection('users').doc(`${ authUser.user.uid }`).set({
-                _created: moment().format('DD.MM.YYYY HH:mm:ss'),
+                _created: new Date(),
                 firstname: user.firstname,
                 lastname: user.lastname,
                 email: user.email,

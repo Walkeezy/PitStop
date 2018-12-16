@@ -13,7 +13,7 @@ class EventFormOilChange extends Component {
 
         const event = {
             type       : values.eventType,
-            date       : values.eventDate,
+            date       : new Date(values.eventDate),
             mileage    : values.eventMileage,
             oil        : values.eventOil,
             amount     : values.eventOilAmount,

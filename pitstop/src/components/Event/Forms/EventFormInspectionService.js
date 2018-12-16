@@ -13,7 +13,7 @@ class EventFormInspectionService extends Component {
 
         const event = {
             type       : values.eventType,
-            date       : values.eventDate,
+            date       : new Date(values.eventDate),
             mileage    : values.eventMileage,
             company    : values.eventCompany,
             price      : values.eventInspectionPrice
