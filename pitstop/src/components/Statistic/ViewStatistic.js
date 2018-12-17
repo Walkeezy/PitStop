@@ -3,21 +3,21 @@ import {withRouter} from 'react-router'
 import * as routes from '../../constants/routes'
 
 import Header from './../Layout/Header'
-import EventForm from './EventForm'
+import SwitchStatistics from './SwitchStatistics'
 
-class AddEventPage extends Component {
+class ViewStatistic extends Component {
 
     render() {
         const headerTitle = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle]
-            ? 'Add new event for ' + this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].name
-            : 'Add new event'
+            ? 'View statistics for ' + this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].name
+            : 'View statistics'
 
         return (
 
             <div className="page">
-                <Header title={headerTitle} backLink={routes.ADD_EVENT} />
+                <Header title={headerTitle} backLink={routes.STATISTIC} />
                 <div className="content-box">
-                    <EventForm {...this.props} />
+                    <SwitchStatistics {...this.props} />
                 </div>
             </div>
 
@@ -26,4 +26,4 @@ class AddEventPage extends Component {
 }
 
 // Needs to be withRouter to get url params
-export default withRouter(AddEventPage)
+export default withRouter(ViewStatistic)

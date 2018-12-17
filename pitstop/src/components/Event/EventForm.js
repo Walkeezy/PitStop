@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
-import EventFormRefuel from './Forms/EventFormRefuel'
-import EventFormTiresChange from './Forms/EventFormTiresChange'
-import EventFormOilRefill from './Forms/EventFormOilRefill'
-import EventFormOilChange from './Forms/EventFormOilChange'
-import EventFormInspectionService from './Forms/EventFormInspectionService'
+import Refuel from './EventForms/Refuel'
+import TiresChange from './EventForms/TiresChange'
+import OilRefill from './EventForms/OilRefill'
+import OilChange from './EventForms/OilChange'
+import InspectionService from './EventForms/InspectionService'
 
 class EventForm extends Component {
 
     renderFormSwitch = param => {
         switch(param) {
             case 'refuel':
-                return <EventFormRefuel {...this.props}/>
+                return <Refuel {...this.props}/>
             case 'tires-change':
-                return <EventFormTiresChange {...this.props}/>
+                return <TiresChange {...this.props}/>
             case 'oil-refill':
-                return <EventFormOilRefill {...this.props}/>
+                return <OilRefill {...this.props}/>
             case 'oil-change':
-                return <EventFormOilChange {...this.props}/>
+                return <OilChange {...this.props}/>
             case 'inspection-service':
-                return <EventFormInspectionService {...this.props}/>
+                return <InspectionService {...this.props}/>
             default:
                 return null;
         }

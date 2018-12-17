@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
-class EventFormTiresChange extends Component {
+class EventForm extends Component {
 
     constructor() {
         super()
@@ -112,4 +112,4 @@ class EventFormTiresChange extends Component {
     }
 }
 
-export default EventFormTiresChange
+export default EventForm

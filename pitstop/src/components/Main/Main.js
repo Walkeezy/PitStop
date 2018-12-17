@@ -12,9 +12,10 @@ import PasswordForgetPage from '../User/PasswordForget'
 import AddVehiclePage from '../Vehicle/AddVehicle'
 import EditVehiclePage from '../Vehicle/EditVehicle'
 import AddEventPage from '../Event/AddEvent'
-import EventTypePage from '../Event/EventType'
+import EventTypePage from '../Event/SelectEventType'
 import AccountPage from '../User/AccountPage'
-import StatisticPage from '../Statistic/Statistic'
+import SelectStatisticPage from '../Statistic/SelectStatistic'
+import ViewStatisticPage from '../Statistic/ViewStatistic'
 
 import * as routes from '../../constants/routes'
 
@@ -52,11 +53,12 @@ class Main extends Component {
                     <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
                     <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage {...this.props} />} />
                     <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />
-                    <PrivateRoute exact path={routes.EVENT_TYPE} component={EventTypePage} {...this.props} />
-                    <PrivateRoute exact path='/edit-vehicle/:id' component={EditVehiclePage} {...this.props} />
-                    <PrivateRoute exact path='/add-event/:type' component={AddEventPage} {...this.props} />
+                    <PrivateRoute exact path={routes.ADD_EVENT} component={EventTypePage} {...this.props} />
+                    <PrivateRoute exact path={routes.EDIT_VEHICLE + '/:id'} component={EditVehiclePage} {...this.props} />
+                    <PrivateRoute exact path={routes.ADD_EVENT + '/:type'} component={AddEventPage} {...this.props} />
                     <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
-                    <PrivateRoute exact path={routes.STATISTIC} component={StatisticPage} {...this.props} />
+                    <PrivateRoute exact path={routes.STATISTIC} component={SelectStatisticPage} {...this.props} />
+                    <PrivateRoute exact path={routes.STATISTIC + '/:type'} component={ViewStatisticPage} {...this.props} />
                     {this.props.user.loading === true || this.props.user.authenticated === true ? <Footer {...this.props} /> : null}
                 </div>
 

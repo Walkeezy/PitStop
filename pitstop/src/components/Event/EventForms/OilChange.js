@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
-class EventFormOilChange extends Component {
+class EventForm extends Component {
 
     constructor() {
         super()
@@ -123,4 +123,4 @@ class EventFormOilChange extends Component {
     }
 }
 
-export default EventFormOilChange
+export default EventForm

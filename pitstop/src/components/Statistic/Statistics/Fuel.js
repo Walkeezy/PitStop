@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import {Line} from 'react-chartjs-2'
 
-import Header from '../Layout/Header'
-
-
-class StatisticPage extends Component {
+class FuelStatistic extends Component {
 
     componentDidMount() {
         if (this.props.vehicles.activeVehicle && this.props.user.user.uid) {
@@ -63,12 +60,8 @@ class StatisticPage extends Component {
                 }
 
             return (
-                <div className="page">
-                    <Header title={'Statistics for ' + this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].name}/>
-                    <div className="content-box">
-                        <Line data={data} options={options}/>
-                    </div>
-                </div>
+
+                <Line data={data} options={options}/>
 
             )
 
@@ -77,4 +70,4 @@ class StatisticPage extends Component {
     }
 }
 
-export default StatisticPage
+export default FuelStatistic

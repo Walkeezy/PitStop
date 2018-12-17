@@ -1,0 +1,56 @@
+.icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    flex: 0 0 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $red;
+
+    svg {
+        padding: 30%;
+    }
+
+    @media #{$bp-smartphones} {
+        width: 3rem;
+        height: 3rem;
+        flex: 0 0 3rem;
+    }
+}
+
+.icon--refuel {
+    background: $fuel;
+}
+
+.icon--oil-refill {
+    background: $oil-refill;
+
+    svg {
+        padding: 33%;
+    }
+}
+
+.icon--oil-change {
+    background: $oil-change;
+
+    svg {
+        padding: 33%;
+    }
+}
+
+.icon--tires-change {
+    background: $tires-change;
+
+    svg {
+        padding: 25%;
+    }
+}
+
+.icon--inspection-service {
+    background: $inspection-service;
+
+    svg {
+        padding: 22.5%;
+    }
+}

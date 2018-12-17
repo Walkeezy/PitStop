@@ -238,6 +238,46 @@ footer {
       .add-event-button svg {
         width: 36px; } }
 
+.icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex: 0 0 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #E6492D; }
+  .icon svg {
+    padding: 30%; }
+  @media only screen and (max-width: 400px) {
+    .icon {
+      width: 3rem;
+      height: 3rem;
+      flex: 0 0 3rem; } }
+
+.icon--refuel {
+  background: #E15554; }
+
+.icon--oil-refill {
+  background: #4D9DE0; }
+  .icon--oil-refill svg {
+    padding: 33%; }
+
+.icon--oil-change {
+  background: #7768AE; }
+  .icon--oil-change svg {
+    padding: 33%; }
+
+.icon--tires-change {
+  background: #E1BC29; }
+  .icon--tires-change svg {
+    padding: 25%; }
+
+.icon--inspection-service {
+  background: #3BB273; }
+  .icon--inspection-service svg {
+    padding: 22.5%; }
+
 form {
   display: flex;
   justify-content: space-between;
@@ -379,8 +419,8 @@ label {
 .event-log-line {
   z-index: 0;
   position: absolute;
-  top: 0;
-  left: 2rem;
+  top: 0.7rem;
+  left: 2.25rem;
   margin-left: -2px;
   width: 4px;
   height: 100%;
@@ -395,43 +435,34 @@ label {
   display: flex;
   align-items: top;
   justify-content: stretch;
-  padding-bottom: 3rem; }
+  padding-bottom: 4rem; }
   @media only screen and (max-width: 400px) {
     .event-log-item {
       padding-bottom: 1rem; } }
-  .event-log-item:last-child {
-    background: #FBFBFD; }
 
 .event__icon {
-  width: 4rem;
-  height: 4rem;
-  flex: 0 0 4rem;
-  margin-right: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #E6492D;
-  padding: 1.25rem; }
+  margin-top: 0.7rem;
+  margin-right: 2rem; }
   @media only screen and (max-width: 400px) {
     .event__icon {
-      width: 3rem;
-      height: 3rem;
-      flex: 0 0 3rem;
-      padding: 1rem;
       margin-right: 1.5rem; } }
+
+.event__date {
+  color: #455D7A;
+  margin: 0; }
 
 .event__title {
   font-size: 1.6rem;
   font-weight: 700;
-  margin: 0.5em 0 0; }
+  margin: 0.3rem 0; }
   @media only screen and (max-width: 400px) {
     .event__title {
       font-size: 1.4rem;
       margin: 0.2rem 0 0; } }
 
 .event__details {
-  color: #455D7A; }
+  color: #455D7A;
+  margin: 0; }
 
 .loading-screen {
   display: flex;

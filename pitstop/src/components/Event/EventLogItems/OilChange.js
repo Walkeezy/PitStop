@@ -12,7 +12,7 @@ class EventLogItem extends Component {
         return (
 
             <div className="event-log-item">
-                <div className="event__icon">
+                <div className={"event__icon icon icon--" + event.type}>
                     <Icon name={event.type} />
                 </div>
                 <div className="event__content">
