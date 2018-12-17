@@ -8,10 +8,6 @@
     border-radius: 50%;
     background: $red;
 
-    svg {
-        padding: 30%;
-    }
-
     @media #{$bp-smartphones} {
         width: 3rem;
         height: 3rem;
@@ -21,6 +17,10 @@
 
 .icon--refuel {
     background: $fuel;
+
+    svg {
+        padding: 30%;
+    }
 }
 
 .icon--oil-refill {
@@ -35,7 +35,7 @@
     background: $oil-change;
 
     svg {
-        padding: 33%;
+        padding: 27.5%;
     }
 }
 

@@ -247,8 +247,6 @@ footer {
   justify-content: center;
   border-radius: 50%;
   background: #E6492D; }
-  .icon svg {
-    padding: 30%; }
   @media only screen and (max-width: 400px) {
     .icon {
       width: 3rem;
@@ -257,6 +255,8 @@ footer {
 
 .icon--refuel {
   background: #E15554; }
+  .icon--refuel svg {
+    padding: 30%; }
 
 .icon--oil-refill {
   background: #4D9DE0; }
@@ -266,7 +266,7 @@ footer {
 .icon--oil-change {
   background: #7768AE; }
   .icon--oil-change svg {
-    padding: 33%; }
+    padding: 27.5%; }
 
 .icon--tires-change {
   background: #E1BC29; }

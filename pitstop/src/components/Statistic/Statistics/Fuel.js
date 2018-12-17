@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {Line} from 'react-chartjs-2'
+import * as routes from '../../../constants/routes'
+
+import Header from './../../Layout/Header'
 
 class FuelStatistic extends Component {
 
@@ -61,7 +64,12 @@ class FuelStatistic extends Component {
 
             return (
 
-                <Line data={data} options={options}/>
+                <div className="page">
+                    <Header title="Fuel consumption" backLink={routes.STATISTIC} />
+                    <div className="content-box">
+                        <Line data={data} options={options} />
+                    </div>
+                </div>
 
             )
 

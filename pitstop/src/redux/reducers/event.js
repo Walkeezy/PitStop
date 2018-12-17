@@ -1,6 +1,8 @@
 const initialeventReducer = {
     loading: true,
-    events: {}
+    events: {},
+    // TODO: Change everything to array version or remove it
+    eventsArray: []
 }
 
 const eventReducer = function event(state = initialeventReducer, action) {
@@ -19,6 +21,8 @@ const eventReducer = function event(state = initialeventReducer, action) {
             return {
                 ...state,
                 events: action.events,
+                // TODO: Change everything to array version or remove it
+                eventsArray: action.eventsArray,
                 loading: false
             }
 

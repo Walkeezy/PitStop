@@ -1,27 +1,23 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router'
-import * as routes from '../../constants/routes'
-
-import Header from './../Layout/Header'
-import SwitchStatistics from './SwitchStatistics'
+import Fuel from './Statistics/Fuel'
+import OilConsumption from './Statistics/OilConsumption'
 
 class ViewStatistic extends Component {
 
+    renderStatistics = param => {
+        switch (param) {
+            case 'fuel':
+                return <Fuel {...this.props} />
+            case 'oil-consumption':
+                return <OilConsumption {...this.props} />
+            default:
+                return null;
+        }
+    }
+
     render() {
-        const headerTitle = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle]
-            ? 'View statistics for ' + this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].name
-            : 'View statistics'
-
-        return (
-
-            <div className="page">
-                <Header title={headerTitle} backLink={routes.STATISTIC} />
-                <div className="content-box">
-                    <SwitchStatistics {...this.props} />
-                </div>
-            </div>
-
-        )
+        return this.renderStatistics(this.props.match.params.type)
     }
 }
 
