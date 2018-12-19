@@ -17,6 +17,7 @@ class StatisticPage extends Component {
                 <div className="content-box">
                     <p><Link to={routes.STATISTIC + "/fuel"}>View fuel statistic</Link></p>
                     <p><Link to={routes.STATISTIC + "/oil-consumption"}>View oil consumption</Link></p>
+                    <p><Link to={routes.STATISTIC + "/maintenance-costs"}>View maintenance costs</Link></p>
                 </div>
             </div>
 

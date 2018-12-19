@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {withRouter} from 'react-router'
 import Fuel from './Statistics/Fuel'
 import OilConsumption from './Statistics/OilConsumption'
+import MaintenanceCosts from './Statistics/MaintenanceCosts'
 
 class ViewStatistic extends Component {
 
@@ -11,6 +12,8 @@ class ViewStatistic extends Component {
                 return <Fuel {...this.props} />
             case 'oil-consumption':
                 return <OilConsumption {...this.props} />
+            case 'maintenance-costs':
+                return <MaintenanceCosts {...this.props} />
             default:
                 return null;
         }
