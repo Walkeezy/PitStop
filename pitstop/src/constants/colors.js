@@ -1,0 +1,5 @@
+export const COLOR_REFUEL = '#E15554'
+export const COLOR_TIRE_CHANGE = '#E1BC29'
+export const COLOR_OIL_REFILL = '#4D9DE0'
+export const COLOR_OIL_CHANGE = '#7768AE'
+export const COLOR_INSPECTION = '#3BB273'

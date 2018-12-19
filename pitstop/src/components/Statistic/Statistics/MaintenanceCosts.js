@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { Doughnut } from 'react-chartjs-2'
+import React, {Component} from 'react'
+import {Doughnut} from 'react-chartjs-2'
 import * as routes from '../../../constants/routes'
+import * as colors from '../../../constants/colors'
 
 import Header from './../../Layout/Header'
 
@@ -10,44 +11,65 @@ class MaintenanceCosts extends Component {
         const events = this.props.events.eventsArray
 
         let eventsFiltered = {},
-            labels = [],
-            dataSet = []
+            labels         = [],
+            dataSet        = [],
+            color          = []
 
         events.forEach(e => {
             if (eventsFiltered[e.type] === undefined) {
-                eventsFiltered[e.type] = {}
+                eventsFiltered[e.type]       = {}
                 eventsFiltered[e.type].costs = 0
             }
             eventsFiltered[e.type].costs += e.price
-        })
 
+            switch (e.type) {
+                case 'refuel':
+                    eventsFiltered[e.type].color = colors.COLOR_REFUEL
+                    break
+                case 'tires-change':
+                    eventsFiltered[e.type].color = colors.COLOR_TIRE_CHANGE
+                    break
+                case 'oil-refill':
+                    eventsFiltered[e.type].color = colors.COLOR_OIL_REFILL
+                    break
+                case 'oil-change':
+                    eventsFiltered[e.type].color = colors.COLOR_OIL_CHANGE
+                    break
+                case 'inspection-service':
+                    eventsFiltered[e.type].color = colors.COLOR_INSPECTION
+                    break
+                default:
+                    return null
+            }
+        })
 
         for (let prop in eventsFiltered) {
             labels.push(prop)
             dataSet.push(eventsFiltered[prop].costs)
+            color.push(eventsFiltered[prop].color)
         }
 
         const data = {
-            labels: labels,
+            labels  : labels,
             datasets: [
                 {
-                    // backgroundColor: 'rgba(77, 157, 224, 0.5)',
-                    // borderColor: 'rgba(77, 157, 224, 1)',
-                    borderWidth: 1,
-                    // hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                    // hoverBorderColor: 'rgba(255,99,132,1)',
-                    lineTension: 0,
-                    data: dataSet
+                    backgroundColor     : color,
+                    borderColor         : color,
+                    borderWidth         : 1,
+                    hoverBackgroundColor: color,
+                    hoverBorderColor    : color,
+                    lineTension         : 0,
+                    data                : dataSet
                 }
             ]
-        };
+        }
 
         return (
 
             <div className="page">
-                <Header title="Maintenance Costs" backLink={routes.STATISTIC} />
+                <Header title="Maintenance Costs" backLink={routes.STATISTIC}/>
                 <div className="content-box">
-                    <Doughnut data={data} />
+                    <Doughnut data={data}/>
                 </div>
             </div>
 
