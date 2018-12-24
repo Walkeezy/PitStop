@@ -6,7 +6,7 @@ html {
     font-size: 100%;
     line-height: $line-height;
     color: $dark-blue;
-    background: $gray-white;
+    background: $dark-blue;
 }
 
 body {
@@ -21,6 +21,8 @@ body {
 }
 
 .page {
+    min-height: 100vh;
+    background: $gray-white;
     padding: $header-height 0 (1.25 * $footer-height);
 
     @media #{$bp-smartphones} {

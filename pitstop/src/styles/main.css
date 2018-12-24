@@ -5,7 +5,7 @@ html {
   font-size: 100%;
   line-height: 1.55556;
   color: #233142;
-  background: #FBFBFD; }
+  background: #233142; }
 
 body {
   min-height: 100%;
@@ -17,6 +17,8 @@ body {
   box-sizing: inherit; }
 
 .page {
+  min-height: 100vh;
+  background: #FBFBFD;
   padding: 4rem 0 5rem; }
   @media only screen and (max-width: 400px) {
     .page {
@@ -314,6 +316,7 @@ input, textarea, select {
   border-bottom: 1px solid #EAEDF3;
   background: #FFFFFF;
   padding: 0.7rem 0;
+  border-radius: 0;
   outline: none;
   font-size: 1rem;
   line-height: 1.55556;
@@ -457,12 +460,28 @@ label {
   margin: 0.3rem 0; }
   @media only screen and (max-width: 400px) {
     .event__title {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       margin: 0.2rem 0 0; } }
 
 .event__details {
   color: #455D7A;
   margin: 0; }
+
+.quick-statistics {
+  display: flex; }
+
+.quick-statistic {
+  width: 50%;
+  flex: 0 0 50%;
+  text-align: center; }
+
+.quick-statistic__number {
+  font-size: 3rem;
+  font-weight: 700; }
+
+.quick-statistic__unit {
+  font-size: 1rem;
+  margin-left: 0.25em; }
 
 .loading-screen {
   display: flex;

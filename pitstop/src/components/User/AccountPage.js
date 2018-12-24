@@ -20,6 +20,7 @@ class AccountPage extends Component {
             <div className="page">
                 <Header title="Your account" />
                 <div className="content-box">
+                    <h2>Your account</h2>
                     <p>Welcome {firstname}!</p>
                     <p><SignOutButton {...this.props} /></p>
                 </div>

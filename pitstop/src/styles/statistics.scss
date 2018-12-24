@@ -1,0 +1,19 @@
+.quick-statistics {
+    display: flex;
+}
+
+.quick-statistic {
+    width: 50%;
+    flex: 0 0 50%;
+    text-align: center;
+}
+
+.quick-statistic__number {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.quick-statistic__unit {
+    font-size: 1rem;
+    margin-left: 0.25em;
+}
