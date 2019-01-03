@@ -30,6 +30,10 @@ class StatisticPage extends Component {
             this.setState({
                 averageFuelConsumption: Number(fuelConsumption.toFixed(2))
             })
+        } else {
+            this.setState({
+                averageFuelConsumption: '-'
+            })
         }
 
         // Calculate oil consumption
@@ -42,6 +46,10 @@ class StatisticPage extends Component {
             const oilConsumption = ((oilConsumed / 10) / oilDistance) * 1000
             this.setState({
                 averageOilConsumption: Number(oilConsumption.toFixed(2))
+            })
+        } else {
+            this.setState({
+                averageOilConsumption: '-'
             })
         }
 
