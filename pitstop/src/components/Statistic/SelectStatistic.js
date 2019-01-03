@@ -28,7 +28,7 @@ class StatisticPage extends Component {
             const fuelConsumed = fuelTotal - refuelEvents[0].amount // Substract amount from first event, because it must not be included to calculate the consumption correctly
             const fuelConsumption = (fuelConsumed / fuelDistance) * 100
             this.setState({
-                averageFuelConsumption: fuelConsumption
+                averageFuelConsumption: Number(fuelConsumption.toFixed(2))
             })
         }
 
@@ -41,7 +41,7 @@ class StatisticPage extends Component {
             const oilConsumed = oilTotal - oilrefillEvents[0].amount // Substract amount from first event, because it must not be included to calculate the consumption correctly
             const oilConsumption = ((oilConsumed / 10) / oilDistance) * 1000
             this.setState({
-                averageOilConsumption: oilConsumption
+                averageOilConsumption: Number(oilConsumption.toFixed(2))
             })
         }
 
