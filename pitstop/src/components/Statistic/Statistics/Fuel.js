@@ -25,23 +25,23 @@ class FuelStatistic extends Component {
             datasets: [
                 {
                     label               : 'liter',
-                    backgroundColor     : colors.COLOR_REFUEL_TRANS,
-                    borderColor         : colors.COLOR_REFUEL,
+                    backgroundColor     : colors.REFUEL_TRANS,
+                    borderColor         : colors.REFUEL,
                     borderCapStyle      : 'butt',
                     borderWidth         : 1,
-                    hoverBackgroundColor: colors.COLOR_REFUEL,
-                    hoverBorderColor    : colors.COLOR_REFUEL,
+                    hoverBackgroundColor: colors.REFUEL,
+                    hoverBorderColor    : colors.REFUEL,
                     lineTension         : 0,
                     data                : amount
                 },
                 {
                     label               : 'price',
-                    backgroundColor     : colors.COLOR_PRICE_TRANS,
-                    borderColor         : colors.COLOR_PRICE,
+                    backgroundColor     : colors.PRICE_TRANS,
+                    borderColor         : colors.PRICE,
                     borderCapStyle      : 'butt',
                     borderWidth         : 1,
-                    hoverBackgroundColor: colors.COLOR_PRICE,
-                    hoverBorderColor    : colors.COLOR_PRICE,
+                    hoverBackgroundColor: colors.PRICE,
+                    hoverBorderColor    : colors.PRICE,
                     lineTension         : 0,
                     data                : price
                 }

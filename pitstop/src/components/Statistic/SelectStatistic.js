@@ -98,6 +98,12 @@ class StatisticPage extends Component {
                             </Link>
                         </div>
                         <div className="select-event__item">
+                            <Link to={routes.STATISTIC + "/tires-longevity"}>
+                                <div className="event__icon icon icon--tires-change"><Icon name="wheel" /></div>
+                                <span className="event__label">View tire longevity</span>
+                            </Link>
+                        </div>
+                        <div className="select-event__item">
                             <Link to={routes.STATISTIC + "/maintenance-costs"}>
                                 <div className="event__icon icon icon--inspection-service"><Icon name="breakdown"/>
                                 </div>

@@ -21,29 +21,27 @@ class OilConsumption extends Component {
             amount         = eventsSorted.map((eventsSorted) => eventsSorted.amount),
             price         = eventsSorted.map((eventsSorted) => eventsSorted.price)
 
-        console.log('eventsSorted', eventsSorted)
-
         const data = {
             labels  : months,
             datasets: [
                 {
                     label               : 'Oil in deciliters',
-                    backgroundColor     : colors.COLOR_OIL_REFILL_TRANS,
-                    borderColor         : colors.COLOR_OIL_REFILL,
+                    backgroundColor     : colors.OIL_REFILL_TRANS,
+                    borderColor         : colors.OIL_REFILL,
                     borderWidth         : 1,
-                    hoverBackgroundColor: colors.COLOR_OIL_REFILL,
-                    hoverBorderColor    : colors.COLOR_OIL_REFILL,
+                    hoverBackgroundColor: colors.OIL_REFILL,
+                    hoverBorderColor    : colors.OIL_REFILL,
                     lineTension         : 0,
                     data                : amount
                 },
                 {
                     label               : 'price',
-                    backgroundColor     : colors.COLOR_PRICE_TRANS,
-                    borderColor         : colors.COLOR_PRICE,
+                    backgroundColor     : colors.PRICE_TRANS,
+                    borderColor         : colors.PRICE,
                     borderCapStyle      : 'butt',
                     borderWidth         : 1,
-                    hoverBackgroundColor: colors.COLOR_PRICE,
-                    hoverBorderColor    : colors.COLOR_PRICE,
+                    hoverBackgroundColor: colors.PRICE,
+                    hoverBorderColor    : colors.PRICE,
                     lineTension         : 0,
                     data                : price
                 }

@@ -1,5 +1,43 @@
 # PitStop
 
+## Live-Version
+
+Eine Version der App ist unter https://pitstop-app.ch/ verfügbar.
+
+### Account mit Beispiel-Daten
+
+Folgender Account kann verwendet werden, um die App mit Beispiel-Daten zu testen:
+
+```
+E-Mail: beispiel@pitstop-app.ch
+Passwort: beispiel
+```
+
+## Installation
+
+1. Repo klonen
+2. In das `pitstop` Verzeichnis wechseln `npm install` ausführen
+3. `npm start` ausführen
+4. http://localhost:3001 aufrufen (falls dies nicht automatisch im Browser geöffnet wird)
+
+## Features
+
+* Progressive Web App
+* Mobile-first und responsive Design
+* Komplett eigenes UI (kein Framework)
+* Usability-gestestet (Bild folgt)
+
+## Verwendete Libraries
+
+* React & Redux (für Single Page Applikation)
+* Formik & Yup (für Formulare und Validierung)
+* Enzyme & Jest (für Unit-Tests)
+* Chart.js (für Statistik-Grafiken)
+* Moment.js (für Datumsformate)
+* Normalize.css (konsistente Darstellung auf allen Browsern)
+
+## Projektumfang
+
 ### Modul 1: Benutzerkonten
 Zur Nutzung der Fahrzeugverwaltung ist ein Benutzerkonto erforderlich.
 
@@ -15,16 +53,9 @@ Logbuch pro Fahrzeug zum Erfassen von Ereignissen: Reifenwechsel, Service, Repar
 ### Modul 5: Statistik
 Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleistung der Reifen etc.
 
-## Fehler
-- [X] Loading screen für neue Benutzer verschwindet nicht, da "loading" im Vehicle-Reducer und im Events-Reducer nicht auf "false" gesetzt werden ...
-
 ## To do
 
 - [ ] Login & Sign up für eingeloggt Benutzer nicht aufrufbar
 - [ ] Fehler bei der Firebase-Authentifizierung schön ausgeben und so
 - [ ] Fehler falls Benutzer noch kein Fahrzeug erstellt hat
 - [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs
-
-## Ideen
-
-- [ ] Möglichkeit Farbe (und Icon?) für ein Fahrzeug festzulegen, welche dann auch im Eventlog verwendet wird

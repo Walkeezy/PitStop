@@ -24,19 +24,19 @@ class MaintenanceCosts extends Component {
 
             switch (e.type) {
                 case 'refuel':
-                    eventsFiltered[e.type].color = colors.COLOR_REFUEL
+                    eventsFiltered[e.type].color = colors.REFUEL
                     break
                 case 'tires-change':
-                    eventsFiltered[e.type].color = colors.COLOR_TIRE_CHANGE
+                    eventsFiltered[e.type].color = colors.TIRE_CHANGE
                     break
                 case 'oil-refill':
-                    eventsFiltered[e.type].color = colors.COLOR_OIL_REFILL
+                    eventsFiltered[e.type].color = colors.OIL_REFILL
                     break
                 case 'oil-change':
-                    eventsFiltered[e.type].color = colors.COLOR_OIL_CHANGE
+                    eventsFiltered[e.type].color = colors.OIL_CHANGE
                     break
                 case 'inspection-service':
-                    eventsFiltered[e.type].color = colors.COLOR_INSPECTION
+                    eventsFiltered[e.type].color = colors.INSPECTION
                     break
                 default:
                     return null
