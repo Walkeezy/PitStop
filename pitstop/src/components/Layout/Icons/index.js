@@ -4,6 +4,7 @@ import User from './User'
 import Statistic from './Statistic'
 import Plus from './Plus'
 import Back from './Back'
+import Forward from './Forward'
 import Fuel from './Fuel'
 import Oil from './Oil'
 import Wheel from './Wheel'
@@ -22,6 +23,8 @@ const Icon = props => {
             return <Plus {...props} />
         case 'back':
             return <Back {...props} />
+        case 'forward':
+            return <Forward {...props} />
         case 'fuel':
         case 'refuel':
             return <Fuel {...props} />

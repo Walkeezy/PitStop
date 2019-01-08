@@ -29,21 +29,33 @@ body {
   width: 1000px;
   margin: 4vw auto 4vw; }
 
-.content-box {
+.box {
   max-width: 92vw;
   width: 1000px;
   margin: 4vw auto 4vw;
   background: #FFFFFF;
-  padding: 1.5rem;
   border: 1px solid #EAEDF3;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
   border-radius: 4px; }
   @media only screen and (max-width: 400px) {
-    .content-box {
+    .box {
       padding: 1rem; } }
 
-.box--no-padding {
-  padding: 0; }
+.box__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #EAEDF3; }
+  .box__header h2 {
+    margin: 0; }
+
+.box__content {
+  padding: 1.5rem; }
+
+.box__footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #EAEDF3; }
 
 a {
   color: inherit;
@@ -167,7 +179,10 @@ header {
   display: inline-block;
   position: absolute;
   left: 0;
-  font-size: 0; }
+  font-size: 0;
+  transition: transform 200ms; }
+  .header__back-link:active {
+    transform: scale(0.9); }
   @media only screen and (max-width: 400px) {
     .header__back-link {
       left: 4vw; } }
@@ -307,6 +322,8 @@ form {
       flex: 0 0 100%; } }
 
 .field--submit {
+  display: flex;
+  justify-content: space-between;
   margin-top: 2rem; }
 
 input, textarea, select {
@@ -398,6 +415,9 @@ label {
   flex-wrap: wrap;
   border-bottom: 1px solid #EAEDF3;
   padding: 1rem 1.5rem; }
+
+.list-item__link svg {
+  display: none; }
 
 .vehicles-item__name {
   width: 30%;

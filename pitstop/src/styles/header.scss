@@ -38,6 +38,11 @@ header {
     position: absolute;
     left: 0;
     font-size: 0;
+    transition: transform 200ms;
+
+    &:active {
+        transform: scale(0.9)
+    }
 
     @media #{$bp-smartphones} {
         left: $viewport-spacing;

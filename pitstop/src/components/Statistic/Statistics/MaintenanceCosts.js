@@ -68,7 +68,7 @@ class MaintenanceCosts extends Component {
 
             <div className="page">
                 <Header title="Maintenance Costs" backLink={routes.STATISTIC}/>
-                <div className="content-box">
+                <div className="box">
                     <Doughnut data={data}/>
                 </div>
             </div>

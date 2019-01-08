@@ -12,20 +12,15 @@ class TiresLongevity extends Component {
         const initialMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].initial_mileage
         let tiresDistances = []
 
-        // Filter events for tires change events
         let tiresEvents = events.filter(events => events.type === 'tires-change')
-
         tiresEvents.sort((a, b) => a.mileage - b.mileage)
-
         tiresEvents.forEach(function (event, index) {
             // Calculate distance from one tire change to the other, if it's the first tire change, calculate distance from vehicles initial mileage
             const distance = (index > 0) ? event.mileage - tiresEvents[index - 1].mileage : event.mileage - initialMileage
             const object = { tires: event.tires, distance: distance }
             tiresDistances.push(object)
         })
-
         tiresDistances.sort((a, b) => b.distance - a.distance)
-        console.log(tiresDistances)
 
         const data = {
         labels: tiresDistances.map((tires) => tires.tires),
@@ -56,7 +51,7 @@ class TiresLongevity extends Component {
 
             <div className="page">
                 <Header title="Tires longevity" backLink={routes.STATISTIC} />
-                <div className="content-box">
+                <div className="box">
                     <Bar data={data} options={options} />
                 </div>
             </div>

@@ -36,12 +36,11 @@ body {
     margin: $viewport-spacing auto $viewport-spacing;
 }
 
-.content-box {
+.box {
     max-width: $viewport-width;
     width: $content-width;
     margin: $viewport-spacing auto $viewport-spacing;
     background: $white;
-    padding: 1.5rem;
     border: 1px solid $light-gray;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
     border-radius: $border-radius;
@@ -51,6 +50,23 @@ body {
     }
 }
 
-.box--no-padding {
-    padding: 0;
+.box__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $light-gray;
+
+    h2 {
+        margin: 0;
+    }
+}
+
+.box__content {
+    padding: 1.5rem;
+}
+
+.box__footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid $light-gray;
 }

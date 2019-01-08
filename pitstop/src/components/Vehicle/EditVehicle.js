@@ -12,8 +12,10 @@ class EditVehiclePage extends Component {
 
             <div className="page">
                 <Header title="Edit vehicle" backLink={routes.ACCOUNT} />
-                <div className="content-box">
-                    <VehicleForm editVehicleId={this.props.match.params.id} {...this.props} />
+                <div className="box">
+                    <div className="box__content">
+                        <VehicleForm editVehicleId={this.props.match.params.id} {...this.props} />
+                    </div>
                 </div>
             </div>
 

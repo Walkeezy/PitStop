@@ -11,7 +11,6 @@ class OilConsumption extends Component {
     render() {
         const events = this.props.events.eventsArray
 
-        // Filter events for oil refill events
         let eventsFiltered = events.filter(events => events.type === 'oil-refill'),
 
             // Sort by date and mileage
@@ -64,7 +63,7 @@ class OilConsumption extends Component {
 
             <div className="page">
                 <Header title="Oil consumption" backLink={routes.STATISTIC}/>
-                <div className="content-box">
+                <div className="box">
                     <Line data={data} options={options}/>
                 </div>
             </div>

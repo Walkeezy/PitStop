@@ -59,3 +59,4 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 - [ ] Fehler bei der Firebase-Authentifizierung schön ausgeben und so
 - [ ] Fehler falls Benutzer noch kein Fahrzeug erstellt hat
 - [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs
+- [ ] Passwort ändern Funktonalität

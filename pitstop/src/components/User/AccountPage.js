@@ -19,12 +19,17 @@ class AccountPage extends Component {
 
             <div className="page">
                 <Header title="Your account" />
-                <div className="content-box">
-                    <h2>Your account</h2>
-                    <p>Welcome {firstname}!</p>
-                    <p><SignOutButton {...this.props} /></p>
+                <div className="box">
+                    <div className="box__header">
+                        <h2>Your account</h2>
+                        <SignOutButton {...this.props} />
+                    </div>
+                    <div className="box__content">
+                        <p>Welcome {firstname}!</p>
+                        <p>Thanks for using PitStop.</p>
+                    </div>
                 </div>
-                <div className="content-box box--no-padding">
+                <div className="box">
                     <VehicleList {...this.props} />
                 </div>
             </div>

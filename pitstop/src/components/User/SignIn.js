@@ -29,23 +29,26 @@ class SignInPage extends Component {
 
             <div className="page">
                 <Header title="Sign in to your account" backButton="false" />
-                <div className="content-box">
-                    <form onSubmit={this.handleSignIn}>
-                        <div className="form__field">
-                            <label htmlFor="userMail">Your e-mail</label>
-                            <input type="email" name="userMail" id="userMail" />
-                        </div>
-                        <div className="form__field">
-                            <label htmlFor="userPassword">Your password</label>
-                            <input type="password" name="userPassword" id="userPassword" />
-                        </div>
-                        <div className="form__field field--submit">
-                            <button type="submit" className="button--yellow">Sign in</button>
-                        </div>
-                    </form>
-
-                    <p>Lost your password? <Link to={routes.PASSWORD_FORGET}>Reset it here.</Link></p>
-                    <p>Don't have an account yet? <Link to={routes.SIGN_UP}>Sign up here.</Link></p>
+                <div className="box">
+                    <div className="box__content">
+                        <form onSubmit={this.handleSignIn}>
+                            <div className="form__field">
+                                <label htmlFor="userMail">Your e-mail</label>
+                                <input type="email" name="userMail" id="userMail" />
+                            </div>
+                            <div className="form__field">
+                                <label htmlFor="userPassword">Your password</label>
+                                <input type="password" name="userPassword" id="userPassword" />
+                            </div>
+                            <div className="form__field field--submit">
+                                <button type="submit" className="button--yellow">Sign in</button>
+                                <div className="lost-password">Lost your password? <Link to={routes.PASSWORD_FORGET}>Reset it here.</Link></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="box__footer">
+                        <p>Don't have an account yet? <Link to={routes.SIGN_UP}>Sign up here.</Link></p>
+                    </div>
                 </div>
             </div>
 

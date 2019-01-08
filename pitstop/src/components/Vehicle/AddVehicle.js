@@ -11,8 +11,10 @@ class AddVehiclePage extends Component {
 
             <div className="page">
                 <Header title="Add new vehicle" backLink={routes.ACCOUNT} />
-                <div className="content-box">
-                    <VehicleForm {...this.props} />
+                <div className="box">
+                    <div className="box__content">
+                        <VehicleForm {...this.props} />
+                    </div>
                 </div>
             </div>
 
