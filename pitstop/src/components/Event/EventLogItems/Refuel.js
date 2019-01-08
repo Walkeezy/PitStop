@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EventLogDeleteItem from '../EventLogDeleteItem'
 import Icon from './../../Layout/Icons'
 import moment from 'moment'
 
@@ -21,6 +22,7 @@ class EventLogItem extends Component {
                         <span className="event__mileage">{this.numberWithThousands(event.mileage)} km</span><br />
                         <span className="event__price">CHF {this.numberWithThousands(event.price)}</span>
                     </p>
+                    <EventLogDeleteItem eventId={this.props.eventId} {...this.props} />
                 </div>
             </div>
 

@@ -11,7 +11,7 @@ class EventLog extends Component {
         let eventlog
 
         if (Object.keys(events).length !== 0) {
-            eventlog = Object.entries(events).map((event, index) => <EventLogItem key={index} eventId={event[0]} event={event[1]} />)
+            eventlog = Object.entries(events).map((event, index) => <EventLogItem key={index} eventId={event[0]} event={event[1]} {...this.props} />)
         } else {
             eventlog = <p>No events found for this vehicle. <Link to={routes.ADD_EVENT}>Go and add some!</Link></p>
         }

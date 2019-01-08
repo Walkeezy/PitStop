@@ -40,6 +40,18 @@ export function startLoadingEvents(userId, vehicleId) {
     }
 }
 
+// Delete event
+export function startRemovingEvent(vehicleId, eventId) {
+    return (dispatch) => {
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).collection('events').doc(eventId).delete()
+            .then(() => {
+                dispatch(removeEvent(eventId))
+            })
+            .catch((error) => {
+                console.error('Error removing vehicle: ', error)
+            })
+    }
+}
 
 // REGULAR ACTIONS
 // -----------------------------------------------------
@@ -58,6 +70,13 @@ export function loadEvents(events, eventsArray) {
         type: 'LOAD_EVENTS',
         events,
         eventsArray
+    }
+}
+
+export function removeEvent(eventId) {
+    return {
+        type: 'REMOVE_EVENT',
+        eventId
     }
 }
 
