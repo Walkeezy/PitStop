@@ -74,3 +74,12 @@ body {
 .box__footer--highlighted {
     background: mix($yellow, $white, 10%);
 }
+
+.box__error {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $light-gray;
+    background: mix($red, $white, 10%);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $red;
+}

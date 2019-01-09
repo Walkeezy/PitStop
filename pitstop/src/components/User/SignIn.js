@@ -29,8 +29,13 @@ class SignInPage extends Component {
         return (
 
             <div className="page">
-                <Header title="Create your account" backButton="false" />
+                <Header title="Sign in to your account" backButton="false" />
                 <div className="box">
+                    {this.props.error.message &&
+                        <div className="box__error">
+                            <p>{this.props.error.message}</p>
+                        </div>
+                    }
                     <div className="box__content">
                         <SignInForm {...this.props} />
                     </div>
@@ -42,6 +47,11 @@ class SignInPage extends Component {
 
         )
     }
+
+    componentWillUnmount() {
+        this.props.removeError()
+    }
+
 }
 
 export default SignInPage

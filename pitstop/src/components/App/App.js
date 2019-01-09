@@ -10,7 +10,7 @@ function mapStateToProps(state) {
         user: state.userState,
         vehicles: state.vehicleState,
         events: state.eventState,
-        statistic: state.statisticState
+        error: state.errorState
     }
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import * as routes from '../../constants/routes'
 
 import Header from './../Layout/Header'
@@ -13,16 +12,22 @@ class PasswordChangePage extends Component {
             <div className="page">
                 <Header title="Change your password" backLink={routes.ACCOUNT} />
                 <div className="box">
+                    {this.props.error.message &&
+                        <div className="box__error">
+                            <p>{this.props.error.message}</p>
+                        </div>
+                    }
                     <div className="box__content">
                         <PasswordChangeForm {...this.props} />
-                    </div>
-                    <div className="box__footer box__footer--highlighted">
-                        <p>Remember your password? <Link to={routes.SIGN_IN}>Sign in here.</Link></p>
                     </div>
                 </div>
             </div>
 
         )
+    }
+
+    componentWillUnmount() {
+        this.props.removeError()
     }
 
 }

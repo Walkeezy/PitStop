@@ -4,7 +4,7 @@ import * as routes from './../../constants/routes'
 
 import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
 import { startLoadingEvents, resetEventLoading } from './event'
-import { resetStatisticLoading } from './statistic'
+import { addError } from './error'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -24,7 +24,6 @@ export function verifyUser() {
                 // This isn't the most beautiful solution ...
                 dispatch(resetVehicleLoading())
                 dispatch(resetEventLoading())
-                dispatch(resetStatisticLoading())
             }
         })
     }
@@ -49,10 +48,12 @@ export function loadUserDetails(userId) {
                     dispatch(resetEventLoading())
                 }
             } else {
+                dispatch(addError('User not found in database'))
                 console.error('User not found in database')
             }
         })
         .catch((error) => {
+            dispatch(addError(error.message))
             console.error('Error loading user details: ', error)
         })
     }
@@ -75,10 +76,12 @@ export function startCreatingUser(user) {
                 history.push(routes.HOME)
             })
             .catch((error) => {
+                dispatch(addError(error.message))
                 console.error('Error adding user to database: ', error)
             })
         })
         .catch((error) => {
+            dispatch(addError(error.message))
             console.error('Error creating user on firebase: ', error)
         })
     }
@@ -93,6 +96,7 @@ export function startLoginUser(user) {
             history.push(routes.HOME)
         })
         .catch((error) => {
+            dispatch(addError(error.message))
             console.error('Error signing-in user: ', error)
         })
     }
@@ -106,6 +110,7 @@ export function signOutUser() {
             dispatch(unsetUser())
         })
         .catch((error) => {
+            dispatch(addError(error.message))
             console.error('Error signing-out user: ', error)
         })
     }
@@ -113,12 +118,13 @@ export function signOutUser() {
 
 // Do password reset on user
 export function passwordResetUser(email) {
-    return () => {
+    return (dispatch) => {
         return auth.sendPasswordResetEmail(email)
         .then(() => {
             history.push(routes.SIGN_IN)
         })
         .catch((error) => {
+            dispatch(addError(error.message))
             console.error('Error resetting password: ', error)
         })
     }
@@ -126,13 +132,13 @@ export function passwordResetUser(email) {
 
 // Do password change on user
 export function changePassword(currentPassword, newPassword) {
-    return () => {
+    return (dispatch) => {
 
         // Firebase requires the user to be reauthenticated before changing password
         const reauthenticate = (currentPassword) => {
             const user = auth.currentUser
             const cred = emailAuthProvider.credential(user.email, currentPassword)
-            return user.reauthenticateWithCredential(cred)
+            return user.reauthenticateAndRetrieveDataWithCredential(cred)
         }
 
         reauthenticate(currentPassword)
@@ -143,10 +149,12 @@ export function changePassword(currentPassword, newPassword) {
                         history.push(routes.ACCOUNT)
                     })
                     .catch((error) => {
+                        dispatch(addError(error.message))
                         console.error('Error changing password: ', error)
                     })
             })
             .catch((error) => {
+                dispatch(addError(error.message))
                 console.log('Error reauthenticating user: ', error)
             })
     }
