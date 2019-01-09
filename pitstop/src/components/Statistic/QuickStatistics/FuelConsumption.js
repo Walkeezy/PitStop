@@ -24,7 +24,7 @@ class QuickFuelConsumption extends Component {
                 <div className="quick-statistic__label">Average fuel consumption</div>
                 <div className="quick-statistic__amount">
                     <span className="quick-statistic__number">{averageFuelConsumption}</span>
-                    <span className="quick-statistic__unit">l/100km</span>
+                    <span className="quick-statistic__unit">l / 100km</span>
                 </div>
             </div>
 

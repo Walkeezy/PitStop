@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class AddVehicleForm extends Component {
 
@@ -30,7 +32,20 @@ class AddVehicleForm extends Component {
 
     handleRemoveVehicle(vehicleId) {
         if (vehicleId) {
-            this.props.startRemovingVehicle(vehicleId)
+            confirmAlert({
+                title: 'Delete',
+                message: 'Are you sure you want to delete the vehicle?',
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => this.props.startRemovingVehicle(vehicleId)
+                    },
+                    {
+                        label: 'No',
+                        onClick: () => {}
+                    }
+                ]
+            })
         }
     }
 

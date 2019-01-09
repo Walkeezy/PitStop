@@ -44,7 +44,7 @@ class EventForm extends Component {
                 initialValues={eventValues}
                 validationSchema={Yup.object().shape({
                     eventDate        : Yup.date().required('Date of event is required.'),
-                    eventMileage     : Yup.number().min(minimumMileage, 'Mileage can not be lower than the current mileage of your vehicle').required('Mileage of your vehicle is required.'),
+                    eventMileage     : Yup.number().required('Mileage of your vehicle is required.'),
                     eventRefuelAmount: Yup.number().min(1, 'Amount of your refuel is too low.').required('Amount of your refuel is required.'),
                     eventRefuelPrice : Yup.number().min(1, 'Price of your refuel is too low.').required('Price of your refuel is required.')
                 })}
