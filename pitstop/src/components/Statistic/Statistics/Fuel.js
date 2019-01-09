@@ -63,7 +63,9 @@ class FuelStatistic extends Component {
             <div className="page">
                 <Header title="Fuel consumption" backLink={routes.STATISTIC}/>
                 <div className="box">
-                    <Line data={data} options={options}/>
+                    <div className="box__content">
+                        <Line data={data} options={options} />
+                    </div>
                 </div>
             </div>
 

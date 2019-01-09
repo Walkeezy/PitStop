@@ -13,6 +13,11 @@ class SignUpPage extends Component {
             <div className="page">
                 <Header title="Create your account" backButton="false" />
                 <div className="box">
+                    {this.props.error.message &&
+                        <div className="box__error">
+                            <p>{this.props.error.message}</p>
+                        </div>
+                    }
                     <div className="box__content">
                         <SignUpForm {...this.props} />
                     </div>
@@ -23,6 +28,10 @@ class SignUpPage extends Component {
             </div>
 
         )
+    }
+
+    componentWillUnmount() {
+        this.props.removeError()
     }
 
 }

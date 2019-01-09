@@ -1,11 +1,18 @@
 .quick-statistics {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .quick-statistic {
     width: 50%;
     flex: 0 0 50%;
     text-align: center;
+
+    @media #{$bp-smartphones} {
+        width: 100%;
+        flex: 0 0 100%;
+        margin: 1rem 0;
+    }
 }
 
 .quick-statistic__number {

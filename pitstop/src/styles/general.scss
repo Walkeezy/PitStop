@@ -24,6 +24,7 @@ body {
     min-height: 100vh;
     background: $gray-white;
     padding: $header-height 0 (1.25 * $footer-height);
+    overflow: hidden;
 
     @media #{$bp-smartphones} {
         padding: $header-height 0 (1.25 * $footer-height + 1rem);
@@ -36,6 +37,10 @@ body {
     margin: $viewport-spacing auto $viewport-spacing;
 }
 
+.content--eventlog {
+    margin-bottom: -((1.25 * $footer-height) - $footer-height);
+}
+
 .box {
     max-width: $viewport-width;
     width: $content-width;
@@ -44,10 +49,6 @@ body {
     border: 1px solid $light-gray;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
     border-radius: $border-radius;
-
-    @media #{$bp-smartphones} {
-        padding: 1rem;
-    }
 }
 
 .box__header {
@@ -57,6 +58,10 @@ body {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid $light-gray;
 
+    @media #{$bp-smartphones} {
+        padding: 0.75rem 1rem;
+    }
+
     h2 {
         margin: 0;
     }
@@ -64,11 +69,19 @@ body {
 
 .box__content {
     padding: 1.5rem;
+
+    @media #{$bp-smartphones} {
+        padding: 1rem;
+    }
 }
 
 .box__footer {
     padding: 1rem 1.5rem;
     border-top: 1px solid $light-gray;
+
+    @media #{$bp-smartphones} {
+        padding: 0.75rem 1rem;
+    }
 }
 
 .box__footer--highlighted {
@@ -82,4 +95,8 @@ body {
     font-size: 0.9rem;
     font-weight: 700;
     color: $red;
+
+    @media #{$bp-smartphones} {
+        padding: 0.75rem 1rem;
+    }
 }

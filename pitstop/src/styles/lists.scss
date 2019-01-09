@@ -7,10 +7,6 @@
     justify-content: space-between;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid $light-gray;
-
-    @media #{$bp-smartphones} {
-        display: block;
-    }
 }
 
 .list-header__title {
@@ -36,18 +32,47 @@
 // LINK LIST
 // -----------------------------------------------------
 
-// TODO: Finish this
-.list-item__link svg {
-    display: none;
+.link-list-item {
+    border-bottom: 1px solid $light-gray;
+}
+
+.link-list-item__link {
+    position: relative;
+    display: block;
+    padding: 1rem 1.5rem;
+    background-color: $white;
+    border: none;
+    transition: background-color 200ms;
+
+    &:hover,
+    &:active {
+        background-color: mix($white, $blue, 95%)
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        right: 1.5rem;
+        margin-top: -0.5rem;
+        height: 1rem;
+    }
 }
 
 
 // VEHICLE LIST
 // -----------------------------------------------------
 
+.vehicles-item__namemakemodel {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 60%;
+    flex: 0 0 60%;
+}
+
 .vehicles-item__name {
-    width: 30%;
-    flex: 0 0 30%;
+    width: 50%;
+    flex: 0 0 50%;
     font-weight: 700;
 
     @media #{$bp-smartphones} {
@@ -57,8 +82,8 @@
 }
 
 .vehicles-item__makemodel {
-    width: 30%;
-    flex: 0 0 30%;
+    width: 50%;
+    flex: 0 0 50%;
 
     @media #{$bp-smartphones} {
         width: 100%;

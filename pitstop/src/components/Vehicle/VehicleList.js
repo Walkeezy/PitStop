@@ -17,8 +17,10 @@ class VehicleList extends Component {
                     {Object.keys(vehicles).map((key, index) => {
                         return (
                             <li className="list-item" key={index}>
-                                <span className="vehicles-item__name">{vehicles[key].name}</span>
-                                <span className="vehicles-item__makemodel">{vehicles[key].make_model}</span>
+                                <span className="vehicles-item__namemakemodel">
+                                    <span className="vehicles-item__name">{vehicles[key].name}</span>
+                                    <span className="vehicles-item__makemodel">{vehicles[key].make_model}</span>
+                                </span>
                                 <span className="vehicles-item__edit"><Link to={routes.EDIT_VEHICLE + "/" + key} className="button">Edit</Link></span>
                             </li>
                         )

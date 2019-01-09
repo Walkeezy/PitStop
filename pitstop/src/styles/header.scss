@@ -26,6 +26,8 @@ header {
 .header__home-link {
     display: inline-block;
     font-size: 0;
+    padding: 0;
+    border: none;
 }
 
 .header__title {
@@ -38,13 +40,17 @@ header {
     position: absolute;
     left: 0;
     font-size: 0;
-    transition: transform 200ms;
+    transition: transform 200ms, opacity 200ms;
+
+    &:hover {
+       opacity: 0.75; 
+    }
 
     &:active {
         transform: scale(0.9)
     }
 
     @media #{$bp-smartphones} {
-        left: $viewport-spacing;
+        left: 2vw;
     }
 }

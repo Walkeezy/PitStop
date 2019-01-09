@@ -31,18 +31,18 @@ class StatisticPage extends Component {
                     <div className="box__header">
                         <h2>Advanced statistics</h2>
                     </div>
-                    <ul className="list list--links">
-                        <li className="list-item">
-                            <Link className="list-item__link" to={routes.STATISTIC + "/fuel"}>Fuel statistic<Icon name="forward" width="18" fill="#233142" /></Link>
+                    <ul className="list link-list">
+                        <li className="link-list-item">
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/fuel"}>Fuel statistic<Icon name="forward" width="18" fill="#233142" /></Link>
                         </li>
-                        <li className="list-item">
-                            <Link className="list-item__link" to={routes.STATISTIC + "/oil-consumption"}>Oil consumption<Icon name="forward" width="18" fill="#233142" /></Link>
+                        <li className="link-list-item">
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/oil-consumption"}>Oil consumption<Icon name="forward" width="18" fill="#233142" /></Link>
                         </li>
-                        <li className="list-item">
-                            <Link className="list-item__link" to={routes.STATISTIC + "/tires-longevity"}>Tire longevity<Icon name="forward" width="18" fill="#233142" /></Link>
+                        <li className="link-list-item">
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/tires-longevity"}>Tire longevity<Icon name="forward" width="18" fill="#233142" /></Link>
                         </li>
-                        <li className="list-item">
-                            <Link className="list-item__link" to={routes.STATISTIC + "/maintenance-costs"}>Maintenance costs<Icon name="forward" width="18" fill="#233142" /></Link>
+                        <li className="link-list-item">
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/maintenance-costs"}>Maintenance costs<Icon name="forward" width="18" fill="#233142" /></Link>
                         </li>
                     </ul>
                 </div>

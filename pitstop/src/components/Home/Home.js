@@ -18,7 +18,7 @@ class HomePage extends Component {
                             <div className="content">
                                 <VehicleSwitch {...this.props} />
                             </div>
-                            <div className="content">
+                            <div className="content content--eventlog">
                                 <EventLog {...this.props} />
                             </div>
                         </React.Fragment>

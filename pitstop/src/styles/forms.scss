@@ -13,6 +13,12 @@ form {
     width: 100%;
     flex: 0 0 100%;
     margin-bottom: 1.5rem;
+
+    @media #{$bp-smartphones} {
+        &:last-child {
+            margin-bottom: 1rem;
+        }
+    }
 }
 
 .field--half {
@@ -38,11 +44,20 @@ form {
 .field--submit {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     margin-top: 2rem;
+
+    @media #{$bp-smartphones} {
+        margin-top: 0;
+    }
 }
 
 .lost-password {
     margin-left: auto;
+
+    @media #{$bp-smartphones} {
+        margin: 1rem 0 0;
+    }
 }
 
 

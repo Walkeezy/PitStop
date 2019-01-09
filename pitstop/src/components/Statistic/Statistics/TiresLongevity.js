@@ -52,7 +52,9 @@ class TiresLongevity extends Component {
             <div className="page">
                 <Header title="Tires longevity" backLink={routes.STATISTIC} />
                 <div className="box">
-                    <Bar data={data} options={options} />
+                    <div className="box__content">
+                        <Bar data={data} options={options} />
+                    </div>
                 </div>
             </div>
 
