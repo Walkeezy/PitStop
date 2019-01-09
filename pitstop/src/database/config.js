@@ -13,9 +13,10 @@ firebase.initializeApp(config)
 
 const auth = firebase.auth()
 const database = firebase.firestore()
+const emailAuthProvider = firebase.auth.EmailAuthProvider
 
 database.settings({
     timestampsInSnapshots: true
 });
 
-export { auth, database }
+export { auth, database, emailAuthProvider }

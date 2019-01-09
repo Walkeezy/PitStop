@@ -57,9 +57,14 @@ body {
   padding: 1rem 1.5rem;
   border-top: 1px solid #EAEDF3; }
 
+.box__footer--highlighted {
+  background: #fffaef; }
+
 a {
   color: inherit;
-  text-decoration: underline; }
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #233142; }
 
 h1,
 h2,
@@ -306,8 +311,8 @@ form {
   margin-bottom: 1.5rem; }
 
 .field--half {
-  width: 48%;
-  flex: 0 0 48%; }
+  width: calc(50% - 0.75rem);
+  flex: 0 0 calc(50% - 0.75rem); }
   @media only screen and (max-width: 400px) {
     .field--half {
       width: 100%;
@@ -323,17 +328,19 @@ form {
 
 .field--submit {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   margin-top: 2rem; }
+
+.lost-password {
+  margin-left: auto; }
 
 input, textarea, select {
   appearance: none;
   width: 100%;
-  border: none;
-  border-bottom: 1px solid #EAEDF3;
+  border: 1px solid #EAEDF3;
   background: #FFFFFF;
-  padding: 0.7rem 0;
-  border-radius: 0;
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
   outline: none;
   font-size: 1rem;
   line-height: 1.55556;

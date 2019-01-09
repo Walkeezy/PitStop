@@ -9,6 +9,7 @@ import HomePage from '../Home/Home'
 import SignUpPage from '../User/SignUp'
 import SignInPage from '../User/SignIn'
 import PasswordForgetPage from '../User/PasswordForget'
+import PasswordChangePage from '../User/PasswordChange'
 import AddVehiclePage from '../Vehicle/AddVehicle'
 import EditVehiclePage from '../Vehicle/EditVehicle'
 import AddEventPage from '../Event/AddEvent'
@@ -52,6 +53,7 @@ class Main extends Component {
                     <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
                     <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
                     <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage {...this.props} />} />
+                    <PrivateRoute exact path={routes.PASSWORD_CHANGE} component={PasswordChangePage} {...this.props} />
                     <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />
                     <PrivateRoute exact path={routes.ADD_EVENT} component={EventTypePage} {...this.props} />
                     <PrivateRoute exact path={routes.EDIT_VEHICLE + '/:id'} component={EditVehiclePage} {...this.props} />

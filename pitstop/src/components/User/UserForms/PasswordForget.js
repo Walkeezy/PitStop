@@ -6,10 +6,10 @@ class PasswordForgetForm extends Component {
 
     constructor() {
         super()
-        this.handleSignUp = this.handleSignUp.bind(this)
+        this.handlePasswordReset = this.handlePasswordReset.bind(this)
     }
 
-    handleSignUp = (values, { setSubmitting }) => {
+    handlePasswordReset = (values, { setSubmitting }) => {
         const email = values.userMail
         if (email) {
             this.props.passwordResetUser(email)
@@ -29,7 +29,7 @@ class PasswordForgetForm extends Component {
                 validationSchema={Yup.object().shape({
                     userMail: Yup.string().email('The email-address you entered does not seem to be valid.').required('Your email-address is required.'),
                 })}
-                onSubmit={this.handleSignUp}>
+                onSubmit={this.handlePasswordReset}>
 
                 {({ isSubmitting, touched, errors }) => (
 

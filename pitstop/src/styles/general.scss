@@ -70,3 +70,7 @@ body {
     padding: 1rem 1.5rem;
     border-top: 1px solid $light-gray;
 }
+
+.box__footer--highlighted {
+    background: mix($yellow, $white, 10%);
+}

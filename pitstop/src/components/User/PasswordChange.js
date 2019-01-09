@@ -1,71 +1,30 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import * as routes from '../../constants/routes'
 
-import {auth} from '../../firebase'
+import Header from './../Layout/Header'
+import PasswordChangeForm from './UserForms/PasswordChange'
 
-const updateByPropertyName = (propertyName, value) => () => ({
-    [propertyName]: value,
-});
-
-const INITIAL_STATE = {
-    passwordOne: '',
-    passwordTwo: '',
-    error      : null,
-};
-
-class PasswordChangeForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {...INITIAL_STATE};
-    }
-
-    onSubmit = (event) => {
-        const {passwordOne} = this.state;
-
-        auth.doPasswordUpdate(passwordOne)
-            .then(() => {
-                this.setState(() => ({...INITIAL_STATE}));
-            })
-            .catch(error => {
-                this.setState(updateByPropertyName('error', error));
-            });
-
-        event.preventDefault();
-    }
+class PasswordChangePage extends Component {
 
     render() {
-        const {
-                  passwordOne,
-                  passwordTwo,
-                  error,
-              } = this.state;
-
-        const isInvalid =
-                  passwordOne !== passwordTwo ||
-                  passwordOne === '';
-
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    value={passwordOne}
-                    onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
-                    type="password"
-                    placeholder="New Password"
-                />
-                <input
-                    value={passwordTwo}
-                    onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
-                    type="password"
-                    placeholder="Confirm New Password"
-                />
-                <button disabled={isInvalid} type="submit">
-                    Reset My Password
-                </button>
 
-                {error && <p>{error.message}</p>}
-            </form>
-        );
+            <div className="page">
+                <Header title="Change your password" backLink={routes.ACCOUNT} />
+                <div className="box">
+                    <div className="box__content">
+                        <PasswordChangeForm {...this.props} />
+                    </div>
+                    <div className="box__footer box__footer--highlighted">
+                        <p>Remember your password? <Link to={routes.SIGN_IN}>Sign in here.</Link></p>
+                    </div>
+                </div>
+            </div>
+
+        )
     }
+
 }
 
-export default PasswordChangeForm
+export default PasswordChangePage

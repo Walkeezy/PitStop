@@ -1,4 +1,4 @@
-import { database, auth } from './../../database/config'
+import { database, auth, emailAuthProvider } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
 
@@ -113,7 +113,7 @@ export function signOutUser() {
 
 // Do password reset on user
 export function passwordResetUser(email) {
-    return (dispatch) => {
+    return () => {
         return auth.sendPasswordResetEmail(email)
         .then(() => {
             history.push(routes.SIGN_IN)
@@ -121,6 +121,34 @@ export function passwordResetUser(email) {
         .catch((error) => {
             console.error('Error resetting password: ', error)
         })
+    }
+}
+
+// Do password change on user
+export function changePassword(currentPassword, newPassword) {
+    return () => {
+
+        // Firebase requires the user to be reauthenticated before changing password
+        const reauthenticate = (currentPassword) => {
+            const user = auth.currentUser
+            const cred = emailAuthProvider.credential(user.email, currentPassword)
+            return user.reauthenticateWithCredential(cred)
+        }
+
+        reauthenticate(currentPassword)
+            .then(() => {
+                const user = auth.currentUser
+                user.updatePassword(newPassword)
+                    .then(() => {
+                        history.push(routes.ACCOUNT)
+                    })
+                    .catch((error) => {
+                        console.error('Error changing password: ', error)
+                    })
+            })
+            .catch((error) => {
+                console.log('Error reauthenticating user: ', error)
+            })
     }
 }
 

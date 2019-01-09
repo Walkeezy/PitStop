@@ -26,6 +26,7 @@ Passwort: beispiel
 * Mobile-first und responsive Design
 * Komplett eigenes UI (kein Framework)
 * Usability-gestestet (Bild folgt)
+* Formularvalidierung bei Eingabe
 
 ## Verwendete Libraries
 
@@ -57,6 +58,8 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 
 - [ ] Login & Sign up für eingeloggt Benutzer nicht aufrufbar
 - [ ] Fehler bei der Firebase-Authentifizierung schön ausgeben und so
-- [ ] Fehler falls Benutzer noch kein Fahrzeug erstellt hat
+- [X] Fehler falls Benutzer noch kein Fahrzeug erstellt hat
 - [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs
-- [ ] Passwort ändern Funktonalität
+- [X] Passwort ändern Funktonalität
+- [ ] Fehler bei Anmeldung mit flaschem Passwort: Unhandled Rejection (TypeError): event.preventDefault is not a function
+- [ ] 404 Seite

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import * as routes from '../../constants/routes'
 
 import Header from './../Layout/Header'
 import VehicleList from '../Vehicle/VehicleList'
@@ -27,6 +29,7 @@ class AccountPage extends Component {
                     <div className="box__content">
                         <p>Welcome {firstname}!</p>
                         <p>Thanks for using PitStop.</p>
+                        <Link to={routes.PASSWORD_CHANGE}>Change password</Link>
                     </div>
                 </div>
                 <div className="box">
