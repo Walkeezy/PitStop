@@ -17,7 +17,9 @@ class AddEventPage extends Component {
             <div className="page">
                 <Header title={headerTitle} backLink={routes.ADD_EVENT} />
                 <div className="box">
-                    <EventForm {...this.props} />
+                    <div className="box__content">
+                        <EventForm {...this.props} />
+                    </div>
                 </div>
             </div>
 

@@ -4,12 +4,14 @@ class QuickOilConsumption extends Component {
 
     render() {
         const events = this.props.events.eventsArray
+        const initialMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].initial_mileage
         let averageOilConsumption = '–'
 
         let oilrefillEvents = events.filter(events => events.type === 'oil-refill')
         if (oilrefillEvents.length) {
             oilrefillEvents.sort((a, b) => a.mileage - b.mileage)
-            const oilDistance = oilrefillEvents[oilrefillEvents.length - 1].mileage - oilrefillEvents[0].mileage
+            const lowestMileage = (oilrefillEvents > 0) ? oilrefillEvents[0].mileage : initialMileage
+            const oilDistance = oilrefillEvents[oilrefillEvents.length - 1].mileage - lowestMileage
             const oilTotal = oilrefillEvents.reduce((consumption, event) => consumption + event.amount, 0)
             const oilConsumed = oilTotal - oilrefillEvents[0].amount // Substract amount from first event, because it must not be included to calculate the consumption correctly
             const oilConsumption = ((oilConsumed / 10) / oilDistance) * 1000
