@@ -31,7 +31,10 @@ class AccountPage extends Component {
                     </div>
                     <ul className="list link-list">
                         <li className="link-list-item">
-                            <Link className="link-list-item__link" to={routes.PASSWORD_CHANGE}>Change password<Icon name="forward" width="18" fill="#233142" /></Link>
+                            <Link className="link-list-item__link" to={routes.PASSWORD_CHANGE}>
+                                Change password
+                                <Icon className="link-list-item__arrow" name="forward" width="10" fill="#233142" />
+                            </Link>
                         </li>
                     </ul>
                 </div>

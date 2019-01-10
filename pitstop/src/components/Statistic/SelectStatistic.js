@@ -33,16 +33,32 @@ class StatisticPage extends Component {
                     </div>
                     <ul className="list link-list">
                         <li className="link-list-item">
-                            <Link className="link-list-item__link" to={routes.STATISTIC + "/fuel"}>Fuel statistic<Icon name="forward" width="18" fill="#233142" /></Link>
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/fuel"}>
+                                <div className="link-list-item__icon icon icon--refuel"><Icon name="fuel" /></div>
+                                Fuel statistic
+                                <Icon className="link-list-item__arrow" name="forward" width="10" fill="#233142" />
+                            </Link>
                         </li>
                         <li className="link-list-item">
-                            <Link className="link-list-item__link" to={routes.STATISTIC + "/oil-consumption"}>Oil consumption<Icon name="forward" width="18" fill="#233142" /></Link>
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/oil-consumption"}>
+                                <div className="link-list-item__icon icon icon--oil-refill"><Icon name="oil" /></div>
+                                Oil consumption
+                                <Icon className="link-list-item__arrow" name="forward" width="10" fill="#233142" />
+                            </Link>
                         </li>
                         <li className="link-list-item">
-                            <Link className="link-list-item__link" to={routes.STATISTIC + "/tires-longevity"}>Tire longevity<Icon name="forward" width="18" fill="#233142" /></Link>
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/tires-longevity"}>
+                                <div className="link-list-item__icon icon icon--tires-change"><Icon name="wheel" /></div>
+                                Tire longevity
+                                <Icon className="link-list-item__arrow" name="forward" width="10" fill="#233142" />
+                            </Link>
                         </li>
                         <li className="link-list-item">
-                            <Link className="link-list-item__link" to={routes.STATISTIC + "/maintenance-costs"}>Maintenance costs<Icon name="forward" width="18" fill="#233142" /></Link>
+                            <Link className="link-list-item__link" to={routes.STATISTIC + "/maintenance-costs"}>
+                                <div className="link-list-item__icon icon icon--inspection-service"><Icon name="breakdown" /></div>
+                                Maintenance costs
+                                <Icon className="link-list-item__arrow" name="forward" width="10" fill="#233142" />
+                            </Link>
                         </li>
                     </ul>
                 </div>

@@ -480,19 +480,31 @@ label {
 
 .link-list-item__link {
   position: relative;
-  display: block;
-  padding: 1.6rem 1.5rem;
+  display: flex;
+  align-items: center;
+  padding: 1.3555rem 1.5rem;
   background-color: #FFFFFF;
   border: none;
   transition: background-color 200ms; }
   .link-list-item__link:hover, .link-list-item__link:active {
     background-color: #f6f7f8; }
-  .link-list-item__link svg {
-    position: absolute;
-    top: 50%;
-    right: 1.5rem;
-    margin-top: -0.5rem;
-    height: 1rem; }
+
+.link-list-item__icon {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  margin-right: 1rem; }
+
+.link-list-item__arrow {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  margin-top: -0.5rem;
+  width: 0.6rem; }
+
+.link-list-label {
+  font-size: 1rem;
+  margin: 0.3rem 0 0.2rem; }
 
 .vehicles-item__namemakemodel {
   display: flex;
