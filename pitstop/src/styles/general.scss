@@ -37,10 +37,6 @@ body {
     margin: $viewport-spacing auto $viewport-spacing;
 }
 
-.content--eventlog {
-    margin-bottom: -((1.25 * $footer-height) - $footer-height);
-}
-
 .box {
     max-width: $viewport-width;
     width: $content-width;
@@ -49,6 +45,7 @@ body {
     border: 1px solid $light-gray;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
     border-radius: $border-radius;
+    overflow: hidden;
 }
 
 .box__header {
@@ -88,15 +85,28 @@ body {
     background: mix($yellow, $white, 10%);
 }
 
-.box__error {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid $light-gray;
-    background: mix($red, $white, 10%);
+.notification {
+    padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
     font-weight: 700;
-    color: $red;
 
     @media #{$bp-smartphones} {
         padding: 0.75rem 1rem;
     }
+}
+
+.notification--standalone {
+    max-width: $viewport-width;
+    width: $content-width;
+    margin: $viewport-spacing auto $viewport-spacing;
+}
+
+.notification--error {
+    background: $error;
+    color: $white;
+}
+
+.notification--success {
+    background: $success;
+    color: $white;
 }

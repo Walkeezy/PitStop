@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import Fuel from './Statistics/Fuel'
 import OilConsumption from './Statistics/OilConsumption'
 import TiresLongevity from './Statistics/TiresLongevity'

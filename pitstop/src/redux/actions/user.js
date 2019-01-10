@@ -4,7 +4,7 @@ import * as routes from './../../constants/routes'
 
 import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
 import { startLoadingEvents, resetEventLoading } from './event'
-import { addError } from './error'
+import { addNotification } from './notification'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -48,12 +48,12 @@ export function loadUserDetails(userId) {
                     dispatch(resetEventLoading())
                 }
             } else {
-                dispatch(addError('User not found in database'))
+                dispatch(addNotification('error', 'User not found in database'))
                 console.error('User not found in database')
             }
         })
         .catch((error) => {
-            dispatch(addError(error.message))
+            dispatch(addNotification(error.message))
             console.error('Error loading user details: ', error)
         })
     }
@@ -76,12 +76,12 @@ export function startCreatingUser(user) {
                 history.push(routes.HOME)
             })
             .catch((error) => {
-                dispatch(addError(error.message))
+                dispatch(addNotification('error', error.message))
                 console.error('Error adding user to database: ', error)
             })
         })
         .catch((error) => {
-            dispatch(addError(error.message))
+            dispatch(addNotification('error', error.message))
             console.error('Error creating user on firebase: ', error)
         })
     }
@@ -93,10 +93,11 @@ export function startLoginUser(user) {
         return auth.signInWithEmailAndPassword(user.email, user.password)
         .then(user => {
             dispatch(setUser(user))
+            dispatch(addNotification('success', 'Successfully logged in, welcome back!'))
             history.push(routes.HOME)
         })
         .catch((error) => {
-            dispatch(addError(error.message))
+            dispatch(addNotification('error', error.message))
             console.error('Error signing-in user: ', error)
         })
     }
@@ -110,7 +111,7 @@ export function signOutUser() {
             dispatch(unsetUser())
         })
         .catch((error) => {
-            dispatch(addError(error.message))
+            dispatch(addNotification('error', error.message))
             console.error('Error signing-out user: ', error)
         })
     }
@@ -124,7 +125,7 @@ export function passwordResetUser(email) {
             history.push(routes.SIGN_IN)
         })
         .catch((error) => {
-            dispatch(addError(error.message))
+            dispatch(addNotification('error', error.message))
             console.error('Error resetting password: ', error)
         })
     }
@@ -146,16 +147,17 @@ export function changePassword(currentPassword, newPassword) {
                 const user = auth.currentUser
                 user.updatePassword(newPassword)
                     .then(() => {
+                        dispatch(addNotification('success', 'Your password has successfully been changed.'))
                         history.push(routes.ACCOUNT)
                     })
                     .catch((error) => {
-                        dispatch(addError(error.message))
+                        dispatch(addNotification('error', error.message))
                         console.error('Error changing password: ', error)
                     })
             })
             .catch((error) => {
-                dispatch(addError(error.message))
-                console.log('Error reauthenticating user: ', error)
+                dispatch(addNotification('error', error.message))
+                console.error('Error reauthenticating user: ', error)
             })
     }
 }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Line} from 'react-chartjs-2'
+import React, { Component } from 'react'
+import { Line } from 'react-chartjs-2'
 import * as routes from '../../../constants/routes'
 import * as colors from '../../../constants/colors'
 

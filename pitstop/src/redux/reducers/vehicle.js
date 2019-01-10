@@ -18,8 +18,6 @@ const vehicleReducer = function vehicles(state = initialVehicleReducer, action) 
 
         case 'REMOVE_VEHICLE':
             // Seperate vehicle to remove and all other vehicles into seperate variables
-            // Read more about this here:
-            // https://github.com/airbnb/javascript/blob/master/README.md#objects--rest-spread
             const { [action.vehicleId]:vehicle, ...vehiclesWithoutRemoved } = state.vehicles
             return {
                 ...state,

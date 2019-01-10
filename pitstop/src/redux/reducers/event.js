@@ -28,8 +28,6 @@ const eventReducer = function event(state = initialeventReducer, action) {
 
         case 'REMOVE_EVENT':
             // Seperate vehicle to remove and all other vehicles into seperate variables
-            // Read more about this here:
-            // https://github.com/airbnb/javascript/blob/master/README.md#objects--rest-spread
             const { [action.eventId]:event, ...eventsWithoutRemoved } = state.events
             return {
                 ...state,

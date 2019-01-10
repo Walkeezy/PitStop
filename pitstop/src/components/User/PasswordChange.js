@@ -12,9 +12,9 @@ class PasswordChangePage extends Component {
             <div className="page">
                 <Header title="Change your password" backLink={routes.ACCOUNT} />
                 <div className="box">
-                    {this.props.error.message &&
-                        <div className="box__error">
-                            <p>{this.props.error.message}</p>
+                    {this.props.notifications.active &&
+                        <div className={'notification notification--' + this.props.notifications.type}>
+                            <p>{this.props.notifications.message}</p>
                         </div>
                     }
                     <div className="box__content">
@@ -27,7 +27,7 @@ class PasswordChangePage extends Component {
     }
 
     componentWillUnmount() {
-        this.props.removeError()
+        this.props.notifications.type === 'error' && this.props.removeNotification()
     }
 
 }

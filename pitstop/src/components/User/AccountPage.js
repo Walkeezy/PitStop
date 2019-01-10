@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as routes from '../../constants/routes'
-
+import Icon from '../Layout/Icons'
 import Header from './../Layout/Header'
 import VehicleList from '../Vehicle/VehicleList'
 import SignOutButton from './SignOut'
@@ -15,22 +15,25 @@ class AccountPage extends Component {
     }
 
     render() {
-        const firstname = this.props.user.details.firstname
-
         return (
 
             <div className="page">
                 <Header title="Your account" />
+                {this.props.notifications.active &&
+                    <div className={'notification notification--standalone notification--' + this.props.notifications.type}>
+                        <p>{this.props.notifications.message}</p>
+                    </div>
+                }
                 <div className="box">
                     <div className="box__header">
                         <h2>Your account</h2>
                         <SignOutButton {...this.props} />
                     </div>
-                    <div className="box__content">
-                        <p>Welcome {firstname}!</p>
-                        <p>Thanks for using PitStop.</p>
-                        <Link to={routes.PASSWORD_CHANGE}>Change password</Link>
-                    </div>
+                    <ul className="list link-list">
+                        <li className="link-list-item">
+                            <Link className="link-list-item__link" to={routes.PASSWORD_CHANGE}>Change password<Icon name="forward" width="18" fill="#233142" /></Link>
+                        </li>
+                    </ul>
                 </div>
                 <div className="box">
                     <VehicleList {...this.props} />
