@@ -42,6 +42,10 @@ class AccountPage extends Component {
 
         )
     }
+
+    componentWillUnmount() {
+        this.props.removeNotification()
+    }
 }
 
 export default AccountPage

@@ -1,7 +1,6 @@
 import { database, auth, emailAuthProvider } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
-
 import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
 import { startLoadingEvents, resetEventLoading } from './event'
 import { addNotification } from './notification'
@@ -20,8 +19,6 @@ export function verifyUser() {
                 dispatch(loadUserDetails(user.uid))
             } else {
                 dispatch(unsetUser())
-
-                // This isn't the most beautiful solution ...
                 dispatch(resetVehicleLoading())
                 dispatch(resetEventLoading())
             }
@@ -73,6 +70,7 @@ export function startCreatingUser(user) {
             })
             .then(() => {
                 dispatch(setUser(user))
+                dispatch(addNotification('success', 'Successfully created your account. Welcome ' + user.firstname + '!'))
                 history.push(routes.HOME)
             })
             .catch((error) => {
@@ -93,7 +91,7 @@ export function startLoginUser(user) {
         return auth.signInWithEmailAndPassword(user.email, user.password)
         .then(user => {
             dispatch(setUser(user))
-            dispatch(addNotification('success', 'Successfully logged in, welcome back!'))
+            dispatch(addNotification('success', 'Successfully logged in. Welcome back!'))
             history.push(routes.HOME)
         })
         .catch((error) => {

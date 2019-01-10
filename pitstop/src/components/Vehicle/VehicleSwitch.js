@@ -19,14 +19,17 @@ class VehicleSwitch extends Component {
         const vehicles = this.props.vehicles.vehicles
         if (vehicles){
             return (
-
-                <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle ? this.props.vehicles.activeVehicle : ''} className="select-vehicle">
-                    {Object.keys(vehicles).map((key, index) => {
-                        return (
-                            <option key={index} value={key}>{vehicles[key].name}</option>
-                        )
-                    })}
-                </select>
+            
+                <div className="vehicle-switch">
+                    <label htmlFor="select-vehicle">Active vehicle</label>
+                    <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle ? this.props.vehicles.activeVehicle : ''} className="select-vehicle" id="select-vehicle">
+                        {Object.keys(vehicles).map((key, index) => {
+                            return (
+                                <option key={index} value={key}>{vehicles[key].name}</option>
+                            )
+                        })}
+                    </select>
+                </div>
 
             )
         } else {

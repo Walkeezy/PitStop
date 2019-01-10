@@ -12,13 +12,15 @@ class HomePage extends Component {
 
             <div className="page">
                 <Header/>
+
+                {this.props.notifications.active &&
+                    <div className={'notification notification--standalone notification--' + this.props.notifications.type}>
+                        <p>{this.props.notifications.message}</p>
+                    </div>
+                }
+
                 {Object.keys(this.props.vehicles.vehicles).length ? (
                     <React.Fragment>
-                        {this.props.notifications.active &&
-                            <div className={'notification notification--standalone notification--' + this.props.notifications.type}>
-                                <p>{this.props.notifications.message}</p>
-                            </div>
-                        }
                         <div className="content">
                             <VehicleSwitch {...this.props} />
                         </div>

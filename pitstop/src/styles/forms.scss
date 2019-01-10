@@ -142,13 +142,13 @@ label {
 // -----------------------------------------------------
 
 .input--error {
-    border-color: $red;
+    border-color: $error;
 }
 
 .field-error {
     display: block;
     font-size: 0.8rem;
     font-weight: 700;
-    color: $red;
+    color: $error;
     margin-top: 0.5rem;
 }

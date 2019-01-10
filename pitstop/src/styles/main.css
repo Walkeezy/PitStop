@@ -79,15 +79,20 @@ body {
 .notification--standalone {
   max-width: 92vw;
   width: 1000px;
-  margin: 4vw auto 4vw; }
+  margin: 4vw auto 4vw;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04); }
 
 .notification--error {
   background: #B00020;
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  border-color: #a1001d; }
 
 .notification--success {
-  background: #4BB543;
-  color: #FFFFFF; }
+  background: #20CC82;
+  color: #FFFFFF;
+  border-color: #1ebf7a; }
 
 a {
   color: inherit;
@@ -438,13 +443,13 @@ label {
     margin: 0 auto; }
 
 .input--error {
-  border-color: #E6492D; }
+  border-color: #B00020; }
 
 .field-error {
   display: block;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #E6492D;
+  color: #B00020;
   margin-top: 0.5rem; }
 
 .list-header {

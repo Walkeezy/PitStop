@@ -62,4 +62,5 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 - [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs
 - [X] Passwort ändern Funktonalität
 - [X] Fehler bei Anmeldung mit flaschem Passwort: Unhandled Rejection (TypeError): event.preventDefault is not a function
-- [ ] 404 Seite
+- [X] 404 Seite
+- [ ] Reifen-Statistik: erster Reifen des Fahrzeugs auch berechnen

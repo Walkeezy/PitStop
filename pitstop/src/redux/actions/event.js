@@ -29,7 +29,6 @@ export function startLoadingEvents(userId, vehicleId) {
             docs.forEach(function (doc) {
                 const key = doc.id
                 events[key] = doc.data()
-                // TODO: Change everything to array version or remove it
                 eventsArray.push(doc.data())
             })
             dispatch(loadEvents(events, eventsArray))
@@ -64,7 +63,6 @@ export function addEvent(eventId, event) {
     }
 }
 
-// TODO: Change everything to array version or remove it
 export function loadEvents(events, eventsArray) {
     return {
         type: 'LOAD_EVENTS',

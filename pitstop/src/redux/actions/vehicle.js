@@ -1,6 +1,7 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
+import { addNotification } from './notification'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -13,8 +14,10 @@ export function startAddingVehicle(vehicle) {
         .then((doc) => {
             dispatch(editVehicle(doc.id, vehicle))
             dispatch(setVehicleAsActive(doc.id))
+            dispatch(addNotification('success', 'Your new vehicle has been added.'))
             history.push(routes.ACCOUNT)
         }).catch((error) => {
+            dispatch(addNotification('error', error.message))
             console.error('Error adding vehicle: ', error)
         })
     }
@@ -26,10 +29,12 @@ export function startEditingVehicle(vehicleId, vehicle) {
         vehicle._modified = new Date()
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).update(vehicle)
         .then(() => {
-            dispatch(editVehicle(vehicleId, vehicle))
             history.push(routes.ACCOUNT)
+            dispatch(editVehicle(vehicleId, vehicle))
+            dispatch(addNotification('success', 'Your vehicle has been updated.'))
         })
         .catch((error) => {
+            dispatch(addNotification('error', error.message))
             console.error('Error updating vehicle: ', error)
         })
     }
@@ -40,10 +45,12 @@ export function startRemovingVehicle(vehicleId) {
     return (dispatch) => {
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).delete()
         .then(() => {
-            history.push(routes.ACCOUNT)
             dispatch(removeVehicle(vehicleId))
+            dispatch(addNotification('success', 'Your vehicle has been deleted.'))
+            history.push(routes.ACCOUNT)
         })
         .catch((error) => {
+            dispatch(addNotification('error', error.message))
             console.error('Error removing vehicle: ', error)
         })
     }
