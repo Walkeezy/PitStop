@@ -7,34 +7,56 @@ import Header from '../../Layout/Header'
 
 class TiresLongevity extends Component {
 
-    render() {
+    calculateStatistic = () => {
         const events = this.props.events.eventsArray
-        const initialMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].initial_mileage
+        const vehicle = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle]
         let tiresDistances = []
 
         let tiresEvents = events.filter(events => events.type === 'tires-change')
+
+        if(tiresEvents.length === 0){
+            return false
+        }
+
         tiresEvents.sort((a, b) => a.mileage - b.mileage)
         tiresEvents.forEach(function (event, index) {
             // Calculate distance from one tire change to the other, if it's the first tire change, calculate distance from vehicles initial mileage
-            const distance = (index > 0) ? event.mileage - tiresEvents[index - 1].mileage : event.mileage - initialMileage
-            const object = { tires: event.tires, distance: distance }
-            tiresDistances.push(object)
+            if(index > 0){
+                const distance = event.mileage - tiresEvents[index-1].mileage
+                const tire = { name: tiresEvents[index - 1].tires, distance: distance }
+                tiresDistances.push(tire)
+            }
         })
-        tiresDistances.sort((a, b) => b.distance - a.distance)
+
+        // Add initial tire, which has been added to the vehicle as it has been created
+        const initialTireDistance = tiresEvents[0].mileage - vehicle.initial_mileage
+        const initialTire = { name: vehicle.tyres, distance: initialTireDistance }
+        tiresDistances.push(initialTire)
+
+        // Add newest tire, which is still active on the vehicle
+        const newestTireDistance = vehicle.actual_mileage - tiresEvents[tiresEvents.length - 1].mileage
+        const newestTire = { name: tiresEvents[tiresEvents.length - 1].tires, distance: newestTireDistance }
+        tiresDistances.push(newestTire)
+
+        return tiresDistances.sort((a, b) => b.distance - a.distance)
+    }
+
+    render() {
+        const statisticData = this.calculateStatistic()
 
         const data = {
-        labels: tiresDistances.map((tires) => tires.tires),
-        datasets: [
-            {
-                label: 'Kilometers driven',
-                backgroundColor     : colors.TIRE_CHANGE_TRANS,
-                borderColor         : colors.TIRE_CHANGE,
-                borderWidth         : 1,
-                hoverBackgroundColor: colors.TIRE_CHANGE,
-                hoverBorderColor    : colors.TIRE_CHANGE,
-                data: tiresDistances.map((tires) => tires.distance)
-            }
-        ]
+            labels: statisticData.map((tires) => tires.name),
+            datasets: [
+                {
+                    label: 'Kilometers driven',
+                    backgroundColor     : colors.TIRE_CHANGE_TRANS,
+                    borderColor         : colors.TIRE_CHANGE,
+                    borderWidth         : 1,
+                    hoverBackgroundColor: colors.TIRE_CHANGE,
+                    hoverBorderColor    : colors.TIRE_CHANGE,
+                    data: statisticData.map((tires) => tires.distance)
+                }
+            ]
         }
 
         const options = {
@@ -55,6 +77,20 @@ class TiresLongevity extends Component {
                     <div className="box__content">
                         <Bar data={data} options={options} />
                     </div>
+                </div>
+                <div className="box">
+                    <ul className="list list--tires">
+                        {statisticData.map((tires, index) => {
+                            return (
+
+                                <li className="list-item" key={index}>
+                                    <span>{tires.name}</span>
+                                    <span>{tires.distance} km</span>
+                                </li>
+
+                            )
+                        })}
+                    </ul>
                 </div>
             </div>
 
