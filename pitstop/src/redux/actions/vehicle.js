@@ -6,13 +6,13 @@ import { addNotification } from './notification'
 // ASYNC ACTIONS
 // -----------------------------------------------------
 
-// Save vehicle to current user in database, then dispatch editVehicle action with key of new vehicle item in database and vehicle data
+// Save vehicle to current user in database, then dispatch updateVehicle action with key of new vehicle item in database and vehicle data
 export function startAddingVehicle(vehicle) {
     return (dispatch) => {
         vehicle._created = new Date()
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').add(vehicle)
         .then((doc) => {
-            dispatch(editVehicle(doc.id, vehicle))
+            dispatch(updateVehicle(doc.id, vehicle))
             dispatch(setVehicleAsActive(doc.id))
             dispatch(addNotification('success', 'Your new vehicle has been added.'))
             history.push(routes.ACCOUNT)
@@ -23,14 +23,14 @@ export function startAddingVehicle(vehicle) {
     }
 }
 
-// Edit vehicle in database, then dispatch editVehicle action with key of vehicle and vehicle data
+// Edit vehicle in database, then dispatch updateVehicle action with key of vehicle and vehicle data
 export function startEditingVehicle(vehicleId, vehicle) {
     return (dispatch) => {
         vehicle._modified = new Date()
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).update(vehicle)
         .then(() => {
             history.push(routes.ACCOUNT)
-            dispatch(editVehicle(vehicleId, vehicle))
+            dispatch(updateVehicle(vehicleId, vehicle))
             dispatch(addNotification('success', 'Your vehicle has been updated.'))
         })
         .catch((error) => {
@@ -106,14 +106,6 @@ export function saveActualMileage(vehicleId, mileage) {
 
 // REGULAR ACTIONS
 // -----------------------------------------------------
-
-export function editVehicle(vehicleId, vehicle) {
-    return {
-        type: 'EDIT_VEHICLE',
-        vehicleId,
-        vehicle
-    }
-}
 
 export function updateVehicle(vehicleId, vehicle) {
     return {

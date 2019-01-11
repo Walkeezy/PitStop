@@ -57,10 +57,5 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 ## To do
 
 - [ ] Login & Sign up für eingeloggt Benutzer nicht aufrufbar
-- [X] Fehler bei der Firebase-Authentifizierung schön ausgeben und so
-- [X] Fehler falls Benutzer noch kein Fahrzeug erstellt hat
-- [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs
-- [X] Passwort ändern Funktonalität
-- [X] Fehler bei Anmeldung mit flaschem Passwort: Unhandled Rejection (TypeError): event.preventDefault is not a function
-- [X] 404 Seite
+- [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs schöner darstellen
 - [ ] Reifen-Statistik: erster Reifen des Fahrzeugs auch berechnen

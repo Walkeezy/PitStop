@@ -7,7 +7,7 @@ const initialVehicleReducer = {
 const vehicleReducer = function vehicles(state = initialVehicleReducer, action) {
     switch (action.type) {
 
-        case 'EDIT_VEHICLE':
+        case 'UPDATE_VEHICLE':
             return {
                 ...state,
                 vehicles: {

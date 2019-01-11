@@ -11,6 +11,7 @@ import PasswordChangePage from '../User/PasswordChange'
 import AddVehiclePage from '../Vehicle/AddVehicle'
 import EditVehiclePage from '../Vehicle/EditVehicle'
 import AddEventPage from '../Event/AddEvent'
+import EditEventPage from '../Event/EditEvent'
 import EventTypePage from '../Event/SelectEventType'
 import AccountPage from '../User/AccountPage'
 import SelectStatisticPage from '../Statistic/SelectStatistic'
@@ -58,6 +59,7 @@ class Main extends Component {
                         <PrivateRoute exact path={routes.ADD_EVENT} component={EventTypePage} {...this.props} />
                         <PrivateRoute exact path={routes.EDIT_VEHICLE + '/:id'} component={EditVehiclePage} {...this.props} />
                         <PrivateRoute exact path={routes.ADD_EVENT + '/:type'} component={AddEventPage} {...this.props} />
+                        <PrivateRoute exact path={routes.EDIT_EVENT + '/:type/:id'} component={EditEventPage} {...this.props} />
                         <PrivateRoute exact path={routes.ACCOUNT} component={AccountPage} {...this.props} />
                         <PrivateRoute exact path={routes.STATISTIC} component={SelectStatisticPage} {...this.props} />
                         <PrivateRoute exact path={routes.STATISTIC + '/:type'} component={ViewStatisticPage} {...this.props} />

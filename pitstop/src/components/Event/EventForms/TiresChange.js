@@ -7,10 +7,11 @@ class EventForm extends Component {
     constructor() {
         super()
         this.handleSubmitEvent = this.handleSubmitEvent.bind(this)
+        this.handleRemoveEvent = this.handleRemoveEvent.bind(this)
     }
 
     handleSubmitEvent = (values, {setSubmitting}) => {
-
+        const vehicle = this.props.vehicles.activeVehicle
         const event = {
             type       : values.eventType,
             date       : new Date(values.eventDate),
@@ -20,14 +21,24 @@ class EventForm extends Component {
             price      : values.eventTiresPrice
         }
 
-        this.props.startAddingEvent(this.props.vehicles.activeVehicle, event)
-        this.props.saveActualMileage(this.props.vehicles.activeVehicle, event.mileage)
+        this.props.editEventId
+            ? this.props.startEditingEvent(vehicle, this.props.editEventId, event)
+            : this.props.startAddingEvent(vehicle, event)
+
+        this.props.saveActualMileage(vehicle, event.mileage)
 
         setSubmitting(false)
         return
     }
 
+    handleRemoveEvent = (eventId) => {
+        eventId && this.props.startRemovingEvent(this.props.vehicles.activeVehicle, eventId)
+    }
+
     render() {
+        const editEventId = this.props.editEventId
+        const events = this.props.events.events
+
         let eventValues = {
             eventType       : this.props.match.params.type,
             eventDate       : new Date().toISOString().slice(0, 10),
@@ -35,6 +46,19 @@ class EventForm extends Component {
             eventTires      : '',
             eventTiresPrice : 0,
             eventCompany    : ''
+        }
+
+        // If there is a event to be edited, get its values as default values
+        if (editEventId && Object.getOwnPropertyNames(events).length > 0) {
+            const eventToEdit = events[editEventId]
+            eventValues = {
+                eventType: eventToEdit.type,
+                eventDate: new Date(eventToEdit.date.seconds * 1000).toISOString().slice(0, 10),
+                eventMileage: eventToEdit.mileage,
+                eventTires: eventToEdit.tires,
+                eventTiresPrice: eventToEdit.price,
+                eventCompany: eventToEdit.company
+            }
         }
 
         return (
@@ -54,7 +78,7 @@ class EventForm extends Component {
                     <Form>
                         <input type="hidden" id="eventType" name="eventType" value={eventValues.eventType}/>
                         <div className="form__field field--half">
-                            <label htmlFor="eventDate">Date *</label>
+                            <label htmlFor="eventDate">Date<span className="required">*</span></label>
                             <Field type="date"
                                    name="eventDate"
                                    id="eventDate"
@@ -63,7 +87,7 @@ class EventForm extends Component {
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="eventMileage">Current mileage *</label>
+                            <label htmlFor="eventMileage">Current mileage<span className="required">*</span></label>
                             <Field type="number"
                                    name="eventMileage"
                                    id="eventMileage"
@@ -72,7 +96,7 @@ class EventForm extends Component {
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field">
-                            <label htmlFor="eventTires">Tires *</label>
+                            <label htmlFor="eventTires">Tires<span className="required">*</span></label>
                             <Field type="text"
                                    name="eventTires"
                                    id="eventTires"
@@ -81,7 +105,7 @@ class EventForm extends Component {
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="eventCompany">Company</label>
+                            <label htmlFor="eventCompany">Garage</label>
                             <Field type="text"
                                    name="eventCompany"
                                    id="eventCompany"
@@ -90,7 +114,7 @@ class EventForm extends Component {
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="eventTiresPrice">Price in CHF *</label>
+                            <label htmlFor="eventTiresPrice">Price in CHF<span className="required">*</span></label>
                             <Field type="number"
                                    name="eventTiresPrice"
                                    id="eventTiresPrice"
@@ -98,12 +122,11 @@ class EventForm extends Component {
                             <ErrorMessage name="eventTiresPrice"
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
-                        <div className="form__field">
-                            <p>*Fields are required</p>
-                        </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Save event</button>
+                            {editEventId && <button type="button" onClick={() => this.handleRemoveEvent(this.props.editEventId)}>Delete event</button>}
                         </div>
+                        <div className="required-hint">Fields marked with * are required.</div>
                     </Form>
 
                 )}

@@ -17,6 +17,7 @@
 
     @media #{$bp-smartphones} {
         left: 1.5rem;
+        top: 0.9rem;
     }
 }
 
@@ -24,12 +25,11 @@
     z-index: 1;
     position: relative;
     display: flex;
-    align-items: top;
     justify-content: stretch;
     padding-bottom: 4rem;
 
     @media #{$bp-smartphones} {
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
     }
 
     &:last-child:after {
@@ -42,6 +42,11 @@
         width: 4px;
         height: 100%;
         background: $gray-white;
+
+        @media #{$bp-smartphones} {
+            left: 1.5rem;
+            top: 0.9rem;
+        }
     }
 }
 
@@ -52,6 +57,7 @@
     margin-right: 2rem;
 
     @media #{$bp-smartphones} {
+        margin-top: 0.9rem;
         margin-right: 1.5rem;
     }
 }
@@ -62,13 +68,22 @@
 }
 
 .event__title {
+    display: inline-block;
     font-size: 1.6rem;
     font-weight: 700;
     margin: 0.3rem 0;
+    padding: 0;
+    border: none;
+    transition: opacity 200ms;
 
     @media #{$bp-smartphones} {
         font-size: 1.2rem;
         margin: 0.2rem 0 0;
+    }
+
+    &:hover,
+    &:active {
+        opacity: 0.75;
     }
 }
 

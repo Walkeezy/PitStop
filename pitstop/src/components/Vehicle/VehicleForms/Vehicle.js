@@ -61,7 +61,7 @@ class AddVehicleForm extends Component {
             vehicleTyres: ''
         }
 
-        // If there is a vehicle saved to the state to be edited, get its values as default values
+        // If there is a vehicle to be edited, get its values as default values
         if (editVehicleId && Object.getOwnPropertyNames(vehicles).length > 0) {
             const vehicleToEdit = vehicles[editVehicleId]
             vehicleValues = {
@@ -91,34 +91,40 @@ class AddVehicleForm extends Component {
 
                     <Form>
                         <div className="form__field field--half">
-                            <label htmlFor="vehicleName">Vehicle name</label>
+                            <label htmlFor="vehicleName">Vehicle name<span className="required">*</span></label>
                             <Field type="text" name="vehicleName" id="vehicleName" className={(touched.vehicleName && errors.vehicleName) && 'input--error'} />
-                            <ErrorMessage name="vehicleName" render={msg => <div className="field-error">{msg}</div>} />
+                            <ErrorMessage name="vehicleName"
+                                          render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="vehicleMakeModel">Make &amp; model</label>
+                            <label htmlFor="vehicleMakeModel">Make &amp; model<span className="required">*</span></label>
                             <Field type="text" name="vehicleMakeModel" id="vehicleMakeModel" className={(touched.vehicleMakeModel && errors.vehicleMakeModel) && 'input--error'} />
-                            <ErrorMessage name="vehicleMakeModel" render={msg => <div className="field-error">{msg}</div>} />
+                            <ErrorMessage name="vehicleMakeModel"
+                                          render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="vehicleFirstRegistration">Date of first registration</label>
+                            <label htmlFor="vehicleFirstRegistration">Date of first registration<span className="required">*</span></label>
                             <Field type="date" name="vehicleFirstRegistration" id="vehicleFirstRegistration" className={(touched.vehicleFirstRegistration && errors.vehicleFirstRegistration) && 'input--error'} />
-                            <ErrorMessage name="vehicleFirstRegistration" render={msg => <div className="field-error">{msg}</div>} />
+                            <ErrorMessage name="vehicleFirstRegistration"
+                                          render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="vehicleMileage">Current mileage</label>
+                            <label htmlFor="vehicleMileage">Current mileage<span className="required">*</span></label>
                             <Field type="number" name="vehicleMileage" id="vehicleMileage" className={(touched.vehicleMileage && errors.vehicleMileage) && 'input--error'} />
-                            <ErrorMessage name="vehicleMileage" render={msg => <div className="field-error">{msg}</div>} />
+                            <ErrorMessage name="vehicleMileage"
+                                          render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--half">
-                            <label htmlFor="vehicleTyres">Tyres</label>
+                            <label htmlFor="vehicleTyres">Tyres<span className="required">*</span></label>
                             <Field type="text" name="vehicleTyres" id="vehicleTyres" className={(touched.vehicleTyres && errors.vehicleTyres) && 'input--error'} />
-                            <ErrorMessage name="vehicleTyres" render={msg => <div className="field-error">{msg}</div>} />
+                            <ErrorMessage name="vehicleTyres"
+                                          render={msg => <div className="field-error">{msg}</div>} />
                         </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Save vehicle</button>
                             {editVehicleId && <button type="button" onClick={() => this.handleRemoveVehicle(this.props.editVehicleId)}>Delete vehicle</button>}
                         </div>
+                        <div className="required-hint">Fields marked with * are required.</div>
                     </Form>
 
                 )}

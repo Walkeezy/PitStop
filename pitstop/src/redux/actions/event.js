@@ -1,6 +1,7 @@
 import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
+import { addNotification } from './notification'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -12,10 +13,28 @@ export function startAddingEvent(vehicleId, event) {
         .then(() => {
             dispatch(startLoadingEvents(auth.currentUser.uid, vehicleId))
             history.push(routes.HOME)
+            dispatch(addNotification('success', 'Your event has been added.'))
         })
         .catch((error) => {
+            dispatch(addNotification('error', error.message))
             console.error('Error adding event: ', error)
         })
+    }
+}
+
+export function startEditingEvent(vehicleId, eventId, event) {
+    return (dispatch) => {
+        event._modified = new Date()
+        return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).collection('events').doc(eventId).update(event)
+            .then(() => {
+                dispatch(startLoadingEvents(auth.currentUser.uid, vehicleId))
+                history.push(routes.HOME)
+                dispatch(addNotification('success', 'Your event has been updated.'))
+            })
+            .catch((error) => {
+                dispatch(addNotification('error', error.message))
+                console.error('Error updating event: ', error)
+            })
     }
 }
 
@@ -44,9 +63,12 @@ export function startRemovingEvent(vehicleId, eventId) {
     return (dispatch) => {
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).collection('events').doc(eventId).delete()
             .then(() => {
+                history.push(routes.HOME)
                 dispatch(removeEvent(eventId))
+                dispatch(addNotification('success', 'Your event has been deleted.'))
             })
             .catch((error) => {
+                dispatch(addNotification('error', error.message))
                 console.error('Error removing vehicle: ', error)
             })
     }
@@ -55,11 +77,10 @@ export function startRemovingEvent(vehicleId, eventId) {
 // REGULAR ACTIONS
 // -----------------------------------------------------
 
-export function addEvent(eventId, event) {
+export function removeEvent(eventId) {
     return {
-        type: 'ADD_EVENT',
-        eventId,
-        event
+        type: 'REMOVE_EVENT',
+        eventId
     }
 }
 
@@ -68,13 +89,6 @@ export function loadEvents(events, eventsArray) {
         type: 'LOAD_EVENTS',
         events,
         eventsArray
-    }
-}
-
-export function removeEvent(eventId) {
-    return {
-        type: 'REMOVE_EVENT',
-        eventId
     }
 }
 

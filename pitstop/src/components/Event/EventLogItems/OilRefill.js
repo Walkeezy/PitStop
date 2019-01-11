@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Icon from '../../Layout/Icons'
 import moment from 'moment'
-import EventLogDeleteItem from '../EventLogDeleteItem'
+import { Link } from 'react-router-dom'
+import * as routes from '../../../constants/routes'
 
 class EventLogItem extends Component {
 
@@ -18,14 +19,13 @@ class EventLogItem extends Component {
                 </div>
                 <div className="event__content">
                     <p className="event__date">{moment(event.date.seconds, 'X').format('dddd, D. MMMM YYYY')}</p>
-                    <p className="event__title">{event.amount}dl refilled</p>
+                    <Link className="event__title" to={routes.EDIT_EVENT + "/" + event.type + "/" + this.props.eventId}>{event.amount}dl refilled <Icon name="forward" width="8" fill="#233142" /></Link>
                     <p className="event__details">
                         <span className="event__mileage">{this.numberWithThousands(event.mileage)} km</span><br />
                         <span className="event__price">CHF {this.numberWithThousands(event.price)}</span><br />
                         {event.oil && <span className="event__oil">Oil: {event.oil}</span>}<br />
                         {event.company && <span className="event__company">Company: {event.company}</span>}
                     </p>
-                    <EventLogDeleteItem eventId={this.props.eventId} {...this.props} />
                 </div>
             </div>
 

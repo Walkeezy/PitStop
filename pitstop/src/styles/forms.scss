@@ -60,6 +60,18 @@ form {
     }
 }
 
+.required {
+    color: lighten($gray, 15);
+    margin-left: 0.3rem;
+}
+
+.required-hint {
+    display: block;
+    font-size: 0.9rem;
+    color: $gray;
+    margin-bottom: 0.5rem;
+}
+
 
 // INPUTS & LABELS
 // -----------------------------------------------------
@@ -83,9 +95,9 @@ input, textarea, select {
 
 textarea {
     resize: vertical;
+    min-height: 3rem;
     padding: 0.7rem 0.9rem;
     border: 1px solid $light-gray;
-
 }
 
 input[type=text],
@@ -96,7 +108,7 @@ input[type=date] {
 
 label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: $gray;
     margin-bottom: 0.5rem;
