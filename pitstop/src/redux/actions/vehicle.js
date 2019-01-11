@@ -45,9 +45,9 @@ export function startRemovingVehicle(vehicleId) {
     return (dispatch) => {
         return database.collection('users').doc(auth.currentUser.uid).collection('vehicles').doc(vehicleId).delete()
         .then(() => {
+            history.push(routes.ACCOUNT)
             dispatch(removeVehicle(vehicleId))
             dispatch(addNotification('success', 'Your vehicle has been deleted.'))
-            history.push(routes.ACCOUNT)
         })
         .catch((error) => {
             dispatch(addNotification('error', error.message))
