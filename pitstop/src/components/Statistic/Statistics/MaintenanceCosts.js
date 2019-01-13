@@ -78,6 +78,20 @@ class MaintenanceCosts extends Component {
                         <Doughnut data={data} />
                     </div>
                 </div>
+                <div className="box">
+                    <ul className="list list--tires">
+                        {dataSet.map((costs, index) => {
+                            return (
+
+                                <li className="list-item" key={index}>
+                                    <span>{labels[index]}</span>
+                                    <span>{costs} CHF</span>
+                                </li>
+
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
 
         )
