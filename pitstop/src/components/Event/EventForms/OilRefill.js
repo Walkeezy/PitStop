@@ -57,7 +57,7 @@ class EventForm extends Component {
                 eventMileage: eventToEdit.mileage,
                 eventOil: eventToEdit.oil,
                 eventOilAmount: eventToEdit.amount,
-                eventOilPrice: eventToEdit.price
+                eventOilPrice: eventToEdit.price.toFixed(2)
             }
         }
 

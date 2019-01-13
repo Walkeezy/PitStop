@@ -21,10 +21,9 @@ class EventLogItem extends Component {
                     <p className="event__date">{moment(event.date.seconds, 'X').format('dddd, D. MMMM YYYY')}</p>
                     <Link className="event__title" to={routes.EDIT_EVENT + "/" + event.type + "/" + this.props.eventId}>Oil changed <Icon name="forward" width="8" fill="#233142" /></Link>
                     <p className="event__details">
-                        <span className="event__mileage">{this.numberWithThousands(event.mileage)} km</span><br />
-                        <span className="event__price">CHF {this.numberWithThousands(event.price)}</span><br />
+                        <span className="event__mileage">Mileage: {this.numberWithThousands(event.mileage)} km</span><br />
+                        <span className="event__price">Price: CHF {this.numberWithThousands(event.price.toFixed(2))}</span><br />
                         {event.oil && <span className="event__oil">Oil: {event.oil}</span>}<br/>
-                        {event.company && <span className="event__company">Company: {event.company}</span>}
                     </p>
                 </div>
             </div>

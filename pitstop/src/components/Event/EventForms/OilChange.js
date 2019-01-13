@@ -17,7 +17,6 @@ class EventForm extends Component {
             date       : new Date(values.eventDate),
             mileage    : values.eventMileage,
             oil        : values.eventOil,
-            amount     : values.eventOilAmount,
             company    : values.eventCompany,
             price      : values.eventOilPrice
         }
@@ -57,7 +56,7 @@ class EventForm extends Component {
                 eventDate: new Date(eventToEdit.date.seconds * 1000).toISOString().slice(0, 10),
                 eventMileage: eventToEdit.mileage,
                 eventOil: eventToEdit.oil,
-                eventOilPrice: eventToEdit.price,
+                eventOilPrice: eventToEdit.price.toFixed(2),
                 eventCompany: eventToEdit.company
             }
         }
@@ -69,8 +68,8 @@ class EventForm extends Component {
                     eventDate       : Yup.date().required('Date of event is required.'),
                     eventMileage    : Yup.number().required('Mileage of your vehicle is required.'),
                     eventOil        : Yup.string().required('Field for the oil name is required.'),
-                    eventOilCompany : Yup.string(),
-                    eventCompany    : Yup.number().required('Price of the oil change is required.')
+                    eventCompany    : Yup.string(),
+                    eventOilPrice   : Yup.number().required('Price of the oil change is required.')
                 })}
                 onSubmit={this.handleSubmitEvent}
                 enableReinitialize="true">

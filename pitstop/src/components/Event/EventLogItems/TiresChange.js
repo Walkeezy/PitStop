@@ -22,9 +22,8 @@ class EventLogItem extends Component {
                     <Link className="event__title" to={routes.EDIT_EVENT + "/" + event.type + "/" + this.props.eventId}>Tires changed <Icon name="forward" width="8" fill="#233142" /></Link>
                     <p className="event__details">
                         <span className="event__mileage">{this.numberWithThousands(event.mileage)} km</span><br />
-                        <span className="event__price">CHF {this.numberWithThousands(event.price)}</span><br />
-                        {event.tires && <span className="event__tires">New tires: {event.tires}</span>}<br />
-                        {event.company && <span className="event__company">Company: {event.company}</span>}
+                        <span className="event__price">CHF {this.numberWithThousands(event.price.toFixed(2))}</span><br />
+                        {event.tires && <span className="event__tires">Tires: {event.tires}</span>}<br />
                     </p>
                 </div>
             </div>
