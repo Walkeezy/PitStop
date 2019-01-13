@@ -17,7 +17,7 @@ class FuelStatistic extends Component {
             // Chart Arrays
             amount         = eventsSorted.map((eventsSorted) => eventsSorted.amount),
             price          = eventsSorted.map((eventsSorted) => eventsSorted.price),
-            mileage        = eventsSorted.map((eventsSorted) => eventsSorted.price)
+            mileage        = eventsSorted.map((eventsSorted) => eventsSorted.mileage)
 
         const data = {
             labels  : mileage,

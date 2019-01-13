@@ -25,18 +25,23 @@ class MaintenanceCosts extends Component {
             switch (e.type) {
                 case 'refuel':
                     eventsFiltered[e.type].color = colors.REFUEL
+                    eventsFiltered[e.type].label = 'Refuel'
                     break
                 case 'tires-change':
                     eventsFiltered[e.type].color = colors.TIRE_CHANGE
+                    eventsFiltered[e.type].label = 'Tires Change'
                     break
                 case 'oil-refill':
                     eventsFiltered[e.type].color = colors.OIL_REFILL
+                    eventsFiltered[e.type].label = 'Oil Refill'
                     break
                 case 'oil-change':
                     eventsFiltered[e.type].color = colors.OIL_CHANGE
+                    eventsFiltered[e.type].label = 'Oil Change'
                     break
                 case 'inspection-service':
                     eventsFiltered[e.type].color = colors.INSPECTION
+                    eventsFiltered[e.type].label = 'Inspection Service'
                     break
                 default:
                     return null
@@ -44,7 +49,7 @@ class MaintenanceCosts extends Component {
         })
 
         for (let prop in eventsFiltered) {
-            labels.push(prop)
+            labels.push(eventsFiltered[prop].label)
             dataSet.push(eventsFiltered[prop].costs)
             color.push(eventsFiltered[prop].color)
         }
