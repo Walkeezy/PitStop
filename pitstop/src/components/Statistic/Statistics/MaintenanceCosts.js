@@ -21,7 +21,8 @@ class MaintenanceCosts extends Component {
                 eventsFiltered[e.type]       = {}
                 eventsFiltered[e.type].costs = 0
             }
-            eventsFiltered[e.type].costs += e.price
+
+            eventsFiltered[e.type].costs += parseInt(e.price)
 
             switch (e.type) {
                 case 'refuel':
