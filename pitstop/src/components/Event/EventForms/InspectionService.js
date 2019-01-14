@@ -55,7 +55,8 @@ class EventForm extends Component {
                 eventType: eventToEdit.type,
                 eventDate: new Date(eventToEdit.date.seconds * 1000).toISOString().slice(0, 10),
                 eventMileage: eventToEdit.mileage,
-                eventInspectionPrice: eventToEdit.price.toFixed(2),
+                eventDescription: eventToEdit.description,
+                eventInspectionPrice: parseFloat(eventToEdit.price).toFixed(2),
                 eventCompany: eventToEdit.company
             }
         }
@@ -66,7 +67,7 @@ class EventForm extends Component {
                 validationSchema={Yup.object().shape({
                     eventDate           : Yup.date().required('Date of event is required.'),
                     eventMileage        : Yup.number().required('Mileage of your vehicle is required.'),
-                    eventInspectionPrice: Yup.number().required('Price of the inspection is required.')
+                    eventInspectionPrice: Yup.number().required('Price is required.')
                 })}
                 onSubmit={this.handleSubmitEvent}
                 enableReinitialize="true">
@@ -94,7 +95,7 @@ class EventForm extends Component {
                                           render={msg => <div className="field-error">{msg}</div>}/>
                         </div>
                         <div className="form__field">
-                            <label htmlFor="eventDescription">Description</label>
+                            <label htmlFor="eventDescription">Description of service or repair</label>
                             <Field component="textarea"
                                 name="eventDescription"
                                 id="eventDescription"

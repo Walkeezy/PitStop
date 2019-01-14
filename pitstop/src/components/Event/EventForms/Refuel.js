@@ -55,7 +55,7 @@ class EventForm extends Component {
                 eventDate: new Date(eventToEdit.date.seconds * 1000).toISOString().slice(0, 10),
                 eventMileage: eventToEdit.mileage,
                 eventRefuelAmount: eventToEdit.amount,
-                eventRefuelPrice: eventToEdit.price.toFixed(2)
+                eventRefuelPrice: parseFloat(eventToEdit.price).toFixed(2)
             }
         }
 

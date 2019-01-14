@@ -84,34 +84,3 @@ body {
 .box__footer--highlighted {
     background: mix($yellow, $white, 10%);
 }
-
-.notification {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-
-    @media #{$bp-smartphones} {
-        padding: 0.75rem 1rem;
-    }
-}
-
-.notification--standalone {
-    max-width: $viewport-width;
-    width: $content-width;
-    margin: $viewport-spacing auto $viewport-spacing;
-    border-radius: $border-radius;
-    border: 1px solid transparent;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
-}
-
-.notification--error {
-    background: $error;
-    color: $white;
-    border-color: darken($error, 3%);
-}
-
-.notification--success {
-    background: $success;
-    color: $white;
-    border-color: darken($success, 3%);
-}

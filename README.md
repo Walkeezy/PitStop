@@ -60,4 +60,4 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 - [ ] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs schöner darstellen
 - [ ] Meldung beim Aufruf einer Statistik, wenn noch keine Events dafür erfasst wurden
 - [ ] Bug: nach Entfernen des aktiven Fahrzeugs: anderes Fahrzeug aktiv setzen und Events des gelöschten Fahrzeugs entfernen bzw. Events des neuen aktiven Fahrzeugs laden
-- [ ] Bug: Event type Inspection/Service: Fehler beim Update des Feldes Description
+- [X] Bug: Event type Inspection/Service: Fehler beim Update des Feldes Description

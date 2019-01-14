@@ -80,14 +80,14 @@
         font-size: 1.2rem;
         margin: 0.2rem 0 0;
     }
-
-    &:hover,
-    &:active {
-        opacity: 0.75;
-    }
 }
 
 .event__details {
     color: $blue;
     margin: 0;
+}
+
+.event__edit {
+    display: inline-block;
+    margin-top: 0.5rem;
 }

@@ -22,6 +22,7 @@ class AccountPage extends Component {
                 {this.props.notifications.active &&
                     <div className={'notification notification--standalone notification--' + this.props.notifications.type}>
                         <p>{this.props.notifications.message}</p>
+                        <button className="hide-notification" onClick={this.handleRemoveNotification}><Icon name="plus" width="18px" fill='#FFF' /></button>
                     </div>
                 }
                 <div className="box">

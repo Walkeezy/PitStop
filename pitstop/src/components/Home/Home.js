@@ -4,8 +4,19 @@ import * as routes from '../../constants/routes'
 import Header from '../Layout/Header'
 import VehicleSwitch from '../Vehicle/VehicleSwitch'
 import EventLog from '../Event/EventLog'
+import Icon from '../Layout/Icons'
 
 class HomePage extends Component {
+
+    constructor() {
+        super()
+        this.handleRemoveNotification = this.handleRemoveNotification.bind(this)
+    }
+
+    handleRemoveNotification(event) {
+        event.preventDefault();
+        this.props.removeNotification()
+    }
 
     render() {
         return (
@@ -16,6 +27,7 @@ class HomePage extends Component {
                 {this.props.notifications.active &&
                     <div className={'notification notification--standalone notification--' + this.props.notifications.type}>
                         <p>{this.props.notifications.message}</p>
+                        <button className="hide-notification" onClick={this.handleRemoveNotification}><Icon name="plus" width="18px" fill='#FFF' /></button>
                     </div>
                 }
 

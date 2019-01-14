@@ -41,7 +41,7 @@ class MaintenanceCosts extends Component {
                     break
                 case 'inspection-service':
                     eventsFiltered[e.type].color = colors.INSPECTION
-                    eventsFiltered[e.type].label = 'Inspection Service'
+                    eventsFiltered[e.type].label = 'Service & Repairs'
                     break
                 default:
                     return null
@@ -50,7 +50,7 @@ class MaintenanceCosts extends Component {
 
         for (let prop in eventsFiltered) {
             labels.push(eventsFiltered[prop].label)
-            dataSet.push(eventsFiltered[prop].costs)
+            dataSet.push(parseFloat(eventsFiltered[prop].costs).toFixed(2))
             color.push(eventsFiltered[prop].color)
         }
 
