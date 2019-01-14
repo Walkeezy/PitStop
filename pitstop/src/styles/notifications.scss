@@ -1,11 +1,11 @@
 .notification {
     position: relative;
-    padding: 0.5rem 3.75rem 0.5rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
     font-weight: 700;
 
     @media #{$bp-smartphones} {
-        padding: 0.75rem 1rem;
+        padding: 0.25rem 1rem;
     }
 }
 
@@ -13,9 +13,21 @@
     max-width: $viewport-width;
     width: $content-width;
     margin: $viewport-spacing auto $viewport-spacing;
+    padding: 0.5rem 3.75rem 0.5rem 1.5rem;
     border-radius: $border-radius;
     border: 1px solid transparent;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+
+    @media #{$bp-smartphones} {
+        padding: 0.25rem 1rem 0.25rem 1rem;
+    }
+}
+
+.notification--inside-form {
+    flex: 0 0 100%;
+    border-radius: $border-radius;
+    border: 1px solid transparent;
+    margin-top: 1rem;
 }
 
 .notification--error {
@@ -30,6 +42,16 @@
     border-color: darken($success, 3%);
 }
 
+.notification--warning {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: mix($error, $white, 10%);
+    color: $error;
+    border-color: mix($error, $white, 13%);
+    font-weight: normal;
+}
 
 .hide-notification {
     position: absolute;
@@ -41,6 +63,11 @@
     padding: 0;
     transform: rotate(45deg);
     transition: opacity 200ms;
+
+    @media #{$bp-smartphones} {
+        top: 1.25rem;
+        right: 1rem;
+    }
 
     &:hover,
     &:active {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
+import PublicRoute from './PublicRoute'
 import Header from '../Layout/Header'
 import Footer from '../Layout/Footer'
 import HomePage from '../Home/Home'
@@ -51,8 +52,8 @@ class Main extends Component {
                 <div className="app">
                     <Switch>
                         <PrivateRoute exact path={routes.HOME} component={HomePage} {...this.props} />
-                        <Route exact path={routes.SIGN_UP} render={() => <SignUpPage {...this.props} />} />
-                        <Route exact path={routes.SIGN_IN} render={() => <SignInPage {...this.props} />} />
+                        <PublicRoute exact path={routes.SIGN_UP} component={SignUpPage} {...this.props} />
+                        <PublicRoute exact path={routes.SIGN_IN} component={SignInPage} {...this.props} />
                         <Route exact path={routes.PASSWORD_FORGET} render={() => <PasswordForgetPage {...this.props} />} />
                         <PrivateRoute exact path={routes.PASSWORD_CHANGE} component={PasswordChangePage} {...this.props} />
                         <PrivateRoute exact path={routes.ADD_VEHICLE} component={AddVehiclePage} {...this.props} />

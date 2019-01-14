@@ -8,6 +8,16 @@ import SignOutButton from './SignOut'
 
 class AccountPage extends Component {
 
+    constructor() {
+        super()
+        this.handleRemoveNotification = this.handleRemoveNotification.bind(this)
+    }
+
+    handleRemoveNotification(event) {
+        event.preventDefault();
+        this.props.removeNotification()
+    }
+
     componentDidMount() {
         if (Object.keys(this.props.vehicles.vehicles).length === 1) {
             this.props.saveVehicleAsActive(Object.keys(this.props.vehicles.vehicles)[0])

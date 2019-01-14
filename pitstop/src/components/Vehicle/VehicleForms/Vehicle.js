@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class AddVehicleForm extends Component {
 
     constructor() {
         super()
+        this.state = {
+            confirmRemoveVehicle: false
+        }
         this.handleSubmitVehicle = this.handleSubmitVehicle.bind(this)
+        this.handleConfirmRemoveVehicle = this.handleConfirmRemoveVehicle.bind(this)
         this.handleRemoveVehicle = this.handleRemoveVehicle.bind(this)
     }
 
@@ -30,23 +33,15 @@ class AddVehicleForm extends Component {
         return
     }
 
+    handleConfirmRemoveVehicle(event) {
+        event.preventDefault();
+        this.setState({
+            confirmRemoveVehicle: true
+        })
+    }
+
     handleRemoveVehicle(vehicleId) {
-        if (vehicleId) {
-            confirmAlert({
-                title: 'Delete',
-                message: 'Are you sure you want to delete the vehicle?',
-                buttons: [
-                    {
-                        label: 'Yes',
-                        onClick: () => this.props.startRemovingVehicle(vehicleId)
-                    },
-                    {
-                        label: 'No',
-                        onClick: () => {}
-                    }
-                ]
-            })
-        }
+        (vehicleId) && this.props.startRemovingVehicle(vehicleId)
     }
 
     render() {
@@ -122,9 +117,15 @@ class AddVehicleForm extends Component {
                         </div>
                         <div className="form__field field--submit">
                             <button type="submit" disabled={isSubmitting} className="button--yellow">Save vehicle</button>
-                            {editVehicleId && <button type="button" onClick={() => this.handleRemoveVehicle(this.props.editVehicleId)}>Delete vehicle</button>}
+                            {editVehicleId && <button type="button" onClick={this.handleConfirmRemoveVehicle}>Delete vehicle</button>}
                         </div>
                         <div className="required-hint">Fields marked with * are required.</div>
+                        {this.state.confirmRemoveVehicle &&
+                            <div className="notification notification--inside-form notification--warning">
+                                <p><strong>Are you sure to delete this vehicle?</strong><br/>All events associate with this vehicle will be deleted too.</p>
+                                <p><button type="button" onClick={() => this.handleRemoveVehicle(this.props.editVehicleId)}>Yes, delete vehicle</button></p>
+                            </div>
+                        }
                     </Form>
 
                 )}

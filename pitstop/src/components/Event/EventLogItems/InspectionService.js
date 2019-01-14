@@ -21,6 +21,7 @@ class EventLogItem extends Component {
                     <p className="event__date">{moment(event.date.seconds, 'X').format('dddd, D. MMMM YYYY')}</p>
                     <p className="event__title">Service & Repairs</p>
                     <p className="event__details">
+                        {event.description && <span className="event__description">{event.description}</span>}<br />
                         <span className="event__mileage">Mileage: {this.numberWithThousands(event.mileage)} km</span><br />
                         <span className="event__price">Price: CHF {this.numberWithThousands(parseFloat(event.price).toFixed(2))}</span><br />
                     </p>

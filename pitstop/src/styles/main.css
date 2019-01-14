@@ -118,6 +118,9 @@ h6 {
     h6 {
       font-size: 1.15rem; } }
 
+strong {
+  font-weight: 700; }
+
 .text-align--center {
   text-align: center; }
 
@@ -619,20 +622,30 @@ label {
 
 .notification {
   position: relative;
-  padding: 0.5rem 3.75rem 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   font-size: 0.9rem;
   font-weight: 700; }
   @media only screen and (max-width: 400px) {
     .notification {
-      padding: 0.75rem 1rem; } }
+      padding: 0.25rem 1rem; } }
 
 .notification--standalone {
   max-width: 92vw;
   width: 1000px;
   margin: 4vw auto 4vw;
+  padding: 0.5rem 3.75rem 0.5rem 1.5rem;
   border-radius: 4px;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04); }
+  @media only screen and (max-width: 400px) {
+    .notification--standalone {
+      padding: 0.25rem 1rem 0.25rem 1rem; } }
+
+.notification--inside-form {
+  flex: 0 0 100%;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin-top: 1rem; }
 
 .notification--error {
   background: #B00020;
@@ -644,6 +657,16 @@ label {
   color: #FFFFFF;
   border-color: #109f61; }
 
+.notification--warning {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #f7e6e9;
+  color: #B00020;
+  border-color: #f5dee2;
+  font-weight: normal; }
+
 .hide-notification {
   position: absolute;
   top: 1.5rem;
@@ -654,6 +677,10 @@ label {
   padding: 0;
   transform: rotate(45deg);
   transition: opacity 200ms; }
+  @media only screen and (max-width: 400px) {
+    .hide-notification {
+      top: 1.25rem;
+      right: 1rem; } }
   .hide-notification:hover, .hide-notification:active {
     opacity: 0.5;
     transform: rotate(45deg);
