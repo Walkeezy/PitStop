@@ -13,7 +13,8 @@ class MaintenanceCosts extends Component {
         let eventsFiltered = {},
             labels         = [],
             dataSet        = [],
-            color          = []
+            color          = [],
+            eventList      = []
 
         events.forEach(e => {
             if (eventsFiltered[e.type] === undefined) {
@@ -52,7 +53,13 @@ class MaintenanceCosts extends Component {
             labels.push(eventsFiltered[prop].label)
             dataSet.push(parseFloat(eventsFiltered[prop].costs).toFixed(2))
             color.push(eventsFiltered[prop].color)
+            eventList.push({
+                label: eventsFiltered[prop].label,
+                costs: parseFloat(eventsFiltered[prop].costs).toFixed(2)
+            })
         }
+
+        eventList.sort((a,b) => (parseFloat(a.costs) < parseFloat(b.costs)) ? 1 : ((parseFloat(b.costs) < parseFloat(a.costs)) ? -1 : 0));
 
         const data = {
             labels  : labels,
@@ -80,12 +87,12 @@ class MaintenanceCosts extends Component {
                 </div>
                 <div className="box">
                     <ul className="list list--tires">
-                        {dataSet.map((costs, index) => {
+                        {eventList.map((props, index) => {
                             return (
 
                                 <li className="list-item" key={index}>
-                                    <span>{labels[index]}</span>
-                                    <span>{costs} CHF</span>
+                                    <span>{props.label}</span>
+                                    <span>{props.costs} CHF</span>
                                 </li>
 
                             )
