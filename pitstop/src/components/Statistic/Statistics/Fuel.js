@@ -16,7 +16,6 @@ class FuelStatistic extends Component {
             // Sort by date and mileage
             eventsSorted   = eventsFiltered.sort((a, b) => a.date.seconds - b.date.seconds),
             // Chart Arrays
-            price          = eventsSorted.map((eventsSorted) => eventsSorted.price),
             months         = eventsSorted.map((eventsSorted) => moment(eventsSorted.date.seconds, 'X').format('D.M.YYYY')),
             fuelConsumption = []
 
@@ -39,17 +38,6 @@ class FuelStatistic extends Component {
                     hoverBorderColor    : colors.REFUEL,
                     lineTension         : 0,
                     data                : fuelConsumption
-                },
-                {
-                    label               : 'Price',
-                    backgroundColor     : colors.PRICE_TRANS,
-                    borderColor         : colors.PRICE,
-                    borderCapStyle      : 'butt',
-                    borderWidth         : 1,
-                    hoverBackgroundColor: colors.PRICE,
-                    hoverBorderColor    : colors.PRICE,
-                    lineTension         : 0,
-                    data                : price
                 }
             ]
         }
@@ -59,7 +47,7 @@ class FuelStatistic extends Component {
                 yAxes: [{
                     ticks: {
                         suggestedMin: 0,
-                        suggestedMax: 30
+                        suggestedMax: 20
                     }
                 }]
             }
