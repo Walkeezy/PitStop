@@ -68,6 +68,22 @@ class OilConsumption extends Component {
                         <Line data={data} options={options} />
                     </div>
                 </div>
+                <div className="box">
+                    <ul className="list list--oil">
+                        {eventsSorted.map((props, index) => {
+                            console.log('props', props)
+                            console.log('index', index)
+                            return (
+
+                                <li className="list-item" key={index}>
+                                    <span>{props.oil}</span>
+                                    <span>{index > 0 ? props.mileage - eventsSorted[index - 1].mileage : props.mileage} km</span>
+                                </li>
+
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
 
         )

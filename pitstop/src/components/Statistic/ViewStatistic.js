@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import Fuel from './Statistics/Fuel'
+import Fuel from './Statistics/FuelConsumption'
 import OilConsumption from './Statistics/OilConsumption'
 import TiresLongevity from './Statistics/TiresLongevity'
 import MaintenanceCosts from './Statistics/MaintenanceCosts'

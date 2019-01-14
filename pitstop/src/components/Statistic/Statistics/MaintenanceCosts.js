@@ -87,7 +87,7 @@ class MaintenanceCosts extends Component {
                     </div>
                 </div>
                 <div className="box">
-                    <ul className="list list--tires">
+                    <ul className="list list--maintenance">
                         {eventList.map((props, index) => {
                             return (
 

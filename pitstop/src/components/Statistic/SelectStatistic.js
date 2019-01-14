@@ -35,7 +35,7 @@ class StatisticPage extends Component {
                         <li className="link-list-item">
                             <Link className="link-list-item__link" to={routes.STATISTIC + "/fuel"}>
                                 <div className="link-list-item__icon icon icon--refuel"><Icon name="fuel" /></div>
-                                Fuel statistic
+                                Fuel consumption
                                 <Icon className="link-list-item__arrow" name="forward" width="10" fill="#233142" />
                             </Link>
                         </li>
