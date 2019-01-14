@@ -4,6 +4,7 @@ import * as routes from '../../../constants/routes'
 import * as colors from '../../../constants/colors'
 
 import Header from './../../Layout/Header'
+import moment from 'moment'
 
 class FuelStatistic extends Component {
 
@@ -13,17 +14,23 @@ class FuelStatistic extends Component {
 
         let eventsFiltered = events.filter(events => events.type === 'refuel'),
             // Sort by date and mileage
-            eventsSorted   = eventsFiltered.sort((a, b) => a.date.seconds - b.date.seconds || a.mileage - b.mileage),
+            eventsSorted   = eventsFiltered.sort((a, b) => a.date.seconds - b.date.seconds),
             // Chart Arrays
-            amount         = eventsSorted.map((eventsSorted) => eventsSorted.amount),
             price          = eventsSorted.map((eventsSorted) => eventsSorted.price),
-            mileage        = eventsSorted.map((eventsSorted) => eventsSorted.mileage)
+            months         = eventsSorted.map((eventsSorted) => moment(eventsSorted.date.seconds, 'X').format('D.M.YYYY')),
+            fuelConsumption = []
+
+            eventsSorted.map((props, index) => {
+                    fuelConsumption.push(
+                        index > 0 ? Number(((props.amount / (props.mileage - eventsSorted[index - 1].mileage)) * 100).toFixed(2)) : 0
+                    )
+            })
 
         const data = {
-            labels  : mileage,
+            labels  : months,
             datasets: [
                 {
-                    label               : 'liter',
+                    label               : 'Liter per 100km',
                     backgroundColor     : colors.REFUEL_TRANS,
                     borderColor         : colors.REFUEL,
                     borderCapStyle      : 'butt',
@@ -31,10 +38,10 @@ class FuelStatistic extends Component {
                     hoverBackgroundColor: colors.REFUEL,
                     hoverBorderColor    : colors.REFUEL,
                     lineTension         : 0,
-                    data                : amount
+                    data                : fuelConsumption
                 },
                 {
-                    label               : 'price',
+                    label               : 'Price',
                     backgroundColor     : colors.PRICE_TRANS,
                     borderColor         : colors.PRICE,
                     borderCapStyle      : 'butt',
@@ -52,7 +59,7 @@ class FuelStatistic extends Component {
                 yAxes: [{
                     ticks: {
                         suggestedMin: 0,
-                        suggestedMax: 100
+                        suggestedMax: 30
                     }
                 }]
             }
