@@ -61,3 +61,7 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 - [ ] Meldung beim Aufruf einer Statistik, wenn noch keine Events dafür erfasst wurden
 - [X] Bug: nach Entfernen des aktiven Fahrzeugs: anderes Fahrzeug aktiv setzen und Events des gelöschten Fahrzeugs entfernen bzw. Events des neuen aktiven Fahrzeugs laden
 - [X] Bug: Event type Inspection/Service: Fehler beim Update des Feldes Description
+
+### Usability Test Beweisfoto
+
+<img src="readmeImages/usabilityTest.jpeg">
