@@ -2,6 +2,7 @@ import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
 import { addNotification } from './notification'
+import { startLoadingEvents } from './event'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -14,6 +15,7 @@ export function startAddingVehicle(vehicle) {
         .then((doc) => {
             dispatch(updateVehicle(doc.id, vehicle))
             dispatch(setVehicleAsActive(doc.id))
+            dispatch(startLoadingEvents(auth.currentUser.uid, doc.id))
             dispatch(addNotification('success', 'Your new vehicle has been added.'))
             history.push(routes.ACCOUNT)
         }).catch((error) => {
@@ -82,6 +84,7 @@ export function saveVehicleAsActive(vehicleId) {
         })
         .then(() => {
             dispatch(setVehicleAsActive(vehicleId))
+            dispatch(startLoadingEvents(auth.currentUser.uid, vehicleId))
         })
         .catch((error) => {
             console.error('Error setting active vehicle: ', error)

@@ -21,7 +21,7 @@ class VehicleList extends Component {
                                     <span className="vehicles-item__name">{vehicles[key].name}</span>
                                     <span className="vehicles-item__makemodel">{vehicles[key].make_model}</span>
                                 </span>
-                                <span className="vehicles-item__edit"><Link to={routes.EDIT_VEHICLE + "/" + key} className="button">Edit</Link></span>
+                                <span className="vehicles-item__edit"><Link to={routes.EDIT_VEHICLE + "/" + key} className="button button--small">Edit vehicle</Link></span>
                             </li>
                         )
                     }) }

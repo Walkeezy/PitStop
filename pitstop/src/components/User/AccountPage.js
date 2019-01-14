@@ -18,12 +18,6 @@ class AccountPage extends Component {
         this.props.removeNotification()
     }
 
-    componentDidMount() {
-        if (Object.keys(this.props.vehicles.vehicles).length === 1) {
-            this.props.saveVehicleAsActive(Object.keys(this.props.vehicles.vehicles)[0])
-        }
-    }
-
     render() {
         return (
 

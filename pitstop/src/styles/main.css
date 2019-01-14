@@ -465,7 +465,11 @@ label {
   justify-content: space-between;
   flex-wrap: wrap;
   border-bottom: 1px solid #EAEDF3;
-  padding: 1rem 1.5rem; }
+  padding: 1rem 1.5rem;
+  height: 4.5rem; }
+  @media only screen and (max-width: 400px) {
+    .list-item {
+      height: auto; } }
 
 .link-list-item {
   border-bottom: 1px solid #EAEDF3; }
@@ -474,7 +478,8 @@ label {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 1.3555rem 1.5rem;
+  padding: 1rem 1.5rem;
+  height: 4.5rem;
   background-color: #FFFFFF;
   border: none;
   transition: background-color 200ms; }

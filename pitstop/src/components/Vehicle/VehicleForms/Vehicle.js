@@ -41,7 +41,20 @@ class AddVehicleForm extends Component {
     }
 
     handleRemoveVehicle(vehicleId) {
-        (vehicleId) && this.props.startRemovingVehicle(vehicleId)
+        if(vehicleId){
+            this.props.startRemovingVehicle(vehicleId)
+
+            // Check if there are other vehicles and set another one as active
+            const vehicles = this.props.vehicles.vehicles
+            if (Object.keys(vehicles).length >= 1){
+                // Find possible new active vehicles
+                const possibleActiveVehicles = Object.keys(vehicles).filter(key => key !== vehicleId)
+                // Set new active vehicle if there is a possibility
+                if (possibleActiveVehicles.length >= 1){
+                    this.props.saveVehicleAsActive(possibleActiveVehicles[0])
+                }
+            }
+        }
     }
 
     render() {
@@ -122,7 +135,7 @@ class AddVehicleForm extends Component {
                         <div className="required-hint">Fields marked with * are required.</div>
                         {this.state.confirmRemoveVehicle &&
                             <div className="notification notification--inside-form notification--warning">
-                                <p><strong>Are you sure to delete this vehicle?</strong><br/>All events associate with this vehicle will be deleted too.</p>
+                                <p><strong>Are you sure to delete this vehicle?</strong><br/>All events associated with this vehicle will be deleted too.</p>
                                 <p><button type="button" onClick={() => this.handleRemoveVehicle(this.props.editVehicleId)}>Yes, delete vehicle</button></p>
                             </div>
                         }
