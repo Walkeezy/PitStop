@@ -64,4 +64,4 @@ Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleist
 
 ### Usability Test Beweisfoto
 
-<img src="readmeImages/usabilityTest.jpeg">
+<img src="readmeImages/usabilityTest.jpeg" width="300">
