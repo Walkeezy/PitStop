@@ -43,14 +43,13 @@ export function startLoadingEvents(userId, vehicleId) {
     return (dispatch) => {
         return database.collection('users').doc(userId).collection('vehicles').doc(vehicleId).collection('events').orderBy('date', 'desc').get()
         .then((docs) => {
-            let events = {}
-            let eventsArray = []
+            let events = []
             docs.forEach(function (doc) {
-                const key = doc.id
-                events[key] = doc.data()
-                eventsArray.push(doc.data())
+                let event = doc.data()
+                event.id = doc.id
+                events.push(event)
             })
-            dispatch(loadEvents(events, eventsArray))
+            dispatch(loadEvents(events, events))
         })
         .catch((error) => {
             console.error('Error loading events: ', error)
@@ -84,11 +83,16 @@ export function removeEvent(eventId) {
     }
 }
 
-export function loadEvents(events, eventsArray) {
+export function loadEvents(events) {
     return {
         type: 'LOAD_EVENTS',
-        events,
-        eventsArray
+        events
+    }
+}
+
+export function setEventLoading() {
+    return {
+        type: 'SET_EVENT_LOADING'
     }
 }
 

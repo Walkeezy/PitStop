@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class QuickOilConsumption extends Component {
 
     render() {
-        const events = this.props.events.eventsArray
+        const events = this.props.events.events
         const initialMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].initial_mileage
         let averageOilConsumption = '–'
 

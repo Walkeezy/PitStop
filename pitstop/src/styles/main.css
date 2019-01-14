@@ -731,3 +731,6 @@ label {
     animation-delay: 200ms; }
   .bouncing-loader__dot:nth-child(3) {
     animation-delay: 200ms; }
+
+.bouncing-loader__dot--blue {
+  background: #455D7A; }

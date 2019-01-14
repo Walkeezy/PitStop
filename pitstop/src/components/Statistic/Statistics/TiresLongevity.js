@@ -8,7 +8,7 @@ import Header from '../../Layout/Header'
 class TiresLongevity extends Component {
 
     calculateStatistic = () => {
-        const events = this.props.events.eventsArray
+        const events = this.props.events.events
         const vehicle = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle]
         let tiresDistances = []
 

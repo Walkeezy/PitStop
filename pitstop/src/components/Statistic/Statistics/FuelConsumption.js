@@ -10,7 +10,7 @@ class FuelStatistic extends Component {
 
     render() {
 
-        const events = this.props.events.eventsArray
+        const events = this.props.events.events
 
         let eventsFiltered = events.filter(events => events.type === 'refuel'),
             // Sort by date and mileage

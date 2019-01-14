@@ -25,7 +25,7 @@ class EventLogItem extends Component {
                         <span className="event__price">Price: CHF {this.numberWithThousands(parseFloat(event.price).toFixed(2))}</span><br />
                         {event.tires && <span className="event__tires">Tires: {event.tires}</span>}<br />
                     </p>
-                    <Link className="event__edit button button--small" to={routes.EDIT_EVENT + "/" + event.type + "/" + this.props.eventId}>Edit event</Link>
+                    <Link className="event__edit button button--small" to={routes.EDIT_EVENT + "/" + event.type + "/" + event.id}>Edit event</Link>
                 </div>
             </div>
 

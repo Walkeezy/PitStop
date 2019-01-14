@@ -2,7 +2,7 @@ import { database, auth } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
 import { addNotification } from './notification'
-import { startLoadingEvents } from './event'
+import { setEventLoading, startLoadingEvents } from './event'
 
 // ASYNC ACTIONS
 // -----------------------------------------------------
@@ -84,6 +84,7 @@ export function saveVehicleAsActive(vehicleId) {
         })
         .then(() => {
             dispatch(setVehicleAsActive(vehicleId))
+            dispatch(setEventLoading())
             dispatch(startLoadingEvents(auth.currentUser.uid, vehicleId))
         })
         .catch((error) => {

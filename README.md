@@ -36,6 +36,7 @@ Passwort: beispiel
 * Chart.js (für Statistik-Grafiken)
 * Moment.js (für Datumsformate)
 * Normalize.css (konsistente Darstellung auf allen Browsern)
+* BEM (CSS Naming Convention)
 
 ## Projektumfang
 
@@ -53,14 +54,6 @@ Logbuch pro Fahrzeug zum Erfassen von Ereignissen: Reifenwechsel, Service, Repar
 
 ### Modul 5: Statistik
 Statistik pro Fahrzeug: Benzin- & Ölverbrauch, Unterhaltskosten, Kilometerleistung der Reifen etc.
-
-## To do
-
-- [X] Login & Sign up für eingeloggt Benutzer nicht aufrufbar
-- [X] "Sind Sie sicher?"-Abfrage beim Löschen eines Fahrzeugs schöner darstellen
-- [ ] Meldung beim Aufruf einer Statistik, wenn noch keine Events dafür erfasst wurden
-- [X] Bug: nach Entfernen des aktiven Fahrzeugs: anderes Fahrzeug aktiv setzen und Events des gelöschten Fahrzeugs entfernen bzw. Events des neuen aktiven Fahrzeugs laden
-- [X] Bug: Event type Inspection/Service: Fehler beim Update des Feldes Description
 
 ### Usability Test Beweisfoto
 

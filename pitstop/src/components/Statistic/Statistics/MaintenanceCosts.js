@@ -8,7 +8,7 @@ import Header from './../../Layout/Header'
 class MaintenanceCosts extends Component {
 
     render() {
-        const events = this.props.events.eventsArray
+        const events = this.props.events.events
 
         let eventsFiltered = {},
             labels         = [],

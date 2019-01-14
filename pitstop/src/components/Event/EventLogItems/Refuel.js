@@ -24,7 +24,7 @@ class EventLogItem extends Component {
                         <span className="event__mileage">Mileage: {this.numberWithThousands(event.mileage)} km</span><br />
                         <span className="event__price">Price: CHF {this.numberWithThousands(parseFloat(event.price).toFixed(2))}</span>
                     </p>
-                    <Link className="event__edit button button--small" to={routes.EDIT_EVENT + "/" + event.type + "/" + this.props.eventId}>Edit event</Link>
+                    <Link className="event__edit button button--small" to={routes.EDIT_EVENT + "/" + event.type + "/" + event.id}>Edit event</Link>
                 </div>
             </div>
 

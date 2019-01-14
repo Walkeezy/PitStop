@@ -30,10 +30,9 @@ class Main extends Component {
     render() {
         const loadingUserData = this.props.user.loading
         const loadingVehicleData = this.props.vehicles.loading
-        const loadingEventData = this.props.events.loading
 
         // Display loading screen until all data is loaded
-        if (loadingUserData || loadingVehicleData || loadingEventData){
+        if (loadingUserData || loadingVehicleData){
             return (
 
                 <div className="loading-screen">
