@@ -49,7 +49,7 @@ class EventForm extends Component {
 
         // If there is a event to be edited, get its values as default values
         if (editEventId && Object.getOwnPropertyNames(events).length > 0) {
-            const eventToEdit = events.filter(events => events.id === editEventId)
+            const eventToEdit = events.filter(event => event.id === editEventId)[0]
             eventValues = {
                 eventType: eventToEdit.type,
                 eventDate: new Date(eventToEdit.date.seconds * 1000).toISOString().slice(0, 10),

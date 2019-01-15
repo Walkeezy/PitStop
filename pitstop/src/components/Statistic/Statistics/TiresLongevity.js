@@ -44,57 +44,74 @@ class TiresLongevity extends Component {
     render() {
         const statisticData = this.calculateStatistic()
 
-        const data = {
-            labels: statisticData.map((tires) => tires.name),
-            datasets: [
-                {
-                    label: 'Kilometers driven',
-                    backgroundColor     : colors.TIRE_CHANGE_TRANS,
-                    borderColor         : colors.TIRE_CHANGE,
-                    borderWidth         : 1,
-                    hoverBackgroundColor: colors.TIRE_CHANGE,
-                    hoverBorderColor    : colors.TIRE_CHANGE,
-                    data: statisticData.map((tires) => tires.distance)
-                }
-            ]
-        }
+        if (statisticData === false){
 
-        const options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero : true
-                    }
-                }]
-            }
-        }
+            return (
 
-        return (
-
-            <div className="page">
-                <Header title="Tires longevity" backLink={routes.STATISTIC} />
-                <div className="box">
-                    <div className="box__content">
-                        <Bar data={data} options={options} />
+                <div className="page">
+                    <Header title="Tires longevity" backLink={routes.STATISTIC} />
+                    <div className="notification notification--standalone notification--empty-state">
+                        <p>Oh no, there is not enough data to calculate this statistic for you.</p>
                     </div>
                 </div>
-                <div className="box">
-                    <ul className="list list--tires">
-                        {statisticData.map((tires, index) => {
-                            return (
 
-                                <li className="list-item" key={index}>
-                                    <span>{tires.name}</span>
-                                    <span>{tires.distance} km</span>
-                                </li>
+            )
 
-                            )
-                        })}
-                    </ul>
+        } else {
+
+            const data = {
+                labels: statisticData.map((tires) => tires.name),
+                datasets: [
+                    {
+                        label: 'Kilometers driven',
+                        backgroundColor: colors.TIRE_CHANGE_TRANS,
+                        borderColor: colors.TIRE_CHANGE,
+                        borderWidth: 1,
+                        hoverBackgroundColor: colors.TIRE_CHANGE,
+                        hoverBorderColor: colors.TIRE_CHANGE,
+                        data: statisticData.map((tires) => tires.distance)
+                    }
+                ]
+            }
+
+            const options = {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+
+            return (
+
+                <div className="page">
+                    <Header title="Tires longevity" backLink={routes.STATISTIC} />
+                    <div className="box">
+                        <div className="box__content">
+                            <Bar data={data} options={options} />
+                        </div>
+                    </div>
+                    <div className="box">
+                        <ul className="list list--tires">
+                            {statisticData.map((tires, index) => {
+                                return (
+
+                                    <li className="list-item" key={index}>
+                                        <span>{tires.name}</span>
+                                        <span>{tires.distance} km</span>
+                                    </li>
+
+                                )
+                            })}
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-        )
+            )
+
+        }
     }
 }
 

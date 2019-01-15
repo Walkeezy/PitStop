@@ -77,32 +77,49 @@ class MaintenanceCosts extends Component {
             ]
         }
 
-        return (
+        if (dataSet.length === 0) {
 
-            <div className="page">
-                <Header title="Maintenance Costs" backLink={routes.STATISTIC}/>
-                <div className="box">
-                    <div className="box__content">
-                        <Doughnut data={data} />
+            return (
+
+                <div className="page">
+                    <Header title="Maintenance costs" backLink={routes.STATISTIC} />
+                    <div className="notification notification--standalone notification--empty-state">
+                        <p>Oh no, there is not enough data to calculate this statistic for you.</p>
                     </div>
                 </div>
-                <div className="box">
-                    <ul className="list list--maintenance">
-                        {eventList.map((props, index) => {
-                            return (
 
-                                <li className="list-item" key={index}>
-                                    <span>{props.label}</span>
-                                    <span>{props.costs} CHF</span>
-                                </li>
+            )
 
-                            )
-                        })}
-                    </ul>
+        } else {
+
+            return (
+
+                <div className="page">
+                    <Header title="Maintenance costs" backLink={routes.STATISTIC}/>
+                    <div className="box">
+                        <div className="box__content">
+                            <Doughnut data={data} />
+                        </div>
+                    </div>
+                    <div className="box">
+                        <ul className="list list--maintenance">
+                            {eventList.map((props, index) => {
+                                return (
+
+                                    <li className="list-item" key={index}>
+                                        <span>{props.label}</span>
+                                        <span>{props.costs} CHF</span>
+                                    </li>
+
+                                )
+                            })}
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-        )
+            )
+
+        }
     }
 }
 

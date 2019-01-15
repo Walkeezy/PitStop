@@ -2,7 +2,7 @@ import { database, auth, emailAuthProvider } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
 import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
-import { startLoadingEvents, resetEventLoading } from './event'
+import { startLoadingEvents } from './event'
 import { addNotification } from './notification'
 
 // ASYNC ACTIONS
@@ -20,7 +20,6 @@ export function verifyUser() {
             } else {
                 dispatch(unsetUser())
                 dispatch(resetVehicleLoading())
-                dispatch(resetEventLoading())
             }
         })
     }
@@ -36,14 +35,12 @@ export function loadUserDetails(userId) {
                     'firstname': doc.data().firstname,
                     'lastname': doc.data().lastname
                 }
-                dispatch(setUserDetails(details))
                 if (doc.data().active_vehicle) {
                     const activeVehicle = doc.data().active_vehicle
                     dispatch(setVehicleAsActive(activeVehicle))
                     dispatch(startLoadingEvents(userId, activeVehicle))
-                } else {
-                    dispatch(resetEventLoading())
                 }
+                dispatch(setUserDetails(details))
             } else {
                 dispatch(addNotification('error', 'User not found in database'))
                 console.error('User not found in database')

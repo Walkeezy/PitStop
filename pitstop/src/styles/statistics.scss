@@ -24,3 +24,12 @@
     font-size: 1rem;
     margin-left: 0.25em;
 }
+
+.quick-statistic__empty-state {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: italic;
+    color: $gray;
+    padding: 1.75rem 0 0.75rem;
+}

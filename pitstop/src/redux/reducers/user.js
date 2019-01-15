@@ -14,7 +14,6 @@ const userReducer = function user(state = initialUserReducer, action) {
         case 'SET_USER':
             return {
                 ...state,
-                loading: false,
                 authenticated: true,
                 user: action.user
             }
@@ -29,6 +28,7 @@ const userReducer = function user(state = initialUserReducer, action) {
         case 'SET_USER_DETAILS':
             return {
                 ...state,
+                loading: false,
                 details: action.details
             }
 

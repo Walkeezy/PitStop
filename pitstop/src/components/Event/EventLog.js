@@ -11,11 +11,8 @@ class EventLog extends Component {
         const loadingEventData = this.props.events.loading
         events.sort((b, a) => a.date - b.date || a.mileage - b.mileage) // Sort by date first, if it's the same then sort by mileage
 
-        const eventlog = events.length !== 0
-            ? events.map((event, index) => <EventLogItem key={index} event={event} {...this.props} />)
-            : <p>No events found for this vehicle. <Link to={routes.ADD_EVENT}>Go and add some!</Link></p>
-
         if (loadingEventData) {
+
             return (
 
                 <div className="bouncing-loader">
@@ -25,15 +22,32 @@ class EventLog extends Component {
                 </div>
 
             )
+
         } else {
+
+            if(events.length === 0){
+
+                return (
+
+                    <div className="event-log">
+                        <div className="notification notification--standalone notification--empty-state">
+                            <p>Looks like this vehicle does not have any events yet. <Link to={routes.ADD_EVENT}>Go and add one!</Link></p>
+                        </div>
+                    </div>
+
+                )
+
+            }
+
             return (
 
                 <div className="event-log">
-                    {events.length !== 0 && <div className="event-log-line"></div>}
-                    {eventlog}
+                    <div className="event-log-line"></div>
+                    {events.map((event, index) => <EventLogItem key={index} event={event} {...this.props} />)}
                 </div>
 
             )
+        
         }
     }
 }

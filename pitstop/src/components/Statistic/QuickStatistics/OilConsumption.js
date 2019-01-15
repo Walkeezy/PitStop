@@ -2,33 +2,55 @@ import React, { Component } from 'react'
 
 class QuickOilConsumption extends Component {
 
-    render() {
+    calculateStatistic = () => {
         const events = this.props.events.events
         const initialMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].initial_mileage
-        let averageOilConsumption = '–'
 
         let oilrefillEvents = events.filter(events => events.type === 'oil-refill')
-        if (oilrefillEvents.length) {
-            oilrefillEvents.sort((a, b) => a.mileage - b.mileage)
-            const lowestMileage = (oilrefillEvents > 0) ? oilrefillEvents[0].mileage : initialMileage
-            const oilDistance = oilrefillEvents[oilrefillEvents.length - 1].mileage - lowestMileage
-            const oilTotal = oilrefillEvents.reduce((consumption, event) => consumption + event.amount, 0)
-            const oilConsumed = oilTotal - oilrefillEvents[0].amount // Substract amount from first event, because it must not be included to calculate the consumption correctly
-            const oilConsumption = ((oilConsumed / 10) / oilDistance) * 1000
-            averageOilConsumption = Number(oilConsumption.toFixed(2))
+
+        if (oilrefillEvents.length === 0) {
+            return false
         }
 
-        return (
+        oilrefillEvents.sort((a, b) => a.mileage - b.mileage)
+        const lowestMileage = (oilrefillEvents > 0) ? oilrefillEvents[0].mileage : initialMileage
+        const oilDistance = oilrefillEvents[oilrefillEvents.length - 1].mileage - lowestMileage
+        const oilTotal = oilrefillEvents.reduce((consumption, event) => consumption + event.amount, 0)
+        const oilConsumed = oilTotal - oilrefillEvents[0].amount // Substract amount from first event, because it must not be included to calculate the consumption correctly
+        const oilConsumption = ((oilConsumed / 10) / oilDistance) * 1000
 
-            <div className="quick-statistic">
-                <div className="quick-statistic__label">Average oil consumption</div>
-                <div className="quick-statistic__amount">
-                    <span className="quick-statistic__number">{averageOilConsumption}</span>
-                    <span className="quick-statistic__unit">l / 1000km</span>
+        return Number(oilConsumption.toFixed(2))
+    }
+
+    render() {
+        const statisticData = this.calculateStatistic()
+
+        if (statisticData === false) {
+
+            return (
+
+                <div className="quick-statistic">
+                    <div className="quick-statistic__label">Average oil consumption</div>
+                    <div className="quick-statistic__empty-state">Not enough data</div>
                 </div>
-            </div>
 
-        )
+            )
+
+        } else {
+
+            return (
+
+                <div className="quick-statistic">
+                    <div className="quick-statistic__label">Average oil consumption</div>
+                    <div className="quick-statistic__amount">
+                        <span className="quick-statistic__number">{statisticData}</span>
+                        <span className="quick-statistic__unit">l / 1000km</span>
+                    </div>
+                </div>
+
+            )
+
+        }
 
     }
 }

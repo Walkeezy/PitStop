@@ -49,18 +49,35 @@ class FuelStatistic extends Component {
             }
         }
 
-        return (
+        if (fuelConsumption.length === 0) {
 
-            <div className="page">
-                <Header title="Fuel consumption" backLink={routes.STATISTIC}/>
-                <div className="box">
-                    <div className="box__content">
-                        <Line data={data} options={options} />
+            return (
+
+                <div className="page">
+                    <Header title="Fuel consumption" backLink={routes.STATISTIC} />
+                    <div className="notification notification--standalone notification--empty-state">
+                        <p>Oh no, there is not enough data to calculate this statistic for you.</p>
                     </div>
                 </div>
-            </div>
 
-        )
+            )
+
+        } else {
+
+            return (
+
+                <div className="page">
+                    <Header title="Fuel consumption" backLink={routes.STATISTIC}/>
+                    <div className="box">
+                        <div className="box__content">
+                            <Line data={data} options={options} />
+                        </div>
+                    </div>
+                </div>
+
+            )
+
+        }
     }
 }
 
