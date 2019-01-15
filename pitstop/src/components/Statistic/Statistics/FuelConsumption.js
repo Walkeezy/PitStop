@@ -17,12 +17,8 @@ class FuelStatistic extends Component {
             eventsSorted   = eventsFiltered.sort((a, b) => a.date.seconds - b.date.seconds),
             // Chart Arrays
             months         = eventsSorted.map((eventsSorted) => moment(eventsSorted.date.seconds, 'X').format('D.M.YYYY')),
-            fuelConsumption = []
-
-            eventsSorted.map((props, index) => {
-                    fuelConsumption.push(
-                        index > 0 ? Number(((props.amount / (props.mileage - eventsSorted[index - 1].mileage)) * 100).toFixed(2)) : 0
-                    )
+            fuelConsumption = eventsSorted.map((props, index) => {
+                    return index > 0 ? Number(((props.amount / (props.mileage - eventsSorted[index - 1].mileage)) * 100).toFixed(2)) : 0
             })
 
         const data = {
