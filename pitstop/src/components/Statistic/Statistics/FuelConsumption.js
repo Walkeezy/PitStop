@@ -16,23 +16,27 @@ class FuelStatistic extends Component {
             // Sort by date and mileage
             eventsSorted   = eventsFiltered.sort((a, b) => a.date.seconds - b.date.seconds),
             // Chart Arrays
-            months         = eventsSorted.map((eventsSorted) => moment(eventsSorted.date.seconds, 'X').format('D.M.YYYY')),
+            months = eventsSorted.map((eventsSorted) => moment(eventsSorted.date.seconds, 'X').format('D. MMMM YYYY')),
             fuelConsumption = eventsSorted.map((props, index) => {
                     return index > 0 ? Number(((props.amount / (props.mileage - eventsSorted[index - 1].mileage)) * 100).toFixed(2)) : 0
             })
+
+        // Remove first entry, because first event is 0 anyways
+        months.shift()
+        fuelConsumption.shift()
 
         const data = {
             labels  : months,
             datasets: [
                 {
-                    label               : 'Liter per 100km',
+                    label               : 'liter / 100km',
                     backgroundColor     : colors.REFUEL_TRANS,
                     borderColor         : colors.REFUEL,
                     borderCapStyle      : 'butt',
                     borderWidth         : 1,
                     hoverBackgroundColor: colors.REFUEL,
                     hoverBorderColor    : colors.REFUEL,
-                    lineTension         : 0,
+                    lineTension         : 0.3,
                     data                : fuelConsumption
                 }
             ]
@@ -40,6 +44,13 @@ class FuelStatistic extends Component {
 
         const options = {
             scales: {
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit: 'month',
+                        parser: 'D. MMMM YYYY'
+                    }
+                }],
                 yAxes: [{
                     ticks: {
                         suggestedMin: 0,

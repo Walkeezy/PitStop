@@ -4,6 +4,9 @@ class VehicleSwitch extends Component {
 
     constructor() {
         super()
+        this.state = {
+            activeVehicle: ''
+        }
         this.handleChangeVehicle = this.handleChangeVehicle.bind(this)
     }
 
@@ -11,6 +14,17 @@ class VehicleSwitch extends Component {
         const vehicleId = event.target.value
         if (vehicleId) {
             this.props.saveVehicleAsActive(vehicleId)
+            this.setState({
+                activeVehicle: vehicleId
+            })
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.vehicles.activeVehicle){
+            this.setState({
+                activeVehicle: this.props.vehicles.activeVehicle
+            })
         }
     }
 
@@ -21,7 +35,7 @@ class VehicleSwitch extends Component {
             
                 <div className="vehicle-switch">
                     <label htmlFor="select-vehicle">Active vehicle</label>
-                    <select onChange={this.handleChangeVehicle} value={this.props.vehicles.activeVehicle ? this.props.vehicles.activeVehicle : ''} className="select-vehicle" id="select-vehicle">
+                    <select onChange={this.handleChangeVehicle} value={this.state.activeVehicle} className="select-vehicle" id="select-vehicle">
                         {Object.keys(vehicles).map((key, index) => {
                             return (
                                 <option key={index} value={key}>{vehicles[key].name}</option>
