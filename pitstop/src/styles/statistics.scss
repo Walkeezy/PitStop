@@ -32,4 +32,8 @@
     font-style: italic;
     color: $gray;
     padding: 1.75rem 0 0.75rem;
+
+    @media #{$bp-smartphones} {
+        padding: 1rem;
+    }
 }

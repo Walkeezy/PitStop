@@ -63,6 +63,10 @@
     color: $gray;
     padding-top: 2rem;
     padding-bottom: 2rem;
+
+    @media #{$bp-smartphones} {
+        padding: 0.25rem 1rem 0.25rem 1rem;
+    }
 }
 
 .hide-notification {

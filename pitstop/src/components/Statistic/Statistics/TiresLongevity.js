@@ -8,9 +8,10 @@ import Header from '../../Layout/Header'
 class TiresLongevity extends Component {
 
     calculateStatistic = () => {
-        const events = this.props.events.events
+        const events = this.props.events.events.sort((a, b) => a.mileage - b.mileage)
         const vehicle = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle]
         let tiresDistances = []
+
 
         let tiresEvents = events.filter(events => events.type === 'tires-change')
 
@@ -18,7 +19,6 @@ class TiresLongevity extends Component {
             return false
         }
 
-        tiresEvents.sort((a, b) => a.mileage - b.mileage)
         tiresEvents.forEach(function (event, index) {
             // Calculate distance from one tire change to the other, if it's the first tire change, calculate distance from vehicles initial mileage
             if(index > 0){
@@ -34,7 +34,8 @@ class TiresLongevity extends Component {
         tiresDistances.push(initialTire)
 
         // Add newest tire, which is still active on the vehicle
-        const newestTireDistance = vehicle.actual_mileage - tiresEvents[tiresEvents.length - 1].mileage
+        const newestMileage = events[events.length - 1].mileage
+        const newestTireDistance = newestMileage - tiresEvents[tiresEvents.length - 1].mileage
         const newestTire = { name: tiresEvents[tiresEvents.length - 1].tires, distance: newestTireDistance }
         tiresDistances.push(newestTire)
 

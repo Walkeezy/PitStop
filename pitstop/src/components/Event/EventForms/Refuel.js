@@ -24,7 +24,8 @@ class EventForm extends Component {
             ? this.props.startEditingEvent(vehicle, this.props.editEventId, event)
             : this.props.startAddingEvent(vehicle, event)
 
-        this.props.saveActualMileage(vehicle, event.mileage)
+        // Update actual mileage only if its higher than current actual mileage
+        values.eventMileage > this.props.vehicles.vehicles[vehicle].actual_mileage && this.props.saveActualMileage(vehicle, event.mileage)
 
         setSubmitting(false)
         return
