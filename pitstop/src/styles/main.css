@@ -157,6 +157,7 @@ button,
   font-size: 0.9rem; }
 
 .button--yellow {
+  color: #233142;
   background: #FACF5A;
   border-color: #f9c841;
   background-image: linear-gradient(0deg, #facc50 0%, #fad369 100%);
@@ -165,6 +166,9 @@ button,
     border-color: #f8bd1c;
     background-image: linear-gradient(0deg, #f9c841 0%, #facf5a 100%);
     box-shadow: 0 1px 1px 0 rgba(19, 31, 21, 0.18), inset 0 2px 0 0 rgba(255, 255, 255, 0.06); }
+
+.button--add-first-vehicle {
+  margin-top: 1rem; }
 
 button + button {
   margin-left: 1rem; }

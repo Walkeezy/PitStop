@@ -153,3 +153,9 @@ export function resetVehicleLoading() {
         type: 'RESET_VEHICLE_LOADING'
     }
 }
+
+export function cleanUpVehicles() {
+    return {
+        type: 'CLEANUP_VEHICLES'
+    }
+}

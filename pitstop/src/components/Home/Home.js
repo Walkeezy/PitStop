@@ -41,7 +41,14 @@ class HomePage extends Component {
                         </div>
                     </React.Fragment>
                 ) : (
-                    <div className="content">No vehicles found. <Link to={routes.ADD_VEHICLE}>Go and add one!</Link></div>
+
+                    <div className="event-log">
+                        <div className="notification notification--standalone notification--empty-state">
+                            <p>Looks like you don't have a vehicle yet.</p>
+                            <p><Link className="button button--yellow button--add-first-vehicle" to={routes.ADD_VEHICLE}>Add your first vehicle!</Link></p>
+                        </div>
+                    </div>
+
                 )}
             </div>
 

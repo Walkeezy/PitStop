@@ -55,6 +55,13 @@ const vehicleReducer = function vehicles(state = initialVehicleReducer, action) 
                 loading: false
             }
 
+        case 'CLEANUP_VEHICLES':
+            return {
+                ...state,
+                vehicles: {},
+                activeVehicle: ''
+            }
+
         default: return state
 
     }

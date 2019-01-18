@@ -101,3 +101,9 @@ export function resetEventLoading() {
         type: 'RESET_EVENT_LOADING'
     }
 }
+
+export function cleanUpEvents() {
+    return {
+        type: 'CLEANUP_EVENTS'
+    }
+}

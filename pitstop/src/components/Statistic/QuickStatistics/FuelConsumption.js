@@ -4,16 +4,20 @@ class QuickFuelConsumption extends Component {
 
     calculateStatistic = () => {
         const events = this.props.events.events
-        const initialMileage = this.props.vehicles.vehicles[this.props.vehicles.activeVehicle].initial_mileage
+        const vehicles = this.props.vehicles.vehicles
+
+        if(vehicles.length === 0) {
+            return false
+        }
 
         let refuelEvents = events.filter(events => events.type === 'refuel')
 
-        if (refuelEvents.length === 0) {
+        if(refuelEvents.length === 0) {
             return false
         }
 
         refuelEvents.sort((a, b) => a.mileage - b.mileage)
-        const lowestMileage = (refuelEvents > 0) ? refuelEvents[0].mileage : initialMileage
+        const lowestMileage = (refuelEvents > 0) ? refuelEvents[0].mileage : vehicles[this.props.vehicles.activeVehicle].initial_mileage
         const fuelDistance = refuelEvents[refuelEvents.length - 1].mileage - lowestMileage
         const fuelTotal = refuelEvents.reduce((consumption, event) => consumption + event.amount, 0)
         const fuelConsumed = fuelTotal - refuelEvents[0].amount // Substract amount from first event, because it must not be included to calculate the consumption correctly

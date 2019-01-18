@@ -22,7 +22,12 @@ const userReducer = function user(state = initialUserReducer, action) {
             return {
                 ...state,
                 loading: false,
-                authenticated: false
+                authenticated: false,
+                user: [],
+                details: {
+                    firstname: '',
+                    lastname: ''
+                }
             }
 
         case 'SET_USER_DETAILS':

@@ -1,8 +1,8 @@
 import { database, auth, emailAuthProvider } from './../../database/config'
 import { history } from './../../history'
 import * as routes from './../../constants/routes'
-import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading } from './vehicle'
-import { startLoadingEvents } from './event'
+import { startLoadingVehicles, setVehicleAsActive, resetVehicleLoading, cleanUpVehicles } from './vehicle'
+import { startLoadingEvents, cleanUpEvents } from './event'
 import { addNotification } from './notification'
 
 // ASYNC ACTIONS
@@ -104,6 +104,8 @@ export function signOutUser() {
         return auth.signOut()
         .then(() => {
             dispatch(unsetUser())
+            dispatch(cleanUpEvents())
+            dispatch(cleanUpVehicles())
         })
         .catch((error) => {
             dispatch(addNotification('error', error.message))

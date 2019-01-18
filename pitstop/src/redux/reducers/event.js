@@ -26,10 +26,16 @@ const eventReducer = function event(state = initialeventReducer, action) {
             }
 
         case 'RESET_EVENT_LOADING':
-        return {
-            ...state,
-            loading: false
-        }
+            return {
+                ...state,
+                loading: false
+            }
+
+        case 'CLEANUP_EVENTS':
+            return {
+                ...state,
+                events: []
+            }
 
         default: return state
 
