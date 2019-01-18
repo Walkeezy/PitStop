@@ -9,7 +9,6 @@ class EventLog extends Component {
     render() {
         const events = this.props.events.events
         const loadingEventData = this.props.events.loading
-        events.sort((b, a) => a.date - b.date || a.mileage - b.mileage) // Sort by date first, if it's the same then sort by mileage
 
         if (loadingEventData) {
 
@@ -37,16 +36,21 @@ class EventLog extends Component {
 
                 )
 
+            } else {
+
+                // Sort by date first, then sort by mileage
+                events.sort((b, a) => new Date(a.date.seconds * 1000) - new Date(a.date.seconds * 1000) || a.mileage - b.mileage)
+
+                return (
+
+                    <div className="event-log">
+                        <div className="event-log-line"></div>
+                        {events.map((event, index) => <EventLogItem key={index} event={event} {...this.props} />)}
+                    </div>
+
+                )
+
             }
-
-            return (
-
-                <div className="event-log">
-                    <div className="event-log-line"></div>
-                    {events.map((event, index) => <EventLogItem key={index} event={event} {...this.props} />)}
-                </div>
-
-            )
         
         }
     }
