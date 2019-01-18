@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class AddVehicleForm extends Component {
 
